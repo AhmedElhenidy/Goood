@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         bottomAppBarColor: GoodColors.grey,
       ),
-      home: BottomNavigationBarClass(1),
+      home: SplashScreen(),
     );
   }
 }

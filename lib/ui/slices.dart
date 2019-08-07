@@ -7,10 +7,20 @@ class Slices extends StatefulWidget{
 }
 class _SlicesState extends State<Slices>{
   GlobalKey<ScaffoldState> _scaffoldKeyProfile;
+  List<String> images =new List();
+  List<String> names = List();
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile = new GlobalKey<ScaffoldState>();
+    images.add("images/11.png");
+    images.add("images/12.png");
+    images.add("images/13.png");
+    images.add("images/14.png");
+    names.add("تيس بلدى");
+    names.add("نعيمي");
+    names.add("حرى");
+    names.add("نجدى");
   }
   @override
   Widget build(BuildContext context) {
@@ -43,7 +53,7 @@ class _SlicesState extends State<Slices>{
                             children: <Widget>[
                               Positioned(
                                 top: 0,right: 0,left: 0,bottom: 0,
-                                child: Image.asset("images/cheap.png",fit: BoxFit.fill,),
+                                child: Container(child: Image(image: AssetImage(images[index]),fit: BoxFit.fill,)),
                               ),
                               Positioned(
                                 top: 8,left: 8,
@@ -62,7 +72,7 @@ class _SlicesState extends State<Slices>{
                             children: <Widget>[
                               Flexible(
                                 flex: 1,
-                                child: Text("نعيمى",
+                                child: Text(names[index],
                                   style: TextStyle(
                                       fontSize: 18,color: GoodColors.brown
                                   ),

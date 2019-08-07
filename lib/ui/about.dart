@@ -89,7 +89,7 @@ class _AboutState extends State<About>{
               //لماذا الجود
               Container(
                 width: MediaQuery.of(context).size.width/1.22,
-                height: MediaQuery.of(context).size.height/3.7,
+                height: MediaQuery.of(context).size.height/3.4,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -98,10 +98,10 @@ class _AboutState extends State<About>{
                       ),
                     ),
                     Positioned(
-                      top: 40,
+                      top: 42,
                       left: 5,
                       right: 5,
-                      bottom: 5,
+                      bottom: 0,
                       child: Card(
                         shape: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(7),

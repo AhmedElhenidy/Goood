@@ -25,15 +25,12 @@ class _ContactUsState extends State<ContactUs>{
           child: Column(
             children: <Widget>[
               Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(16),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height/2,
+                width: MediaQuery.of(context).size.width/1.15,
+                height: MediaQuery.of(context).size.height/2.1,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
                       child: Container(
-                        color: Colors.white,
                       ),
                     ),
                     Positioned(
@@ -267,16 +264,15 @@ class _ContactUsState extends State<ContactUs>{
               ),
               SizedBox(height: MediaQuery.of(context).size.height/50,),
               Container(
-                height: MediaQuery.of(context).size.height/1.8,
-                padding: EdgeInsets.only(right: 16,left: 16),
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width/1.15,
+                height: MediaQuery.of(context).size.height/1.65,
                 child: Stack(
                   children: <Widget>[
-
                     Positioned(
                       top: 40,
                       left: 5,
                       right: 5,
+                      bottom: 0,
                       child: Container(
                         child: Card(
                           elevation: 10,
@@ -289,7 +285,7 @@ class _ContactUsState extends State<ContactUs>{
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom:14.0),
+                            padding: const EdgeInsets.only(bottom:0.0),
                             child: Container(
                               constraints: BoxConstraints(
                                   minHeight: 265
@@ -402,23 +398,22 @@ class _ContactUsState extends State<ContactUs>{
                     ),
                     Positioned(
                       top: 1,
-                      right: MediaQuery.of(context).size.width/2.7,
+                      right: MediaQuery.of(context).size.width/3,
+                      left: MediaQuery.of(context).size.width/3,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          //TODO: غير الصورة
-                          Image.asset("images/share.png",
+                          Image.asset("images/message.png",
                             width: 40,height: 40,
                           ),
                         ],
                       ),
                     ),
                     Positioned(
-                      top:MediaQuery.of(context).size.height/2 -20 ,
+                      top:MediaQuery.of(context).size.height/2 -5 ,
                       left: (MediaQuery.of(context).size.width/1.9)/2.5,
                       right: (MediaQuery.of(context).size.width/1.9)/2.5,
-                      bottom: MediaQuery.of(context).size.height/40,
-
+                      bottom: MediaQuery.of(context).size.height/25,
                       child: Container(
                         decoration: BoxDecoration(
                           color: GoodColors.brown,
@@ -426,7 +421,6 @@ class _ContactUsState extends State<ContactUs>{
                         ),
                         width: 100,
                         height: 40,
-                        
                         child: Center(
                           child: Text("ارسال",style: TextStyle(color: Colors.white),),
                         ),

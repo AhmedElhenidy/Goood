@@ -28,18 +28,16 @@ class _SnapChatState extends State<SnapChat>{
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                color: Colors.white,
                 width: MediaQuery.of(context).size.width/1.25,
-                height: MediaQuery.of(context).size.height/2.2,
+                height: MediaQuery.of(context).size.height/2.13,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
                       child: Container(
-                        color: Colors.white,
                       ),
                     ),
                     Positioned(
-                      top: 50,
+                      top: MediaQuery.of(context).size.height/20,
                       left: 5,
                       right: 5,
                       bottom: 5,
@@ -56,7 +54,7 @@ class _SnapChatState extends State<SnapChat>{
                         child: Container(
                           padding: EdgeInsets.all(16),
                           constraints: BoxConstraints(
-                              minHeight: 200
+                              minHeight: 300
                           ),
                           child: Center(
                               child: Column(
@@ -64,8 +62,8 @@ class _SnapChatState extends State<SnapChat>{
                                 children: <Widget>[
                                   SizedBox(height: MediaQuery.of(context).size.height/12,),
                                   Container(
-                                    width: MediaQuery.of(context).size.width/1.8,
-                                    padding: EdgeInsets.only(top: 8,bottom: 8),
+                                    width: MediaQuery.of(context).size.width/1.6,
+                                    padding: EdgeInsets.only(top: 8,bottom: 8,left: 8,right: 8),
                                     decoration: BoxDecoration(
                                       color: GoodColors.brownLight,
                                       borderRadius: BorderRadius.circular(18),
@@ -87,19 +85,20 @@ class _SnapChatState extends State<SnapChat>{
                       ),
                     ),
                     Positioned(
-                      child: Column(
-                        children: <Widget>[
-                          Center(
-                            child: Container(
-                              padding: EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: GoodColors.brownDark,
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Image.asset("images/snapshat.png",width: 100,height: 100,),
-                            ),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width/3.5,
+                          height: MediaQuery.of(context).size.width/4,
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: GoodColors.brownDark,
+                            borderRadius: BorderRadius.circular(18),
                           ),
-                        ],
+                          child: Image.asset("images/snapshat.png",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
                     ),
                     //share

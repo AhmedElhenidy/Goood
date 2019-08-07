@@ -1,6 +1,9 @@
 import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/about.dart';
+import 'package:camel/ui/contact_us.dart';
 import 'package:flutter/material.dart';
+
+import 'bottom_navigation.dart';
 class DrawerClass{
   Widget showDrawer(BuildContext context) {
     return Container(
@@ -18,10 +21,20 @@ class DrawerClass{
                 ),
                 child: Column(
                   children: <Widget>[
-                    Image.asset("images/man.png"),
-                    SizedBox(height: MediaQuery.of(context).size.height/50,),
-                    Text("Mohamed Alaa",
-                      style: TextStyle(color: Colors.white,fontSize: 25),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        child: Image.asset("images/man.png",fit: BoxFit.fill,),
+                      ),
+                    ),
+                   // SizedBox(height: MediaQuery.of(context).size.height/50,),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: Text("Mohamed Alaa",
+                          style: TextStyle(color: Colors.white,fontSize: 25),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -48,7 +61,10 @@ class DrawerClass{
                     leading: new Image.asset("images/home_drawer.png",
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context)=>BottomNavigationBarClass(1)
+                      ),
+                      );
                     },
                   ),
                   Padding(
@@ -88,7 +104,8 @@ class DrawerClass{
                     leading: new Image.asset("images/contact.png",
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context)=>ContactUs()),);
                     },
                   ),
                   Padding(
