@@ -84,6 +84,9 @@ flutter:
     - images/12.png
     - images/13.png
     - images/14.png
+    - images/hwar.png
+    - images/mafrood.png
+    - images/meat.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
 class Hashy extends StatefulWidget{
+  String name,image;
+  Hashy(this.name,this.image);
   _HashyState createState()=> _HashyState();
 }
 class _HashyState extends State<Hashy>{
@@ -33,41 +35,9 @@ class _HashyState extends State<Hashy>{
             child: Column(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(16),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height/2.8,
-                  child: CarouselSlider(
-                    items: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Image.asset("images/hashy.png",fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Image.asset("images/hashy.png",fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Image.asset("images/hashy.png",fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                    aspectRatio: 16/9,
-                    viewportFraction: 1.9,
-                    initialPage: 0,
-                    autoPlay: false,
-                    enableInfiniteScroll: false,
-                    scrollDirection: Axis.horizontal,
-                    pauseAutoPlayOnTouch: Duration(seconds: 5),
-                    onPageChanged: (index) {
-                      setState(() {
-                        _current = index;
-                        print("_current : : $_current");
-                      });
-                    },
-                  ),
+                  child: Image.asset(widget.image,fit: BoxFit.fill,),
                 ),
                 Container(
                   padding: EdgeInsets.all(16),
@@ -78,14 +48,20 @@ class _HashyState extends State<Hashy>{
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text("الحاشى",
+                          Text(widget.name,
                             style: TextStyle(
                               fontSize: 28,
                               color: GoodColors.brown,
                             ),
                           ),
                           LikeButton(
-                            size: 35,
+                            circleColor: CircleColor(start: Colors.white, end:GoodColors.brown),
+                            likeBuilder: (widget) {
+                              return Container(
+                                child:  !widget ?Icon(Icons.favorite_border,color:GoodColors.brownLight,):
+                                Icon(Icons.favorite,color:GoodColors.brown,),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -148,7 +124,7 @@ class _HashyState extends State<Hashy>{
                         ],
                       ),
                       //الحجم
-                      Row(
+                      /*Row(
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
@@ -228,7 +204,7 @@ class _HashyState extends State<Hashy>{
                             ),
                           ),
                         ],
-                      ),
+                      ),*/
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -476,7 +452,7 @@ class _HashyState extends State<Hashy>{
                                 onTap: (){
                                   setState(() {
                                     mafroomTapped=!mafroomTapped;
-                                    mafroomWidth=300;
+                                    mafroomWidth=250;
                                   });
                                 },
                                 child: Center(

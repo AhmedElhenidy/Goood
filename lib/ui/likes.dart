@@ -15,7 +15,7 @@ class _LikesState extends State<Likes>{
         padding: EdgeInsets.all(16.0),
         child: Container(
           child: ListView.builder(
-            itemCount: 16,
+            itemCount: 8,
             itemBuilder: (context,position){
               return Padding(
                 padding: const EdgeInsets.only(bottom:16.0),
@@ -25,10 +25,24 @@ class _LikesState extends State<Likes>{
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(8),
-                                bottomLeft: Radius.circular(8),
-                              ),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(8),
+                              bottomRight: Radius.circular(8),
+                            ),
+                            color: Colors.yellowAccent,
+                          ),
+                          height: 120,
+                          child: Image.asset("images/cheap.png",fit: BoxFit.fill,),
+                        ),
+                        flex: 1,
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                            ),
                             color: Colors.white,
                           ),
                           height: 120,
@@ -39,6 +53,12 @@ class _LikesState extends State<Likes>{
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
+                                    Text("نعيمي",
+                                      style: TextStyle(
+                                        color:GoodColors.brown ,
+                                        fontSize: 18,
+                                      ),
+                                    ),
                                     Container(
                                       padding: EdgeInsets.all(2),
                                       decoration:BoxDecoration(
@@ -46,16 +66,13 @@ class _LikesState extends State<Likes>{
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: LikeButton(
-                                        circleColor: CircleColor(
-                                            start: Colors.blue, end: GoodColors.brownDark,
-                                        ),
-                                        size: 25,
-                                      ),
-                                    ),
-                                    Text("نعيمي",
-                                      style: TextStyle(
-                                        color:GoodColors.brown ,
-                                        fontSize: 18,
+                                        circleColor: CircleColor(start: Colors.white, end:GoodColors.brown),
+                                        likeBuilder: (widget) {
+                                          return Container(
+                                            child:  !widget ?Icon(Icons.favorite_border,color:Colors.white,):
+                                            Icon(Icons.favorite,color:GoodColors.brownDark,),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ],
@@ -64,7 +81,7 @@ class _LikesState extends State<Likes>{
                               Container(
                                 padding: EdgeInsets.only(right:4),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Container(
                                       width: 137,
@@ -83,13 +100,6 @@ class _LikesState extends State<Likes>{
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Text(" 150 ر.س ",
-                                            textDirection: TextDirection.rtl,
-                                          ),
-                                          Text(" السعر ",
-                                            style: TextStyle(fontSize: 16),
-                                            textDirection: TextDirection.rtl,
-                                          ),
                                           Container(
                                             padding: EdgeInsets.all(2),
                                             decoration: BoxDecoration(
@@ -104,6 +114,12 @@ class _LikesState extends State<Likes>{
                                               size: 28,
                                             ),
                                           ),
+                                          Text(" السعر ",
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          Text(" 150 ر.س ",
+                                          ),
+
                                         ],
                                       ),
                                     ),
@@ -115,20 +131,20 @@ class _LikesState extends State<Likes>{
                                 child: InkWell(
                                   onTap: (){},
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Container(
                                         padding: EdgeInsets.all(4),
                                         width: 137,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(6),
-                                          color: GoodColors.brown
+                                            borderRadius: BorderRadius.circular(6),
+                                            color: GoodColors.brown
                                         ),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: <Widget>[
-                                            Text("    اطلب الآن   "),
                                             Icon(Icons.shopping_cart,color: Colors.white,),
+                                            Text("    اطلب الآن   "),
                                           ],
                                         ),
                                       ),
@@ -140,20 +156,6 @@ class _LikesState extends State<Likes>{
                           ),
                         ),
                         flex: 2,
-                      ),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(8),
-                              bottomRight: Radius.circular(8),
-                            ),
-                            color: Colors.yellowAccent,
-                          ),
-                          height: 120,
-                          child: Image.asset("images/cheap.png",fit: BoxFit.fill,),
-                        ),
-                        flex: 1,
                       ),
                     ],
                   ),
