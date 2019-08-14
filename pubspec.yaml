@@ -87,6 +87,11 @@ flutter:
     - images/hwar.png
     - images/mafrood.png
     - images/meat.png
+    - images/bell.png
+    - images/home_pic.png
+    - images/cart.png
+    - images/driver.png
+    - images/picture.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

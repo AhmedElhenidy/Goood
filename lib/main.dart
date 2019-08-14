@@ -14,6 +14,8 @@ import 'package:camel/ui/test_cupertino.dart';
 import 'package:camel/ui/zabaeh.dart';
 import 'package:flutter/material.dart';
 
+import 'admin/home.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         bottomAppBarColor: GoodColors.grey,
       ),
-      home: SplashScreen(),
+      home: AdminHome(),
     );
   }
 }
