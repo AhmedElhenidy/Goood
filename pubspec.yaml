@@ -99,6 +99,14 @@ flutter:
     - images/whats.png
     - images/add_driver_photo.png
     - images/ring.png
+    - images/whatsapp.png
+    - images/dollar_sign.png
+    - images/man_order.png
+    - images/sheep_order.png
+    - images/time.png
+    - images/order_photo.png
+    - images/float.png
+    - images/call-answer.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
