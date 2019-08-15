@@ -92,6 +92,9 @@ flutter:
     - images/cart.png
     - images/driver.png
     - images/picture.png
+    - images/add_photo.png
+    - images/delete.png
+    - images/edit.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
