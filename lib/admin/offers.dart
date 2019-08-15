@@ -50,7 +50,7 @@ class _OffersState extends State<Offers>{
                 width: MediaQuery.of(context).size.width,
                 child: GridView.builder(
                   padding: EdgeInsets.only(bottom: 16,right: 16,left: 16),
-                  itemCount: 9,
+                  itemCount: 3,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
@@ -114,7 +114,6 @@ class _OffersState extends State<Offers>{
                       ),
                     );
                   },
-
                 ),
               ),
             ),

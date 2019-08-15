@@ -18,6 +18,7 @@ class _AdminHomeState extends State<AdminHome>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AdminAppBarClass().appBar(context, _scaffoldKeyProfile,"لوحة التحكم"),
       body: Container(
         width: MediaQuery.of(context).size.width,

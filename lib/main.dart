@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       },
       title: 'الجود',
       theme: ThemeData(
+        //canvasColor: Colors.transparent,
         bottomAppBarColor: GoodColors.grey,
       ),
       home: AdminHome(),
