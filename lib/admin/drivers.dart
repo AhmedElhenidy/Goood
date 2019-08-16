@@ -110,23 +110,23 @@ class _DriversState extends State<Drivers>{
                                           flex: 1,
                                           fit: FlexFit.tight,
                                           child: Container(
-                                            padding: EdgeInsets.only(right: 2,top: 8),
+                                            padding: EdgeInsets.only(right: 2,top: 14),
                                             child: Align(
                                               alignment: Alignment.bottomCenter,
-                                                child: Text("محمد علاء سعفان",style: TextStyle(fontSize: 17),)),
+                                                child: Text("محمد علاء سعفان",style: TextStyle(fontSize: 18),)),
                                           ),
                                         ),
                                         Flexible(
                                           flex: 1,
                                           fit: FlexFit.tight,
                                           child: Container(
-                                            padding: EdgeInsets.only(right: 2,left: 2),
+                                            padding: EdgeInsets.only(right: 8,left: 8),
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                                               children: <Widget>[
-                                                Text("01065432596"),
-                                                Image.asset("images/whats.png",width:25,height: 25 ,),
-                                                Image.asset("images/ring.png",width:25,height: 25 ,),
+                                                Text("01065432596",style: TextStyle(fontSize: 12),),
+                                                Image.asset("images/whats.png",width:20,height: 20 ,),
+                                                Image.asset("images/ring.png",width:20,height: 20 ,),
 
                                               ],
                                             ),
