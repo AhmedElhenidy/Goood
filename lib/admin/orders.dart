@@ -1,4 +1,5 @@
 import 'package:camel/admin/client_tab.dart';
+import 'package:camel/admin/drivers.dart';
 import 'package:camel/admin/order_tab.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
@@ -272,10 +273,17 @@ class _OrderDetailsState extends State<OrderDetails>{
         length: 2,
         child: Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-          floatingActionButton: CircleAvatar(
-            radius: 35,
-            backgroundColor: Colors.transparent,
-            child: Image.asset("images/float.png",fit: BoxFit.fill,),
+          floatingActionButton: InkWell(
+            onTap: (){
+              showDialog(context: context,
+                builder: (_)=>SendOrder()
+              );
+            },
+            child: CircleAvatar(
+              radius: 35,
+              backgroundColor: Colors.transparent,
+              child: Image.asset("images/float.png",fit: BoxFit.fill,),
+            ),
           ),
           appBar: AppBar(
             shape: RoundedRectangleBorder(
@@ -377,6 +385,162 @@ class _OrderDetailsState extends State<OrderDetails>{
               ClientTab(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+class SendOrder extends StatefulWidget{
+  _SendOrderState createState()=> _SendOrderState();
+}
+class _SendOrderState extends State<SendOrder>{
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius:BorderRadius.circular(8)
+      ),
+      child: Container(
+        padding: EdgeInsets.only(bottom: 16),
+        height: MediaQuery.of(context).size.height/1.2,
+        child: Column(
+          children: <Widget>[
+            Flexible(
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                child:
+                Column(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 5,
+                      child: Center(
+                        child: Text("إرسال الطلب",
+                          style: TextStyle(
+                            color: GoodColors.brownDark,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          color: GoodColors.greyLight,
+                          height: 3,
+                          width: MediaQuery.of(context).size.width/2.7,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 4,
+              child: Container(
+                child: ListView.builder(
+                  itemCount: 9,
+                  itemBuilder: (context,position){
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom:16.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: InkWell(
+                          onTap: (){
+//                            showDialog(context: context,
+//                                builder: (context)=>DriverInfo(position,"محمد علاء سعفان","11230216","لا توجد ملاحظات")
+//                            );
+                          },
+                          child: Card(
+                            elevation: 10,
+                            child: Container(
+                              color: Colors.white,
+                              width: MediaQuery.of(context).size.width,
+                              height: 80,
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      child: Center(child: Text("${position+1}")),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      child: Center(
+                                        child: CircleAvatar(
+                                          radius: 28,
+                                          backgroundColor: Colors.white,
+                                          child: Image.asset("images/driver_pic.png"),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 7,
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Flexible(
+                                            flex: 1,
+                                            fit: FlexFit.tight,
+                                            child: Container(
+                                              padding: EdgeInsets.only(right: 1,top: 16),
+                                              child: Align(
+                                                  alignment: Alignment.bottomCenter,
+                                                  child: Text("محمد علاء سعفان",style: TextStyle(fontSize: 17),)),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            fit: FlexFit.tight,
+                                            child: Container(
+                                              padding: EdgeInsets.only(right: 0,left: 2),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: <Widget>[
+                                                  Text("01065432596"),
+                                                  Image.asset("images/whats.png",width:25,height: 25 ,),
+                                                  Image.asset("images/ring.png",width:25,height: 25 ,),
+
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      padding: EdgeInsets.only(left:2,right: 2),
+                                      color: GoodColors.brownLight,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Image.asset("images/sent-mail.png",fit: BoxFit.fill,),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

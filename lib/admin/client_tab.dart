@@ -29,12 +29,16 @@ class _ClientTabState extends State<ClientTab>{
                     ),
                   ),
                   Flexible(
-                    flex: 1,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      child: Text("Mohamed Saafan",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 16,bottom: 4),
+                        child: Text("Mohamed Saafan",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18
+                          ),
                         ),
                       ),
                     ),
@@ -42,7 +46,7 @@ class _ClientTabState extends State<ClientTab>{
                   Flexible(
                     flex: 1,
                     child: Container(
-                      padding: EdgeInsets.only(top: 8,bottom: 8),
+                      padding: EdgeInsets.only(top: 4,bottom: 4),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
@@ -88,7 +92,7 @@ class _ClientTabState extends State<ClientTab>{
                   Flexible(
                     flex: 1,
                     child: Container(
-                      padding: EdgeInsets.only(top: 8,bottom: 8),
+                      padding: EdgeInsets.only(top: 4,bottom: 4),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
@@ -134,7 +138,7 @@ class _ClientTabState extends State<ClientTab>{
                   Flexible(
                     flex: 2,
                     child: Container(
-                      padding: EdgeInsets.only(top: 8,bottom: 8),
+                      padding: EdgeInsets.only(top: 4,bottom: 8),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
@@ -181,7 +185,8 @@ class _ClientTabState extends State<ClientTab>{
                   Flexible(
                     fit: FlexFit.tight,
                     flex: 1,
-                    child: Container(padding: EdgeInsets.only(right: 16,left: 16),
+                    child: Container(
+                      padding: EdgeInsets.only(right: 16,left: 16),
                       color: Colors.white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,6 +197,7 @@ class _ClientTabState extends State<ClientTab>{
                               padding: const EdgeInsets.only(left :8.0),
                               child: InkWell(
                                 child: Container(
+                                  padding: EdgeInsets.only(top: 4,bottom: 4),
                                   decoration: BoxDecoration(
                                     color: GoodColors.brownDark,
                                     borderRadius: BorderRadius.circular(7)
@@ -199,7 +205,11 @@ class _ClientTabState extends State<ClientTab>{
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Text("اتصال   "),
+                                      Text("اتصال   ",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                       Image.asset("images/call-answer.png",width: 18,height: 18,)
                                     ],
                                   ),
@@ -213,6 +223,7 @@ class _ClientTabState extends State<ClientTab>{
                               padding: const EdgeInsets.only(right:8.0),
                               child: InkWell(
                                 child: Container(
+                                  padding: EdgeInsets.only(top: 4,bottom: 4),
                                   decoration: BoxDecoration(
                                       color: GoodColors.brownDark,
                                       borderRadius: BorderRadius.circular(7)
@@ -220,7 +231,11 @@ class _ClientTabState extends State<ClientTab>{
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Text("مراسلة   "),
+                                      Text("مراسلة   ",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                       Image.asset("images/whatsapp.png",width: 24,height: 24,)
                                     ],
                                   ),
@@ -245,7 +260,7 @@ class _ClientTabState extends State<ClientTab>{
               child: Align(
                 alignment: Alignment.topCenter,
                 child: CircleAvatar(
-                  radius: 40,
+                  radius: MediaQuery.of(context).size.width/7.5,
                   backgroundColor:GoodColors.brown,
                   child: Image.asset("images/man.png",fit: BoxFit.fill,),
                 ),

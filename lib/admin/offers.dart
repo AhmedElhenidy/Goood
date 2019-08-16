@@ -37,7 +37,7 @@ class _OffersState extends State<Offers>{
               ),
             ),
             Flexible(
-              flex: 5,
+              flex: 4,
               child: Container(
                 padding: EdgeInsets.all(16),
                 width: MediaQuery.of(context).size.width,
