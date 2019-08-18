@@ -28,7 +28,7 @@ class _BuySlicesState extends State<BuySlices>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBarClass().appBar(context, _scaffoldKeyProfile),
+      appBar:  AppBarClass().appBar(context, _scaffoldKeyProfile,false),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(

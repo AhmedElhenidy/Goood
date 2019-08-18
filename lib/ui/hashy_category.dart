@@ -26,7 +26,7 @@ class _HashyCategyState extends State<HashyCategory>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,title: "الحاشى"),
+        appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false,title: "الحاشى"),
         backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.only(left: 8,right: 8,bottom: 16),

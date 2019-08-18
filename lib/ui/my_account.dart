@@ -88,6 +88,7 @@ class _MyAccountState extends State<MyAccount>{
               child: InkWell(
                 onTap: (){debugPrint("person");},
                 child: Container(
+                  padding: EdgeInsets.only(top: 2,bottom: 2),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(19),
                     color: GoodColors.brownLight,
@@ -96,11 +97,13 @@ class _MyAccountState extends State<MyAccount>{
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Image.asset("images/info.png",width: 38,height: 38,),
-
-                      Text("المعلومات الشخصية  ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: GoodColors.brown
+                      Padding(
+                        padding: const EdgeInsets.only(right:16.0),
+                        child: Text("المعلومات الشخصية  ",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: GoodColors.brown
+                          ),
                         ),
                       ),
                     ],
@@ -113,6 +116,7 @@ class _MyAccountState extends State<MyAccount>{
               child: InkWell(
                 onTap: (){debugPrint("person");},
                 child: Container(
+                  padding: EdgeInsets.only(top: 2,bottom: 2),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(19),
                     color: GoodColors.brownLight,
@@ -121,10 +125,13 @@ class _MyAccountState extends State<MyAccount>{
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Image.asset("images/shopping_cart.png",width: 38,height: 38,),
-                      Text("الطلبات السابقة  ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: GoodColors.brown
+                      Padding(
+                        padding: const EdgeInsets.only(right:16.0),
+                        child: Text("الطلبات السابقة  ",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: GoodColors.brown
+                          ),
                         ),
                       ),
                     ],
@@ -137,6 +144,7 @@ class _MyAccountState extends State<MyAccount>{
               child: InkWell(
                 onTap: (){debugPrint("person");},
                 child: Container(
+                  padding: EdgeInsets.only(top: 2,bottom: 2),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(19),
                     color: GoodColors.brownLight,
@@ -145,10 +153,13 @@ class _MyAccountState extends State<MyAccount>{
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Image.asset("images/location.png",width: 38,height: 38,),
-                      Text("عناوينى  ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: GoodColors.brown
+                      Padding(
+                        padding: const EdgeInsets.only(right:16.0),
+                        child: Text("عناوينى  ",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: GoodColors.brown
+                          ),
                         ),
                       ),
                     ],

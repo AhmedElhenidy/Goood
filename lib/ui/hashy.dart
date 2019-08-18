@@ -1,6 +1,5 @@
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +24,7 @@ class _HashyState extends State<Hashy>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBarClass().appBar(context,_scaffoldKeyProfile),
+      appBar:  AppBarClass().appBar(context,_scaffoldKeyProfile,false,title: "الحاشى"),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -50,7 +49,7 @@ class _HashyState extends State<Hashy>{
                         children: <Widget>[
                           Text(widget.name,
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 22,
                               color: GoodColors.brown,
                             ),
                           ),
@@ -79,7 +78,7 @@ class _HashyState extends State<Hashy>{
                         children: <Widget>[
                           Container(
                             padding: EdgeInsets.only(top :16),
-                            width: 200,
+                            width: MediaQuery.of(context).size.width/2,
                             child: Row(
                               children: <Widget>[
                                 Expanded(flex: 1,
@@ -123,95 +122,171 @@ class _HashyState extends State<Hashy>{
                           ),
                         ],
                       ),
-                      //الحجم
-                      /*Row(
+                      widget.name=="لحم حاشى"?Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top :16.0),
-                            child: sizeAnimatedWidth<3 ?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: GoodColors.brownDark,
-                                  width: 2,
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top :16.0,left: 8),
+                              child: cuttingValue=="" ?Container(
+                                padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: GoodColors.brownDark,
+                                    width: 2,
+                                  ),
                                 ),
-                              ),
-                              child: InkWell(
-                                onTap: ()async{
-                                  size();
-                                },
-                                child: Center(
-                                  child: Text("الحجم",
-                                    style: TextStyle(
-                                      color: GoodColors.brownDark,
-                                      fontSize: 19,
+                                child: InkWell(
+                                  onTap: cutting,
+                                  child: Center(
+                                    child: Text("التقطيع",
+                                      style: TextStyle(
+                                        color: GoodColors.brownDark,
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                                :AnimatedContainer(
-                              duration: Duration(milliseconds: 500),
-                              width: sizeAnimatedWidth,
-                              decoration: BoxDecoration(
-                                color: GoodColors.brownLight,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child:Row(
-                                children: <Widget>[
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    width: sizeAnimatedWidth/2,
-                                    padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
-                                    decoration: BoxDecoration(
-                                      color: GoodColors.brownDark,
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                        color: GoodColors.brownDark,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    child: InkWell(
-                                      onTap: ()async{
-                                        size();
-                                      },
-                                      child: Center(
-                                        child: Text("الحجم",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 19,
+                              ):Container(
+                                height: MediaQuery.of(context).size.height/7.5,
+                                decoration: BoxDecoration(
+                                  color: GoodColors.brownLight,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    Flexible(
+                                      flex:1,
+                                      child: Container(
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
+                                        decoration: BoxDecoration(
+                                          color: GoodColors.brownDark,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: GoodColors.brownDark,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: cutting,
+                                          child: Center(
+                                            child: Text("التقطيع",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    width: sizeAnimatedWidth/2,
-                                    child: Center(
-                                      child: Text("$sizeValue",
-                                        style: TextStyle(
-                                          color: GoodColors.brownDark,
-                                          fontSize: 18,
+                                    Flexible(
+                                      flex: 1,
+                                      child: Container(
+                                        child: Center(
+                                          child: Text("$cuttingValue",
+                                            style: TextStyle(
+                                                color: GoodColors.brownDark,
+                                                fontSize: cuttingValue=="تفاصيل كبيرة"||cuttingValue=="تفاصيل صغيرة"?16:16
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top :16.0,right: 8),
+                              child: taghleefValue==""?Container(
+                                padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: GoodColors.brownDark,
+                                    width: 2,
                                   ),
-                                ],
+                                ),
+                                child: InkWell(
+                                  onTap: taghleef,
+                                  child: Center(
+                                    child: Text("التغليف",
+                                      style: TextStyle(
+                                        color: GoodColors.brownDark,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ):Container(
+                                height: MediaQuery.of(context).size.height/7.5,
+                                decoration: BoxDecoration(
+                                  color: GoodColors.brownLight,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    Flexible(
+                                      flex:1,
+                                      child: Container(
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
+                                        decoration: BoxDecoration(
+                                          color: GoodColors.brownDark,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: GoodColors.brownDark,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: taghleef,
+                                          child: Center(
+                                            child: Text("التغليف",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Flexible(
+                                      flex: 1,
+                                      child: Container(
+                                        child: Center(
+                                          child: Text("$taghleefValue",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: GoodColors.brownDark,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ],
-                      ),*/
+                      ):
+                      //الحجم
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
-                            child: headValue==""?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                            child: sizeValue==""?Container(
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -228,7 +303,7 @@ class _HashyState extends State<Hashy>{
                                   child: Text("الحجم",
                                     style: TextStyle(
                                       color: GoodColors.brownDark,
-                                      fontSize: 19,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
@@ -244,7 +319,7 @@ class _HashyState extends State<Hashy>{
                                   Flexible(
                                     flex:1,
                                     child: Container(
-                                      padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                      padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                       decoration: BoxDecoration(
                                         color: GoodColors.brownDark,
                                         borderRadius: BorderRadius.circular(20),
@@ -261,7 +336,7 @@ class _HashyState extends State<Hashy>{
                                           child: Text("الحجم",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 19,
+                                              fontSize: 18,
                                             ),
                                           ),
                                         ),
@@ -272,9 +347,9 @@ class _HashyState extends State<Hashy>{
                                     flex: 1,
                                     child: Container(
                                       child: Center(
-                                        child: Text("$headValue",
+                                        child: Text("$sizeValue",
                                           style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: GoodColors.brownDark,
                                           ),
                                         ),
@@ -288,7 +363,7 @@ class _HashyState extends State<Hashy>{
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
                             child: cuttingValue=="" ?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -303,7 +378,7 @@ class _HashyState extends State<Hashy>{
                                   child: Text("التقطيع",
                                     style: TextStyle(
                                       color: GoodColors.brownDark,
-                                      fontSize: 19,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
@@ -319,7 +394,7 @@ class _HashyState extends State<Hashy>{
                                   Flexible(
                                     flex:1,
                                     child: Container(
-                                      padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                      padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                       decoration: BoxDecoration(
                                         color: GoodColors.brownDark,
                                         borderRadius: BorderRadius.circular(20),
@@ -334,7 +409,7 @@ class _HashyState extends State<Hashy>{
                                           child: Text("التقطيع",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 19,
+                                              fontSize: 18,
                                             ),
                                           ),
                                         ),
@@ -348,7 +423,7 @@ class _HashyState extends State<Hashy>{
                                         child: Text("$cuttingValue",
                                           style: TextStyle(
                                               color: GoodColors.brownDark,
-                                              fontSize: cuttingValue=="تفاصيل كبيرة"||cuttingValue=="تفاصيل صغيرة"?16:19
+                                              fontSize: cuttingValue=="تفاصيل كبيرة"||cuttingValue=="تفاصيل صغيرة"?16:16
                                           ),
                                         ),
                                       ),
@@ -361,7 +436,7 @@ class _HashyState extends State<Hashy>{
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
                             child: taghleefValue==""?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -376,7 +451,7 @@ class _HashyState extends State<Hashy>{
                                   child: Text("التغليف",
                                     style: TextStyle(
                                       color: GoodColors.brownDark,
-                                      fontSize: 19,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
@@ -392,7 +467,7 @@ class _HashyState extends State<Hashy>{
                                   Flexible(
                                     flex:1,
                                     child: Container(
-                                      padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                      padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                       decoration: BoxDecoration(
                                         color: GoodColors.brownDark,
                                         borderRadius: BorderRadius.circular(20),
@@ -407,7 +482,7 @@ class _HashyState extends State<Hashy>{
                                           child: Text("التغليف",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 19,
+                                              fontSize: 18,
                                             ),
                                           ),
                                         ),
@@ -420,7 +495,7 @@ class _HashyState extends State<Hashy>{
                                       child: Center(
                                         child: Text("$taghleefValue",
                                           style: TextStyle(
-                                            fontSize: 19,
+                                            fontSize: 16,
                                             color: GoodColors.brownDark,
                                           ),
                                         ),
@@ -433,13 +508,13 @@ class _HashyState extends State<Hashy>{
                           ),
                         ],
                       ),
-                      //مفروم
+                      widget.name=="لحم حاشى"?
                       Row(
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
                             child:!mafroomTapped?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -452,7 +527,145 @@ class _HashyState extends State<Hashy>{
                                 onTap: (){
                                   setState(() {
                                     mafroomTapped=!mafroomTapped;
-                                    mafroomWidth=250;
+                                    mafroomWidth=MediaQuery.of(context).size.width/1.2;
+                                  });
+                                },
+                                child: Center(
+                                  child: Text("عدد الكيلوات",
+                                    style: TextStyle(
+                                      color: GoodColors.brownDark,
+                                      fontSize: 19,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                                : AnimatedContainer(
+                              duration: Duration(milliseconds: 500),
+                              width: mafroomWidth,
+                              decoration: BoxDecoration(
+                                color: GoodColors.brownLight,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    flex:3,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left:8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 8,right: 8),
+                                        decoration: BoxDecoration(
+                                          color: GoodColors.brownDark,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: GoodColors.brownDark,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              mafroomTapped=!mafroomTapped;
+                                              mafroomWidth=0;
+                                            });
+                                          },
+                                          child: Center(
+                                            child: Text("عدد الكيلوات",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right:8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 16,),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  kg++;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child:Icon(Icons.add,color: Colors.white,size: 16,) ,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 8),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(7),
+                                                border: Border.all(
+                                                  color: GoodColors.brownDark,
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text("$kg"),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  if(kg>1)
+                                                    kg--;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child:Icon(Icons.remove,color: Colors.white,size: 16,) ,
+                                                ),
+                                              ),
+                                            ),
+                                            Text("ك.ج",
+                                              style: TextStyle(
+                                                  color: GoodColors.brown,
+                                                  fontSize: 16
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ) :
+                      //مفروم
+                      Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top :16.0),
+                            child:!mafroomTapped?Container(
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: GoodColors.brownDark,
+                                  width: 2,
+                                ),
+                              ),
+                              child: InkWell(
+                                onTap: (){
+                                  setState(() {
+                                    mafroomTapped=!mafroomTapped;
+                                    mafroomWidth=MediaQuery.of(context).size.width/1.2;
                                   });
                                 },
                                 child: Center(
@@ -475,29 +688,32 @@ class _HashyState extends State<Hashy>{
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
-                                    flex:1,
-                                    child: Container(
-                                      padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
-                                      decoration: BoxDecoration(
-                                        color: GoodColors.brownDark,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
+                                    flex:2,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left:8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 8,right: 8),
+                                        decoration: BoxDecoration(
                                           color: GoodColors.brownDark,
-                                          width: 2,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: GoodColors.brownDark,
+                                            width: 2,
+                                          ),
                                         ),
-                                      ),
-                                      child: InkWell(
-                                        onTap: (){
-                                          setState(() {
-                                            mafroomTapped=!mafroomTapped;
-                                            mafroomWidth=0;
-                                          });
-                                        },
-                                        child: Center(
-                                          child: Text("مفروم",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 19,
+                                        child: InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              mafroomTapped=!mafroomTapped;
+                                              mafroomWidth=0;
+                                            });
+                                          },
+                                          child: Center(
+                                            child: Text("مفروم",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -505,57 +721,60 @@ class _HashyState extends State<Hashy>{
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      padding: EdgeInsets.only(left: 4,right: 4),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          InkWell(
-                                            onTap: (){
-                                              setState(() {
-                                                kg++;
-                                              });
-                                            },
-                                            child: Container(
+                                    flex: 3,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right:8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 16,),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  kg++;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child:Icon(Icons.add,color: Colors.white,size: 16,) ,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 8),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(7),
+                                                border: Border.all(
+                                                  color: GoodColors.brownDark,
+                                                ),
+                                              ),
                                               child: Center(
-                                                child:Icon(Icons.add,color: Colors.white,size: 20,) ,
+                                                child: Text("$kg"),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(left: 12,right: 12,top: 8,bottom: 8),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.circular(7),
-                                              border: Border.all(
-                                                color: GoodColors.brownDark,
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  if(kg>1)
+                                                    kg--;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child:Icon(Icons.remove,color: Colors.white,size: 16,) ,
+                                                ),
                                               ),
                                             ),
-                                            child: Center(
-                                              child: Text("$kg"),
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onTap: (){
-                                              setState(() {
-                                                if(kg>1)
-                                                  kg--;
-                                              });
-                                            },
-                                            child: Container(
-                                              child: Center(
-                                                child:Icon(Icons.remove,color: Colors.white,size: 20,) ,
+                                            Text("ك.ج",
+                                              style: TextStyle(
+                                                  color: GoodColors.brown,
+                                                  fontSize: 16
                                               ),
                                             ),
-                                          ),
-                                          Text("ك.ج",
-                                            style: TextStyle(
-                                                color: GoodColors.brown,
-                                                fontSize: 18
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -719,98 +938,111 @@ class _HashyState extends State<Hashy>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 2.7,
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GoodColors.brownDark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+        return Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Container(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3.0,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex:1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GoodColors.brownDark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text("الحجم",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
+                    child: Center(
+                      child: Text("الحجم",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: CupertinoPicker(
-                  scrollController: scr,
-                  onSelectedItemChanged: (int i) {
-                    print(i);
-                    setState(() {
-                      sizeAnimatedWidth=200;
-                      switch(i){
-                        case 0:sizeValue ="";sizeAnimatedWidth=0;
-                        break;
-                        case 1:sizeValue ="صغير";
-                        break;
-                        case 2:sizeValue ="متوسط";
-                        break;
-                        case 3:sizeValue ="كبير";
-                        break;
-                        case 4:sizeValue ="جبر";
-                        break;
-                        default: sizeValue ="";
-                      }
-                    });
-                  },
-                  backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
-                  children: <Widget>[
-                    Center(
-                      child: Text("اخنر الحجم",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                Flexible(
+                  flex: 3,
+                  child: CupertinoPicker(
+                    scrollController: scr,
+                    onSelectedItemChanged: (int i) {
+                      print(i);
+                      setState(() {
+                        sizeAnimatedWidth=200;
+                        switch(i){
+                          case 0:sizeValue ="";sizeAnimatedWidth=0;
+                          break;
+                          case 1:sizeValue ="صغير";
+                          break;
+                          case 2:sizeValue ="متوسط";
+                          break;
+                          case 3:sizeValue ="كبير";
+                          break;
+                          case 4:sizeValue ="جبر";
+                          break;
+                          default: sizeValue ="";
+                        }
+                      });
+                    },
+                    backgroundColor: CupertinoColors.white,
+                    itemExtent: 60,
+                    children: <Widget>[
+                      Center(
+                        child: Text("اخنر الحجم",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("صغير",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("صغير",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("متوسط",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("متوسط",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("كبير",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("كبير",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("جبر",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("جبر",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -820,124 +1052,140 @@ class _HashyState extends State<Hashy>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 2.7,
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GoodColors.brownDark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+        return Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Container(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GoodColors.brownDark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text("التقطيع",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
+                    child: Center(
+                      child: Text("التقطيع",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: CupertinoPicker(
-                  scrollController: scr,
-                  onSelectedItemChanged: (int i) {
-                    setState(() {
-                      switch(i){
-                        case 0:cuttingValue ="";
-                        break;
-                        case 1:cuttingValue ="ثلاجة";
-                        break;
-                        case 2:cuttingValue ="تفاصيل سغيرة";
-                        break;
-                        case 3:cuttingValue ="تفاصيل كبيرة";
-                        break;
-                        case 4:cuttingValue ="أرباع";
-                        break;
-                        case 5:cuttingValue ="أنصاف";
-                        break;
-                        case 6:cuttingValue ="كامل";
-                        break;
-                        case 7:cuttingValue ="مفطع";
-                        break;
-                        default: cuttingValue ="";
-                      }
-                    });
+                Flexible(
+                  flex: 3,
+                  child: CupertinoPicker(
+                    scrollController: scr,
+                    onSelectedItemChanged: (int i) {
+                      setState(() {
+                        switch(i){
+                          case 0:cuttingValue ="";
+                          break;
+                          case 1:cuttingValue ="ثلاجة";
+                          break;
+                          case 2:cuttingValue ="تفاصيل سغيرة";
+                          break;
+                          case 3:cuttingValue ="تفاصيل كبيرة";
+                          break;
+                          case 4:cuttingValue ="أرباع";
+                          break;
+                          case 5:cuttingValue ="أنصاف";
+                          break;
+                          case 6:cuttingValue ="كامل";
+                          break;
+                          case 7:cuttingValue ="مفطع";
+                          break;
+                          default: cuttingValue ="";
+                        }
+                      });
 
-                  },
-                  backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
-                  children: <Widget>[
-                    Center(
-                      child: Text("اختر التقطيع",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                    },
+                    backgroundColor: CupertinoColors.white,
+                    itemExtent: 70,
+                    children: <Widget>[
+                      Center(
+                        child: Text("اختر التقطيع",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("ثلاجة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("ثلاجة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("تفاصيل صغيرة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("تفاصيل صغيرة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("تفاصيل كبيرة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("تفاصيل كبيرة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("أرباع",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("أرباع",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("أنصاف",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("أنصاف",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("كامل",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("كامل",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("مفطع",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("مفطع",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -947,87 +1195,99 @@ class _HashyState extends State<Hashy>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 2.7,
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GoodColors.brownDark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+        return Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Container(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GoodColors.brownDark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text("التغليف",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
+                    child: Center(
+                      child: Text("التغليف",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: CupertinoPicker(
-                  scrollController: scr,
-                  onSelectedItemChanged: (int i) {
-                    setState(() {
-                      switch(i){
-                        case 0:taghleefValue ="";
-                        break;
-                        case 1:taghleefValue ="سحب حرارى هواء";
-                        break;
-                        case 2:taghleefValue ="صحون مغلفة";
-                        break;
-                        case 3:sizeValue ="بدون";
-                        break;
-                        default: sizeValue ="";
-                      }
-                    });
-                  },
-                  backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
-                  children: <Widget>[
-                    Center(
-                      child: Text("اختر التغليف",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                Flexible(
+                  flex: 3,
+                  child: CupertinoPicker(
+                    scrollController: scr,
+                    onSelectedItemChanged: (int i) {
+                      setState(() {
+                        switch(i){
+                          case 0:taghleefValue ="";
+                          break;
+                          case 1:taghleefValue ="سحب حرارى هواء";
+                          break;
+                          case 2:taghleefValue ="صحون مغلفة";
+                          break;
+                          case 3:sizeValue ="بدون";
+                          break;
+                          default: sizeValue ="";
+                        }
+                      });
+                    },
+                    backgroundColor: CupertinoColors.white,
+                    itemExtent: 70,
+                    children: <Widget>[
+                      Center(
+                        child: Text("اختر التغليف",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("سحب حرارى هواء",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("سحب حرارى هواء",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("صحون مغلفة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("صحون مغلفة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("بدون",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("بدون",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

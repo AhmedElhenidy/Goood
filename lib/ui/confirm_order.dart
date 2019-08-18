@@ -14,7 +14,7 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16),

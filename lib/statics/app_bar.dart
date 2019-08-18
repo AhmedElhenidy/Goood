@@ -1,9 +1,10 @@
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/ui/cart.dart';
 import 'package:camel/ui/snap_chat.dart';
 import 'package:flutter/material.dart';
 class AppBarClass{
   int count = 0 ;
-  Widget appBar(BuildContext context , GlobalKey<ScaffoldState> _scaffoldKeyProfile,{String title}){
+  Widget appBar(BuildContext context , GlobalKey<ScaffoldState> _scaffoldKeyProfile,bool snap,{String title}){
     return AppBar(
       backgroundColor: GoodColors.brown,
       actions: <Widget>[
@@ -45,19 +46,19 @@ class AppBarClass{
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          InkWell(
+                          snap ?InkWell(
                             onTap:(){
                               Navigator.push(context, MaterialPageRoute(builder: (context)=>SnapChat()));
                             },
                             child: Container(
                               child: Image.asset("images/snapshat.png",width: 35,height: 35,),
                             ),
-                          ),
+                          ):Container(),
                           IconButton(icon: Icon(Icons.shopping_cart,
                             size: 30,
                           ),
                               onPressed: (){
-                                /*Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ShoppingCart()));*/
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Cart()));
                               }),
                         ],
                       ),

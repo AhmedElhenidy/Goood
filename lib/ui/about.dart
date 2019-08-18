@@ -16,7 +16,7 @@ class _AboutState extends State<About>{
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerClass().showDrawer(context),
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16),

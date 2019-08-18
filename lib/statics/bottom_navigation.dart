@@ -118,8 +118,8 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       drawer: DrawerClass().showDrawer(context),
       key: _globalKeyScafoldState,
       bottomNavigationBar: bottomNavigationBarWidget,
-      appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,
-          title: _page==0?"حسابى":_page==1?"logo":"المفضلة"
+      appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,true,
+          title: _page==0?"المفضلة":_page==1?"logo":"حسابى"
       ),
       body: new PageView(
           scrollDirection: Axis.horizontal,

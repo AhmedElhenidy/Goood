@@ -25,7 +25,7 @@ class _ZbaehState extends State<Zbaeh>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBarClass().appBar(context,_scaffoldKeyProfile,title: "الذبائح"),
+      appBar:  AppBarClass().appBar(context,_scaffoldKeyProfile,false,title: "الذبائح"),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
@@ -79,7 +79,7 @@ class _ZbaehState extends State<Zbaeh>{
                         children: <Widget>[
                           Container(
                             padding: EdgeInsets.only(top :16),
-                            width: 200,
+                            width: MediaQuery.of(context).size.width/2,
                             child: Row(
                               children: <Widget>[
                                 Expanded(flex: 1,
@@ -129,7 +129,7 @@ class _ZbaehState extends State<Zbaeh>{
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
                             child: sizeAnimatedWidth<3 ?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -146,7 +146,7 @@ class _ZbaehState extends State<Zbaeh>{
                                   child: Text("الحجم",
                                     style: TextStyle(
                                       color: GoodColors.brownDark,
-                                      fontSize: 19,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
@@ -164,7 +164,7 @@ class _ZbaehState extends State<Zbaeh>{
                                       AnimatedContainer(
                                         duration: Duration(milliseconds: 500),
                                         width: sizeAnimatedWidth/2,
-                                        padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                         decoration: BoxDecoration(
                                           color: GoodColors.brownDark,
                                           borderRadius: BorderRadius.circular(20),
@@ -181,7 +181,7 @@ class _ZbaehState extends State<Zbaeh>{
                                             child: Text("الحجم",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 19,
+                                                fontSize: 18,
                                               ),
                                             ),
                                           ),
@@ -194,7 +194,7 @@ class _ZbaehState extends State<Zbaeh>{
                                         child: Text("$sizeValue",
                                           style: TextStyle(
                                             color: GoodColors.brownDark,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                           ),
                                         ),
                                       ),
@@ -212,7 +212,7 @@ class _ZbaehState extends State<Zbaeh>{
                             child: Padding(
                               padding: const EdgeInsets.only(top :16.0),
                               child: headValue==""?Container(
-                                padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                padding: EdgeInsets.only(top :2,bottom: 2,left: 8,right: 8),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -245,7 +245,7 @@ class _ZbaehState extends State<Zbaeh>{
                                     Flexible(
                                       flex:1,
                                       child: Container(
-                                        padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 8,right: 8),
                                         decoration: BoxDecoration(
                                           color: GoodColors.brownDark,
                                           borderRadius: BorderRadius.circular(20),
@@ -262,7 +262,7 @@ class _ZbaehState extends State<Zbaeh>{
                                             child: Text("الرأس والكارعين",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 19,
+                                                fontSize: 18,
                                               ),
                                             ),
                                           ),
@@ -275,7 +275,7 @@ class _ZbaehState extends State<Zbaeh>{
                                           child: Center(
                                             child: Text("$headValue",
                                               style: TextStyle(
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: GoodColors.brownDark,
                                               ),
                                             ),
@@ -292,7 +292,7 @@ class _ZbaehState extends State<Zbaeh>{
                             child: Padding(
                               padding: const EdgeInsets.only(top :16.0),
                               child: cuttingValue=="" ?Container(
-                                padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -307,7 +307,7 @@ class _ZbaehState extends State<Zbaeh>{
                                     child: Text("التقطيع",
                                       style: TextStyle(
                                         color: GoodColors.brownDark,
-                                        fontSize: 19,
+                                        fontSize: 18,
                                       ),
                                     ),
                                   ),
@@ -323,7 +323,7 @@ class _ZbaehState extends State<Zbaeh>{
                                     Flexible(
                                       flex:1,
                                       child: Container(
-                                        padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                         decoration: BoxDecoration(
                                           color: GoodColors.brownDark,
                                           borderRadius: BorderRadius.circular(20),
@@ -338,7 +338,7 @@ class _ZbaehState extends State<Zbaeh>{
                                             child: Text("التقطيع",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 19,
+                                                fontSize: 18,
                                               ),
                                             ),
                                           ),
@@ -352,7 +352,7 @@ class _ZbaehState extends State<Zbaeh>{
                                           child: Text("$cuttingValue",
                                             style: TextStyle(
                                               color: GoodColors.brownDark,
-                                              fontSize: cuttingValue=="تفاصيل كبيرة"||cuttingValue=="تفاصيل صغيرة"?16:19
+                                              fontSize: cuttingValue=="تفاصيل كبيرة"||cuttingValue=="تفاصيل صغيرة"?16:18
                                             ),
                                           ),
                                         ),
@@ -368,7 +368,7 @@ class _ZbaehState extends State<Zbaeh>{
                             child: Padding(
                               padding: const EdgeInsets.only(top :16.0),
                               child: taghleefValue==""?Container(
-                                padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -383,7 +383,7 @@ class _ZbaehState extends State<Zbaeh>{
                                     child: Text("التغليف",
                                       style: TextStyle(
                                         color: GoodColors.brownDark,
-                                        fontSize: 19,
+                                        fontSize: 18,
                                       ),
                                     ),
                                   ),
@@ -399,7 +399,7 @@ class _ZbaehState extends State<Zbaeh>{
                                     Flexible(
                                       flex:1,
                                       child: Container(
-                                        padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 16),
                                         decoration: BoxDecoration(
                                           color: GoodColors.brownDark,
                                           borderRadius: BorderRadius.circular(20),
@@ -414,7 +414,7 @@ class _ZbaehState extends State<Zbaeh>{
                                             child: Text("التغليف",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 19,
+                                                fontSize: 18,
                                               ),
                                             ),
                                           ),
@@ -427,7 +427,7 @@ class _ZbaehState extends State<Zbaeh>{
                                         child: Center(
                                           child: Text("$taghleefValue",
                                             style: TextStyle(
-                                              fontSize: 19,
+                                              fontSize: 16,
                                               color: GoodColors.brownDark,
                                             ),
                                           ),
@@ -447,7 +447,7 @@ class _ZbaehState extends State<Zbaeh>{
                           Padding(
                             padding: const EdgeInsets.only(top :16.0),
                             child:!mafroomTapped?Container(
-                              padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
+                              padding: EdgeInsets.only(top :2,bottom: 2,left: 16,right: 8),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -460,7 +460,7 @@ class _ZbaehState extends State<Zbaeh>{
                                 onTap: (){
                                   setState(() {
                                     mafroomTapped=!mafroomTapped;
-                                    mafroomWidth=300;
+                                    mafroomWidth=MediaQuery.of(context).size.width/1.2;
                                   });
                                 },
                                 child: Center(
@@ -483,29 +483,32 @@ class _ZbaehState extends State<Zbaeh>{
                               child: Row(
                                 children: <Widget>[
                                   Expanded(
-                                    flex:1,
-                                    child: Container(
-                                      padding: EdgeInsets.only(top :4,bottom: 4,left: 16,right: 16),
-                                      decoration: BoxDecoration(
-                                        color: GoodColors.brownDark,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
+                                    flex:2,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left:8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(top :2,bottom: 2,left: 8,right: 8),
+                                        decoration: BoxDecoration(
                                           color: GoodColors.brownDark,
-                                          width: 2,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(
+                                            color: GoodColors.brownDark,
+                                            width: 2,
+                                          ),
                                         ),
-                                      ),
-                                      child: InkWell(
-                                        onTap: (){
-                                          setState(() {
-                                            mafroomTapped=!mafroomTapped;
-                                            mafroomWidth=0;
-                                          });
-                                        },
-                                        child: Center(
-                                          child: Text("مفروم",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 19,
+                                        child: InkWell(
+                                          onTap: (){
+                                            setState(() {
+                                              mafroomTapped=!mafroomTapped;
+                                              mafroomWidth=0;
+                                            });
+                                          },
+                                          child: Center(
+                                            child: Text("مفروم",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -513,57 +516,60 @@ class _ZbaehState extends State<Zbaeh>{
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      padding: EdgeInsets.only(left: 4,right: 4),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          InkWell(
-                                            onTap: (){
-                                              setState(() {
-                                                  kg++;
-                                              });
-                                            },
-                                            child: Container(
-                                              child: Center(
-                                                child:Icon(Icons.add,color: Colors.white,size: 20,) ,
+                                    flex: 3,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right:8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 16,),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                    kg++;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child:Icon(Icons.add,color: Colors.white,size: 16,) ,
+                                                ),
                                               ),
                                             ),
+                                            Container(
+                                              padding: EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 8),
+                                               decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(7),
+                                              border: Border.all(
+                                                color: GoodColors.brownDark,
+                                              ),
                                           ),
-                                          Container(
-                                            padding: EdgeInsets.only(left: 12,right: 12,top: 8,bottom: 8),
-                                             decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(7),
-                                            border: Border.all(
-                                              color: GoodColors.brownDark,
-                                            ),
+                                          child: Center(
+                                            child: Text("$kg"),
+                                          ),
                                         ),
-                                        child: Center(
-                                          child: Text("$kg"),
-                                        ),
-                                      ),
-                                          InkWell(
-                                            onTap: (){
-                                              setState(() {
-                                                if(kg>1)
-                                                  kg--;
-                                              });
-                                            },
-                                            child: Container(
-                                              child: Center(
-                                                child:Icon(Icons.remove,color: Colors.white,size: 20,) ,
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  if(kg>1)
+                                                    kg--;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child:Icon(Icons.remove,color: Colors.white,size: 16,) ,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Text("ك.ج",
-                                            style: TextStyle(
-                                              color: GoodColors.brown,
-                                              fontSize: 18
+                                            Text("ك.ج",
+                                              style: TextStyle(
+                                                color: GoodColors.brown,
+                                                fontSize: 16
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -727,15 +733,22 @@ class _ZbaehState extends State<Zbaeh>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Container(
           height: MediaQuery
               .of(context)
               .size
-              .height / 2.7,
+              .height / 3.0,
           child: Column(
             children: <Widget>[
               Flexible(
-                flex: 1,
+                flex:1,
                 child: Container(
                   decoration: BoxDecoration(
                     color: GoodColors.brownDark,
@@ -748,7 +761,7 @@ class _ZbaehState extends State<Zbaeh>{
                     child: Text("الحجم",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 19,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -778,12 +791,13 @@ class _ZbaehState extends State<Zbaeh>{
                     });
                   },
                   backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
+                  itemExtent: 60,
                   children: <Widget>[
                     Center(
                       child: Text("اخنر الحجم",
                         style: TextStyle(
                           color: GoodColors.brown,
+                          fontSize: 18,
                         ),
                       ),
                     ),
@@ -791,6 +805,7 @@ class _ZbaehState extends State<Zbaeh>{
                       child: Text("صغير",
                         style: TextStyle(
                           color: GoodColors.brown,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -798,6 +813,7 @@ class _ZbaehState extends State<Zbaeh>{
                       child: Text("متوسط",
                         style: TextStyle(
                           color: GoodColors.brown,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -805,6 +821,7 @@ class _ZbaehState extends State<Zbaeh>{
                       child: Text("كبير",
                         style: TextStyle(
                           color: GoodColors.brown,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -812,6 +829,7 @@ class _ZbaehState extends State<Zbaeh>{
                       child: Text("جبر",
                         style: TextStyle(
                           color: GoodColors.brown,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -819,6 +837,7 @@ class _ZbaehState extends State<Zbaeh>{
                 ),
               ),
             ],
+          ),
           ),
         );
       },
@@ -828,78 +847,89 @@ class _ZbaehState extends State<Zbaeh>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 2.7,
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GoodColors.brownDark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+        return Material(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+          child: Container(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GoodColors.brownDark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text("الرأس والكارعين",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
+                    child: Center(
+                      child: Text("الرأس والكارعين",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: CupertinoPicker(
-                  scrollController: scr,
-                  onSelectedItemChanged: (int i) {
-                    setState(() {
-                      switch(i){
-                        case 0:headValue ="";
-                        break;
-                        case 1:headValue ="مشلوطة";
-                        break;
-                        case 2:headValue ="مسلوخ";
-                        break;
-                        default: headValue ="";
-                      }
-                    });
-                  },
-                  backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
-                  children: <Widget>[
-                    Center(
-                      child: Text("اختر الرأس والكارعين",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                Flexible(
+                  flex: 3,
+                  child: CupertinoPicker(
+                    scrollController: scr,
+                    onSelectedItemChanged: (int i) {
+                      setState(() {
+                        switch(i){
+                          case 0:headValue ="";
+                          break;
+                          case 1:headValue ="مشلوطة";
+                          break;
+                          case 2:headValue ="مسلوخ";
+                          break;
+                          default: headValue ="";
+                        }
+                      });
+                    },
+                    backgroundColor: CupertinoColors.white,
+                    itemExtent: 70,
+                    children: <Widget>[
+                      Center(
+                        child: Text("اختر الرأس والكارعين",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("مشلوطة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("مشلوطة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("مسلوح",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("مسلوح",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -909,124 +939,140 @@ class _ZbaehState extends State<Zbaeh>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 2.7,
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GoodColors.brownDark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+        return Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Container(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GoodColors.brownDark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text("التقطيع",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
+                    child: Center(
+                      child: Text("التقطيع",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: CupertinoPicker(
-                  scrollController: scr,
-                  onSelectedItemChanged: (int i) {
-                    setState(() {
-                      switch(i){
-                      case 0:cuttingValue ="";
-                      break;
-                      case 1:cuttingValue ="ثلاجة";
-                      break;
-                      case 2:cuttingValue ="تفاصيل سغيرة";
-                      break;
-                      case 3:cuttingValue ="تفاصيل كبيرة";
-                      break;
-                      case 4:cuttingValue ="أرباع";
-                      break;
-                      case 5:cuttingValue ="أنصاف";
-                      break;
-                      case 6:cuttingValue ="كامل";
-                      break;
-                      case 7:cuttingValue ="مفطع";
-                      break;
-                      default: cuttingValue ="";
-                      }
-                    });
+                Flexible(
+                  flex: 3,
+                  child: CupertinoPicker(
+                    scrollController: scr,
+                    onSelectedItemChanged: (int i) {
+                      setState(() {
+                        switch(i){
+                        case 0:cuttingValue ="";
+                        break;
+                        case 1:cuttingValue ="ثلاجة";
+                        break;
+                        case 2:cuttingValue ="تفاصيل سغيرة";
+                        break;
+                        case 3:cuttingValue ="تفاصيل كبيرة";
+                        break;
+                        case 4:cuttingValue ="أرباع";
+                        break;
+                        case 5:cuttingValue ="أنصاف";
+                        break;
+                        case 6:cuttingValue ="كامل";
+                        break;
+                        case 7:cuttingValue ="مفطع";
+                        break;
+                        default: cuttingValue ="";
+                        }
+                      });
 
-                  },
-                  backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
-                  children: <Widget>[
-                    Center(
-                      child: Text("اختر التقطيع",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                    },
+                    backgroundColor: CupertinoColors.white,
+                    itemExtent: 70,
+                    children: <Widget>[
+                      Center(
+                        child: Text("اختر التقطيع",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("ثلاجة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("ثلاجة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("تفاصيل صغيرة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("تفاصيل صغيرة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("تفاصيل كبيرة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("تفاصيل كبيرة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("أرباع",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("أرباع",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("أنصاف",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("أنصاف",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("كامل",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("كامل",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("مفطع",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("مفطع",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -1036,87 +1082,100 @@ class _ZbaehState extends State<Zbaeh>{
     await showCupertinoModalPopup <void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 2.7,
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: GoodColors.brownDark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+        return Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Container(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: GoodColors.brownDark,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: Text("التغليف",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
+                    child: Center(
+                      child: Text("التغليف",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 3,
-                child: CupertinoPicker(
-                  scrollController: scr,
-                  onSelectedItemChanged: (int i) {
-                    setState(() {
-                      switch(i){
-                        case 0:taghleefValue ="";
-                        break;
-                        case 1:taghleefValue ="سحب حرارى هواء";
-                        break;
-                        case 2:taghleefValue ="صحون مغلفة";
-                        break;
-                        case 3:sizeValue ="بدون";
-                        break;
-                        default: sizeValue ="";
-                      }
-                    });
-                  },
-                  backgroundColor: CupertinoColors.white,
-                  itemExtent: 70,
-                  children: <Widget>[
-                    Center(
-                      child: Text("اختر التغليف",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                Flexible(
+                  flex: 3,
+                  child: CupertinoPicker(
+                    scrollController: scr,
+                    onSelectedItemChanged: (int i) {
+                      setState(() {
+                        switch(i){
+                          case 0:taghleefValue ="";
+                          break;
+                          case 1:taghleefValue ="سحب حرارى هواء";
+                          break;
+                          case 2:taghleefValue ="صحون مغلفة";
+                          break;
+                          case 3:sizeValue ="بدون";
+                          break;
+                          default: sizeValue ="";
+                        }
+                      });
+                    },
+                    backgroundColor: CupertinoColors.white,
+                    itemExtent: 70,
+                    children: <Widget>[
+                      Center(
+                        child: Text("اختر التغليف",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 18,
+
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("سحب حرارى هواء",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("سحب حرارى هواء",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("صحون مغلفة",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("صحون مغلفة",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text("بدون",
-                        style: TextStyle(
-                          color: GoodColors.brown,
+                      Center(
+                        child: Text("بدون",
+                          style: TextStyle(
+                            color: GoodColors.brown,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

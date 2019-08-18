@@ -18,7 +18,7 @@ class _SnapChatState extends State<SnapChat>{
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerClass().showDrawer(context),
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(top: 16,bottom: 16),

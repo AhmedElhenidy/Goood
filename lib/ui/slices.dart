@@ -27,7 +27,7 @@ class _SlicesState extends State<Slices>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,title: "الذبائح"),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false,title: "الذبائح"),
       backgroundColor: Colors.white,
       body: Container(
         padding: EdgeInsets.only(left: 8,right: 8,bottom: 16),
