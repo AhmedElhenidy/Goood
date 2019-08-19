@@ -37,7 +37,7 @@ class _SlicesState extends State<Slices>{
          mainAxisSpacing: 16,
           crossAxisSpacing: 16,
           crossAxisCount: 2,
-          childAspectRatio: (MediaQuery.of(context).size.width/2 -32)/(MediaQuery.of(context).size.height/3.3),
+          childAspectRatio: (MediaQuery.of(context).size.width/2 -32)/(MediaQuery.of(context).size.height/3),
           children :  List.generate(4, (index) {
             return InkWell(
               onTap: (){
@@ -62,7 +62,7 @@ class _SlicesState extends State<Slices>{
                                 Positioned(
                                   top: 0,right: 0,left: 0,bottom: 0,
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius:BorderRadius.only(topRight: Radius.circular(8),topLeft: Radius.circular(8)),
                                     child: Container(child:
                                     Image(image: AssetImage(images[index]),fit: BoxFit.fill,),
                                   ),

@@ -61,9 +61,9 @@ class _AboutState extends State<About>{
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 SizedBox(height: MediaQuery.of(context).size.height/20,),
-                                Text("تطبيق الجود",style: TextStyle(color: GoodColors.brownDark),),
+                                Text("تطبيق الجود",style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),),
                                 Text("يوفر لعملائه اجواد انواع اللحوم البلدية الطازجة من (الأغنام والحشيان) وبجودة عالية وأسعار منافسة"
-                                    ,style: TextStyle(color: GoodColors.brownDark),
+                                    ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                                 ),
                               ],
                             )
@@ -122,7 +122,7 @@ class _AboutState extends State<About>{
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text("يتم اختيار الحلال بحرص مننا لنضمن ان لا يكون ضعيف و يكون سليم من الأمراض والابر"
-                                  ,style: TextStyle(color: GoodColors.brownDark),
+                                  ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                                 ),
                               ],
                             ),
@@ -190,7 +190,7 @@ class _AboutState extends State<About>{
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text("جميع الاعلاف المستخدمة من الشعير والبرسيم"
-                            ,style: TextStyle(color: GoodColors.brownDark),
+                            ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                           ),
                         ],
                       ),
@@ -216,7 +216,7 @@ class _AboutState extends State<About>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text("الضبح فى مسلخ البلدية تحت الإشراف الطبى"
-                          ,style: TextStyle(color: GoodColors.brownDark),
+                          ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
                     ),
@@ -242,7 +242,7 @@ class _AboutState extends State<About>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text("تعليف معقم ويتم تغليف الطلب بأحدث الأجهزة حتى يتم نقله"
-                          ,style: TextStyle(color: GoodColors.brownDark),
+                          ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
                     ),
@@ -268,7 +268,7 @@ class _AboutState extends State<About>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text("يمكنك مشاهدة طلبك او الذبح اليومى عبر اسناب شات"
-                          ,style: TextStyle(color: GoodColors.brownDark),
+                          ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
                     ),
@@ -294,7 +294,7 @@ class _AboutState extends State<About>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text("يتم توصيل الطلب حتى باب المنزل"
-                          ,style: TextStyle(color: GoodColors.brownDark),
+                          ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
                     ),
@@ -320,7 +320,7 @@ class _AboutState extends State<About>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text("خدمة الذبح والتقطيع والتغليف والتوصيل (مجانا)"
-                          ,style: TextStyle(color: GoodColors.brownDark),
+                          ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
                     ),

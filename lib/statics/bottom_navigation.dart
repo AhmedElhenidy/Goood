@@ -101,16 +101,24 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
           topLeft:  Radius.circular(25) ,
           topRight:  Radius.circular(20),
         ),
-        child:BottomNavigationBar(
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            wishList,
-            home,
-            account,
-          ],
-          onTap: navigationTapped,
-          currentIndex: _page,
+        child:Container(
+          padding: EdgeInsets.only(top: 2),
+          decoration: BoxDecoration(
+            boxShadow: [
+              new BoxShadow(color: Color(0x22000000),   blurRadius: 3)
+            ]
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.white,
+            type: BottomNavigationBarType.fixed,
+            items: [
+              wishList,
+              home,
+              account,
+            ],
+            onTap: navigationTapped,
+            currentIndex: _page,
+          ),
         )
     );
     return Scaffold(

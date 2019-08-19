@@ -108,6 +108,10 @@ flutter:
     - images/float.png
     - images/call-answer.png
     - images/sent-mail.png
+    - images/snap_section1.png
+    - images/snap_sectioon2.png
+    - images/lpany.png
+
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

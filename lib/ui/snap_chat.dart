@@ -29,7 +29,7 @@ class _SnapChatState extends State<SnapChat>{
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width/1.25,
-                height: MediaQuery.of(context).size.height/2.13,
+                height: MediaQuery.of(context).size.height/2.6,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -74,9 +74,9 @@ class _SnapChatState extends State<SnapChat>{
                                       ),
                                     ),
                                   ),
-                                  Text("عند اضافتنا عبر سناب شات",style: TextStyle(color: GoodColors.brownDark),),
-                                  Text("فأنت تتابع طلبك أو الذبح اليومي بمشاهدة تحميل الأغنام من البر للمزارع"
-                                    ,style: TextStyle(color: GoodColors.brownDark,),
+                                  Text("عند اضافتنا عبر سناب شات",style: TextStyle( fontSize: 18,color: GoodColors.brownDark),),
+                                  Text("فأنت تتابع طلبك أو الذبح اليومي "
+                                    ,style: TextStyle(color: GoodColors.brownDark,fontSize: 18),
                                   ),
                                 ],
                               )
@@ -102,6 +102,35 @@ class _SnapChatState extends State<SnapChat>{
                       ),
                     ),
                     //share
+                  ],
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/30,),
+              Container(
+                width: MediaQuery.of(context).size.width/1.35,
+                padding: EdgeInsets.only(top: 8,bottom: 8),
+                decoration: BoxDecoration(
+                  color: GoodColors.brownLight,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Center(
+                  child: Text("بشاهدة تحميل الأغنام من البر الي المزارع"),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/30,),
+              Padding(
+                padding: const EdgeInsets.only(left:16.0,right: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      width: MediaQuery.of(context).size.width/2.3,
+                      child: Image.asset("images/snap_section1.png",fit: BoxFit.fill,),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width/2.3,
+                      child: Image.asset("images/snap_sectioon2.png",fit: BoxFit.fill,),
+                    ),
                   ],
                 ),
               ),

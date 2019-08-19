@@ -15,7 +15,7 @@ class _HashyCategyState extends State<HashyCategory>{
     super.initState();
     _scaffoldKeyProfile = new GlobalKey<ScaffoldState>();
     images.add("images/hwar.png");
-    images.add("images/12.png");
+    images.add("images/lpany.png");
     images.add("images/mafrood.png");
     images.add("images/meat.png");
     names.add("حوار");
@@ -36,7 +36,7 @@ class _HashyCategyState extends State<HashyCategory>{
             mainAxisSpacing: 16,
             crossAxisSpacing: 16,
             crossAxisCount: 2,
-            childAspectRatio: (MediaQuery.of(context).size.width/2 -32)/(MediaQuery.of(context).size.height/3.3),
+            childAspectRatio: (MediaQuery.of(context).size.width/2 -32)/(MediaQuery.of(context).size.height/3),
             children :  List.generate(4, (index) {
               return InkWell(
                 onTap: (){
@@ -54,13 +54,19 @@ class _HashyCategyState extends State<HashyCategory>{
                           Flexible(
                             flex:4,
                             child: Container(
+                              padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(color: Color(0x33000000),blurRadius: 3)
+                                ]
+                              ),
                               width: MediaQuery.of(context).size.width/2,
                               child: Stack(
                                 children: <Widget>[
                                   Positioned(
                                     top: 0,right: 0,left: 0,bottom: 0,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(8),topRight: Radius.circular(8)),
                                       child: Container(child:
                                       Image(image: AssetImage(images[index]),fit: BoxFit.fill,),
                                       ),
