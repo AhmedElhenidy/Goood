@@ -66,7 +66,8 @@ class _AdminHomeState extends State<AdminHome>{
                                 width: MediaQuery.of(context).size.width/2.5,
                                 child: Center(child: Text("طلبات \nالعملاء",
                                   style: TextStyle(
-                                      color: Colors.white
+                                      color: Colors.white ,
+                                    fontSize: 18
                                   ),
                                 ),
                                 ),
@@ -89,10 +90,11 @@ class _AdminHomeState extends State<AdminHome>{
                                       children: <Widget>[
                                         Text(" 312  ",
                                           style: TextStyle(
-                                              color: Colors.white
+                                              color: Colors.white ,
+
                                           ),
                                         ),
-                                        Text("طلب "),
+                                        Text("طلب " ),
                                       ],
                                     ),
                                   ),
@@ -137,7 +139,8 @@ class _AdminHomeState extends State<AdminHome>{
                                 width: MediaQuery.of(context).size.width/2.5,
                                 child: Center(child: Text("السائقون \nالمتاحون",
                                     style: TextStyle(
-                                      color: Colors.white
+                                      color: Colors.white,
+                                      fontSize: 18
                                     ),
                                   ),
                                 ),
