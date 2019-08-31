@@ -6,6 +6,8 @@ import 'package:camel/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'DataBase/config.dart';
+import 'admin/PricesPage.dart';
+import 'admin/PromoCode.dart';
 import 'admin/home.dart';
 
 

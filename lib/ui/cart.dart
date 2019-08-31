@@ -1,8 +1,11 @@
+import 'package:camel/Api/ClientApi.dart';
 import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/DataBase/config.dart';
+import 'package:camel/model/OrderToSent.dart' ;
 import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/ui/confirm_order.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:sqlcool/sqlcool.dart';
@@ -24,6 +27,7 @@ class _CartState extends State<Cart>{
       database: db ,
       table: DataBaseConstants.SHOPPING_CART_TABLE,
       columns: "${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_ID} as id , "
+      "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_ID} as productId , "
           "${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY} as quantity ,"
           "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_IMAGE} as image ,"
           "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_NAME} as name ,"
@@ -33,6 +37,9 @@ class _CartState extends State<Cart>{
       joinOn: "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_ID} = ${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_ID}",
       reactive: true
     );
+
+    getTotalPrince();
+    this.prepareOrder();
   }
   @override
   void dispose() {
@@ -54,9 +61,77 @@ class _CartState extends State<Cart>{
   }
 
 
-int number = 1 ;
+  int number = 1 ;
+  int totalPrice = 0 ;
+  OrderToSent order ;
+  bool saveOrderApi = false ;
+  List<Product> productList =new List() ;
+   prepareOrder()async {
+     List<Map<String ,dynamic>> products = await db.join(table: DataBaseConstants.SHOPPING_CART_TABLE ,
+       columns:"${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_ID} as productId , "
+          "${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_ID} as id , "
+           "${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY} as quantity ,"
+           "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_IMAGE} as image ,"
+           "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_NAME} as name ,"
+           "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_PRICE} as price",
+       joinTable: DataBaseConstants.PRODUCT_TABLE,
+       joinOn: "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_ID} = ${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_ID}",
+         verbose: true
+     );
+
+     print("get Prroducts For Preparing :  : :$products");
+     products.forEach((product)async{
+       List<Spacifcation> specificationList = new List() ;
+       print("getting specification for ${product["productId"]}...");
+       List<Map<String,dynamic>> specification = await  db.select(table: DataBaseConstants.SHOPPING_CART_SPECIFICATION_TABLE,where: "${DataBaseConstants.SHOPPING_CART_SPECIFICATION_TABLE_SHOPPING_ID} = ${product[DataBaseConstants.SHOPPING_CART_TABLE_ID]}");
+       specification.forEach((speci){
+         specificationList.add(new Spacifcation(key: speci[DataBaseConstants.SHOPPING_CART_SPECIFICATION_TABLE_KEY] , value: speci[DataBaseConstants.SHOPPING_CART_SPECIFICATION_TABLE_VALUE]));
+       });
+       print("getting product list...");
+       productList.add(new Product(id: "${product['productId']}" ,spacifcation: specificationList));
+       print("finish the product List ");
+     });
+
+  }
+
+  void saveOrder() async{
+     setState(() {
+       this.saveOrderApi = true ;
+     });
+     this.order = new OrderToSent(price: "$totalPrice" ,productList: productList );
+     final resposne = await ClientApi.addOrder(this.order) ;
+     setState(() {
+       this.saveOrderApi = false ;
+     });
+     if(!resposne.errors) {
+       Navigator.of(context).push(MaterialPageRoute(
+           builder: (context) => ConfirmOrder(resposne.order)));
+       db.delete(table: DataBaseConstants.SHOPPING_CART_TABLE ,where: "id != 0");
+     }
+  }
+  getTotalPrince() async{
+    List<Map<String ,dynamic>> products = await db.join(table: DataBaseConstants.SHOPPING_CART_TABLE ,
+      columns:"${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_ID} as productId , "
+          "${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY} as quantity ,"
+          "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_IMAGE} as image ,"
+          "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_NAME} as name ,"
+          "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_PRICE} as price",
+      joinTable: DataBaseConstants.PRODUCT_TABLE,
+      joinOn: "${DataBaseConstants.PRODUCT_TABLE}.${DataBaseConstants.PRODUCT_TABLE_ID} = ${DataBaseConstants.SHOPPING_CART_TABLE}.${DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_ID}",
+      verbose: true
+    );
+      products.forEach((product){
+        setState(() {
+          this.totalPrice+= (int.parse("${product[DataBaseConstants.PRODUCT_TABLE_PRICE] }") *int.parse("${product[DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY] }"));
+        });
+      });
+      print("total Price : :: $totalPrice");
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar:  AppBarClass().appBar(context,_scaffoldKeyProfile,false,count,title: "السلة",),
       body: Padding(
@@ -66,9 +141,8 @@ int number = 1 ;
             stream: bloc.items,
             builder: (context, snapshot) {
               print("shopping Cart Data  : : :${snapshot.data}");
-
-              return !snapshot.hasData ? Center(child: CircularProgressIndicator(),):ListView.builder(
-                itemCount: snapshot.data.length,
+             return !snapshot.hasData ? Center(child: CircularProgressIndicator(),):ListView.builder(
+               itemCount: snapshot.data.length,
                 itemBuilder: (context,position){
                   var product = snapshot.data[position];
                   this.number = product[DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY] ;
@@ -340,7 +414,7 @@ int number = 1 ;
                                 borderRadius: BorderRadius.circular(6),
                                 color: GoodColors.brownDark
                             ),
-                            child: Text("150 رس",
+                            child: Text("$totalPrice رس",
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -352,25 +426,30 @@ int number = 1 ;
                   ],
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: GoodColors.brownDark,
-                ),
-                height: 35,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text("التأكيد  ",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+              InkWell(
+                onTap: (){
+                  saveOrder();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: GoodColors.brownDark,
+                  ),
+                  height: 35,
+                  child:this.saveOrderApi? CircularProgressIndicator(): Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("التأكيد  ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    Icon(Icons.shopping_cart,
-                      color: Colors.white,
-                    ),
-                  ],
+                      Icon(Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

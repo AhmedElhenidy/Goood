@@ -1,3 +1,5 @@
+import 'package:camel/admin/PricesPage.dart';
+import 'package:camel/admin/PromoCode.dart';
 import 'package:camel/admin/drivers.dart';
 import 'package:camel/admin/offers.dart';
 import 'package:camel/admin/orders.dart';
@@ -31,7 +33,7 @@ class _AdminHomeState extends State<AdminHome>{
               child: Container(
                 padding: EdgeInsets.all(16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     //orders
                     InkWell(
@@ -67,7 +69,7 @@ class _AdminHomeState extends State<AdminHome>{
                                 child: Center(child: Text("طلبات \nالعملاء",
                                   style: TextStyle(
                                       color: Colors.white ,
-                                    fontSize: 18
+                                    fontSize: 14
                                   ),
                                 ),
                                 ),
@@ -76,8 +78,8 @@ class _AdminHomeState extends State<AdminHome>{
                             Flexible(
                               flex: 1,
                               child: Container(
-                                padding: EdgeInsets.only(left: 8,right: 8),
-                                width: MediaQuery.of(context).size.width/2.5,
+                                padding: EdgeInsets.only(left: 8,right: 8 ,top :8),
+                                width: MediaQuery.of(context).size.width/3,
                                 child: Center(
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -140,7 +142,7 @@ class _AdminHomeState extends State<AdminHome>{
                                 child: Center(child: Text("السائقون \nالمتاحون",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18
+                                      fontSize: 14
                                     ),
                                   ),
                                 ),
@@ -150,8 +152,8 @@ class _AdminHomeState extends State<AdminHome>{
                             Flexible(
                               flex: 1,
                               child: Container(
-                                padding: EdgeInsets.only(left: 8,right: 8),
-                                width: MediaQuery.of(context).size.width/2.5,
+                                padding: EdgeInsets.only(left: 8,right: 8 ,top: 8),
+                                width: MediaQuery.of(context).size.width/3,
                                 child: Center(
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -183,9 +185,165 @@ class _AdminHomeState extends State<AdminHome>{
               ),
             ),
             Flexible(
+              flex: 4,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    //orders
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>PromoCode()));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(top: 8,bottom: 8),
+                        width: MediaQuery.of(context).size.width/2.5,
+                        // height: MediaQuery.of(context).size.height/2.5,
+                        decoration: BoxDecoration(
+                          color: GoodColors.brownDark,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 3,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width/2.5,
+                                child: Image.asset("images/good_code.png"),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width/2.5,
+                                child: Center(child: Text("اكواد\nالخصم",
+                                  style: TextStyle(
+                                      color: Colors.white ,
+                                      fontSize: 14
+                                  ),
+                                ),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                padding: EdgeInsets.only(left: 8,right: 8 ,top :8),
+                                width: MediaQuery.of(context).size.width/3,
+                                child: Center(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: GoodColors.brownLight,
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                    padding: EdgeInsets.only(top: 8,bottom: 8,),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(" 312  ",
+                                          style: TextStyle(
+                                            color: Colors.white ,
+
+                                          ),
+                                        ),
+                                        Text("كود " ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    //drivers
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>PricesPage()));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(top: 8,bottom: 8),
+                        width: MediaQuery.of(context).size.width/2.5,
+                        //   height: MediaQuery.of(context).size.height/2.5,
+                        decoration: BoxDecoration(
+                          color: GoodColors.brownDark,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 3,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width/2.5,
+                                child: Image.asset("images/coin.png"),
+
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width/2.5,
+                                child: Center(child: Text("خطة\nالاسعار",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14
+                                  ),
+                                ),
+                                ),
+
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                padding: EdgeInsets.only(left: 8,right: 8 ,top: 8),
+                                width: MediaQuery.of(context).size.width/3,
+                                child: Center(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: GoodColors.brownLight,
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                    padding: EdgeInsets.only(top: 8,bottom: 8),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(" 8  ",
+                                          style: TextStyle(
+                                              color: Colors.white
+                                          ),
+                                        ),
+                                        Text("منتجات "),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Flexible(
               flex: 2,
               child: Padding(
-                padding: EdgeInsets.only(right: 16,left: 16),
+                padding: EdgeInsets.only(right: 20,left: 20),
                 child: InkWell(
                   onTap: (){
                     Navigator.push(context,MaterialPageRoute(builder: (context)=>Offers()));

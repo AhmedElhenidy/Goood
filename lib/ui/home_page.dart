@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height /
-                                                2.9,
+                                                3.4,
                                         color: Colors.white,
                                         child: Stack(
                                           children: <Widget>[
@@ -249,7 +249,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height /
-                                                2.95,
+                                                3.4,
                                         color: Colors.white,
                                         child: Stack(
                                           children: <Widget>[
