@@ -26,7 +26,25 @@ class _HashyCategyState extends State<HashyCategory> {
         database: db,
         where: "${DataBaseConstants.PRODUCT_TABLE_CATEGORY} = 1",
         reactive: true);
-
+    getLikedProducts();
+  }
+  getLikedProducts() async{
+    final response =await db.select(table: DataBaseConstants.WISH_LIST_TABLE );
+    List<int> likedProductslocal = new List() ;
+    response.forEach((product){
+      likedProductslocal.add(product[DataBaseConstants.WISH_LIST_TABLE_PRODUCT_ID]);
+    });
+    setState(() {
+      this.likedProducts = likedProductslocal ;
+    });
+  }
+  List<int> likedProducts = new List() ;
+  bool isLiked(int productId){
+    if( likedProducts.contains(productId)){
+      return true ;
+    }else{
+      return false ;
+    }
   }
   @override
   void dispose() {
@@ -136,6 +154,10 @@ class _HashyCategyState extends State<HashyCategory> {
                                                   top: 8,
                                                   left: 8,
                                                   child: LikeButton(
+                                                    isLiked: isLiked(snapShot.data[index][DataBaseConstants.PRODUCT_TABLE_ID]) ,
+                                                    onTap: (isliked)async{
+                                                      return await SqlLiteDataBase.addOrRemoveWishList(snapShot.data[index][DataBaseConstants.PRODUCT_TABLE_ID]);
+                                                    },
                                                     circleColor: CircleColor(
                                                         start: Colors.white,
                                                         end: GoodColors.brown),
