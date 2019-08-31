@@ -1,3 +1,4 @@
+import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,21 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
     super.initState();
     _scaffoldKeyProfile =new GlobalKey<ScaffoldState>();
   }
+  int count = 0 ;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies() ;
+    SqlLiteDataBase.getShoppingCartCount().then((count){
+      setState(() {
+        this.count = count ;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false ,count),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16),

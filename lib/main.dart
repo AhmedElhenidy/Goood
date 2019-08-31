@@ -1,13 +1,19 @@
+import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/statics/bottom_navigation.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 
+import 'DataBase/config.dart';
 import 'admin/home.dart';
 
 
-void main() => runApp(MyApp());
+void main() {
+  initDb();
+  runApp(MyApp());
+}
+
 
 class MyApp extends StatelessWidget {
   @override

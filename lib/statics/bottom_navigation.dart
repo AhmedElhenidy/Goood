@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
@@ -27,6 +28,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       this._page = page;
     });
   }
+  @override
   void initState() {
     super.initState();
     _globalKeyScafoldState = new GlobalKey<ScaffoldState>();
@@ -34,6 +36,18 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
     WidgetsBinding.instance
         .addPostFrameCallback((_) => navigationTapped(widget.initial));
   }
+  int count = 0;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies() ;
+    SqlLiteDataBase.getShoppingCartCount().then((count){
+      setState(() {
+        this.count = count ;
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     BottomNavigationBarItem account =  BottomNavigationBarItem(
@@ -126,7 +140,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       drawer: DrawerClass().showDrawer(context),
       key: _globalKeyScafoldState,
       bottomNavigationBar: bottomNavigationBarWidget,
-      appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,true,
+      appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,true,count ,
           title: _page==0?"المفضلة":_page==1?"logo":"حسابى"
       ),
       body: new PageView(

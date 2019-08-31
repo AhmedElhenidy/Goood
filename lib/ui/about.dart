@@ -1,3 +1,4 @@
+import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
@@ -7,16 +8,30 @@ class About extends StatefulWidget{
 }
 class _AboutState extends State<About>{
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
+  int count = 0 ;
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =new GlobalKey<ScaffoldState>();
+
   }
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies() ;
+    SqlLiteDataBase.getShoppingCartCount().then((count){
+      setState(() {
+        this.count = count ;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerClass().showDrawer(context),
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false ,count),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16),

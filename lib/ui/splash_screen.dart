@@ -8,7 +8,7 @@ class _SplashScreenState extends State<SplashScreen>{
   Timer timer;
   @override
   Widget build(BuildContext context) {
-    timer =new Timer(const Duration(milliseconds: 2000), () {
+    timer =new Timer(const Duration(milliseconds: 4000), () {
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> BottomNavigationBarClass(1)));
     });    return Scaffold(

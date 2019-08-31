@@ -1,3 +1,4 @@
+import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
@@ -14,11 +15,22 @@ class _SnapChatState extends State<SnapChat>{
     super.initState();
     _scaffoldKeyProfile =new GlobalKey<ScaffoldState>();
   }
+  int count = 0 ;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies() ;
+    SqlLiteDataBase.getShoppingCartCount().then((count){
+      setState(() {
+        this.count = count ;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerClass().showDrawer(context),
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false),
+      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false,count),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(top: 16,bottom: 16),
