@@ -25,8 +25,9 @@ class OrderToSent {
 class Product {
     String id;
     List<Spacifcation> spacifcation;
+    String qty ;
 
-    Product({this.id, this.spacifcation});
+    Product({this.id, this.qty,this.spacifcation});
 
     factory Product.fromJson(Map<String, String> json) {
         return Product(
@@ -38,6 +39,7 @@ class Product {
     Map<String, String> toJson() {
         final Map<String, String> data = new Map<String, String>();
         data['id'] = this.id;
+        data['quantity'] = this.qty;
         if (this.spacifcation != null) {
             data['spacifcation'] = json.encode(this.spacifcation.map((v) => v.toJson()).toList());
         }

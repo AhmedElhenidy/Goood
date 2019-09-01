@@ -3,9 +3,12 @@ import 'package:camel/DataBase/config.dart';
 import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/statics/snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:toast/toast.dart';
+
 
 class Hashy extends StatefulWidget {
   int id;
@@ -63,6 +66,7 @@ int count = 0 ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKeyProfile,
       appBar: AppBarClass()
           .appBar(context, _scaffoldKeyProfile, false, count,title: "الحاشى"),
       backgroundColor: Colors.white,
@@ -83,7 +87,7 @@ int count = 0 ;
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2.8,
+                        height: MediaQuery.of(context).size.height / 3,
                         child: Image.asset(
                           product[DataBaseConstants.PRODUCT_TABLE_IMAGE],
                           fit: BoxFit.fill,
@@ -427,11 +431,7 @@ int count = 0 ;
                                             const EdgeInsets.only(top: 16.0),
                                         child: sizeValue == ""
                                             ? Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 2,
-                                                    bottom: 2,
-                                                    left: 16,
-                                                    right: 16),
+                                              width: 100,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -472,12 +472,7 @@ int count = 0 ;
                                                     Flexible(
                                                       flex: 1,
                                                       child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 2,
-                                                                bottom: 2,
-                                                                left: 16,
-                                                                right: 16),
+                                                        width: 100,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: GoodColors
@@ -532,11 +527,7 @@ int count = 0 ;
                                             const EdgeInsets.only(top: 16.0),
                                         child: cuttingValue == ""
                                             ? Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 2,
-                                                    bottom: 2,
-                                                    left: 16,
-                                                    right: 16),
+                                               width: 100,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -575,12 +566,7 @@ int count = 0 ;
                                                     Flexible(
                                                       flex: 1,
                                                       child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 2,
-                                                                bottom: 2,
-                                                                left: 16,
-                                                                right: 16),
+                                                        width: 100,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: GoodColors
@@ -637,11 +623,7 @@ int count = 0 ;
                                             const EdgeInsets.only(top: 16.0),
                                         child: taghleefValue == ""
                                             ? Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 2,
-                                                    bottom: 2,
-                                                    left: 16,
-                                                    right: 16),
+                                                width: 120,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -680,12 +662,7 @@ int count = 0 ;
                                                     Flexible(
                                                       flex: 1,
                                                       child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 2,
-                                                                bottom: 2,
-                                                                left: 16,
-                                                                right: 16),
+                                                        width: 120,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: GoodColors
@@ -721,7 +698,7 @@ int count = 0 ;
                                                           child: Text(
                                                             "$taghleefValue",
                                                             style: TextStyle(
-                                                              fontSize: 16,
+                                                              fontSize: 14,
                                                               color: GoodColors
                                                                   .brownDark,
                                                             ),
@@ -1271,7 +1248,7 @@ int count = 0 ;
                           ),
                           child: Center(
                             child: Text(
-                              "${this.number * this.product[DataBaseConstants.PRODUCT_TABLE_PRICE]??0} رس",
+                              "${this.number * (this.product ==null ? 0:this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -1285,6 +1262,9 @@ int count = 0 ;
                 onTap: ()async {
                   if(sizeValue.isEmpty || taghleefValue.isEmpty || cuttingValue.isEmpty){
                     print("not all Specification Specified ....");
+                    Toast.show("من فضلك اضف الخصائص.. ", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+
+                   // showInSnackBar("من فضلك اضف الخصائص.. " , context ,_scaffoldKeyProfile );
                   }else{
                     Map<String,String> specification = {
                       'الحجم' : sizeValue,
@@ -1297,6 +1277,8 @@ int count = 0 ;
                     await SqlLiteDataBase.addToShoppingCart(
                         this.product[DataBaseConstants.PRODUCT_TABLE_ID],
                         this.number ,specification: specification);
+                    Toast.show("تم اضافة المنتج بنجاح", context,duration: Toast.LENGTH_LONG ,backgroundColor: Color(0xaa5eff00) ,textColor: Colors.black);
+
                     this.getShoppingCartCount();
                   }
                 },

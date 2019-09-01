@@ -24,18 +24,12 @@ class DrawerClass{
                     Expanded(
                       flex: 2,
                       child: Container(
-                        child: Image.asset("images/man.png",fit: BoxFit.fill,),
+                        width: 100,
+                        height: 50,
+                        child: Image.asset("images/logo.png",),
                       ),
                     ),
                    // SizedBox(height: MediaQuery.of(context).size.height/50,),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: Text("Mohamed Alaa",
-                          style: TextStyle(color: Colors.white,fontSize: 25),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -106,26 +100,6 @@ class DrawerClass{
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
                           builder: (context)=>ContactUs()),);
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0,left: 20.0),
-                    child: Divider(color: GoodColors.grey,),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height/55,),
-                  new ListTile(
-                    title: new Text(
-                      "تسجيل الخروج",
-                      style: new TextStyle(
-                          fontSize: 20.0,
-                          color: GoodColors.brownDark,
-                          fontFamily: 'JF Flat'),
-                      textAlign: TextAlign.right,
-                    ),
-                    leading: new Image.asset("images/log_out.png",
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
                     },
                   ),
                   Padding(

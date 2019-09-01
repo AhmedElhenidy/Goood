@@ -3,10 +3,12 @@ import 'package:camel/DataBase/config.dart';
 import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/statics/snak_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:toast/toast.dart';
 
 class Zbaeh extends StatefulWidget {
   int id;
@@ -15,6 +17,7 @@ class Zbaeh extends StatefulWidget {
 }
 
 class _ZbaehState extends State<Zbaeh> {
+
   FixedExtentScrollController scr;
   GlobalKey<ScaffoldState> _scaffoldKeyProfile;
   int _current, kg = 1, number = 1, initialItem = 0;
@@ -22,6 +25,7 @@ class _ZbaehState extends State<Zbaeh> {
   double sizeAnimatedWidth = 2;
   bool mafroomTapped = false;
   double mafroomWidth = 0;
+
   @override
   void initState() {
     super.initState();
@@ -65,6 +69,7 @@ class _ZbaehState extends State<Zbaeh> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKeyProfile,
       appBar: AppBarClass()
           .appBar(context, _scaffoldKeyProfile, false, count, title: "الذبائح"),
       backgroundColor: Colors.white,
@@ -86,7 +91,7 @@ class _ZbaehState extends State<Zbaeh> {
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2.8,
+                        height: MediaQuery.of(context).size.height / 3.4,
                         child: Image.asset(
                           product[DataBaseConstants.PRODUCT_TABLE_IMAGE],
                           fit: BoxFit.fill,
@@ -319,7 +324,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                   "الرأس والكارعين",
                                                   style: TextStyle(
                                                     color: GoodColors.brownDark,
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                               ),
@@ -900,7 +905,7 @@ class _ZbaehState extends State<Zbaeh> {
                           ),
                           child: Center(
                             child: Text(
-                              "${this.product[DataBaseConstants.PRODUCT_TABLE_PRICE] ?? 0 * number} رس",
+                                "${this.number * (this.product ==null ? 0:this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -917,6 +922,7 @@ class _ZbaehState extends State<Zbaeh> {
                       cuttingValue.isEmpty ||
                       headValue.isEmpty) {
                     print("not all Specification Specified ....");
+                    Toast.show("من فضلك اضف الخصائص.. ", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM );
                   } else {
                     Map<String, String> specification = {
                       'الحجم': sizeValue,
@@ -931,6 +937,8 @@ class _ZbaehState extends State<Zbaeh> {
                         this.product[DataBaseConstants.PRODUCT_TABLE_ID],
                         this.number,
                         specification: specification);
+                    Toast.show("تم اضافة المنتج بنجاح", context,duration: Toast.LENGTH_LONG ,backgroundColor: Color(0xaa5eff00) ,textColor: Colors.black);
+
                     this.getShoppingCartCount();
                   }
                 },

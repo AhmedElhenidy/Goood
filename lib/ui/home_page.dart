@@ -1,10 +1,10 @@
+import 'package:camel/Api/ClientApi.dart';
 import 'package:camel/DataBase/config.dart';
 import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/slices.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:sqlcool/sqlcool.dart';
 
 import 'hashy_category.dart';
 
@@ -21,16 +21,44 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     this.getCategories();
+    this.getPrices();
     super.initState();
     _scaffoldKeyProfile = new GlobalKey<ScaffoldState>();
   }
 
   List<Map<String, dynamic>> categories = new List();
   bool getCategoriesCall = false;
+
+  getPrices(){
+
+    ClientApi.getPrices().then((response) {
+      setState(() {
+        this.text = response.products.toString();
+      });
+        response.products?.forEach((product)async{
+          Map<String,String> row ={
+            DataBaseConstants.PRODUCT_TABLE_PRICE : product.price
+          };
+          await db.update(table: DataBaseConstants.PRODUCT_TABLE, row: row, where: "${DataBaseConstants.PRODUCT_TABLE_ID} = ${product.id}");
+          final testResponse= await db.select(table: DataBaseConstants.PRODUCT_TABLE);
+          print(testResponse);
+        });
+      setState(() {
+        this.getCategoriesCall = false;
+      });
+
+    } ,onError: (error){
+      print("error : : $error");
+      setState(() {
+        text = error.toString() ;
+      });
+    });
+  }
   getCategories() async {
     setState(() {
       this.getCategoriesCall = true;
     });
+
     print("get Categories ");
     List<Map<String, dynamic>> rows = await db
         .select(
@@ -44,20 +72,20 @@ class _HomePageState extends State<HomePage> {
     print("catagories : : $rows");
     setState(() {
       this.categories = rows;
-      this.getCategoriesCall = false;
+
     });
   }
-
+  String text = '' ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKeyProfile,
       body: getCategoriesCall
           ? Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: Center(child: CircularProgressIndicator(backgroundColor: GoodColors.brown,),),
-            )
-          : Container(
+              child: Center(child: CircularProgressIndicator(),),
+            ): Container(
               height: MediaQuery.of(context).size.height,
               child: Column(
                 children: <Widget>[
@@ -156,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height /
-                                                3.4,
+                                                2.95,
                                         color: Colors.white,
                                         child: Stack(
                                           children: <Widget>[
@@ -249,7 +277,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height /
-                                                3.4,
+                                                2.95,
                                         color: Colors.white,
                                         child: Stack(
                                           children: <Widget>[

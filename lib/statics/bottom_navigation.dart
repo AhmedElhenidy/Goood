@@ -1,14 +1,19 @@
 import 'dart:async';
 
+import 'package:camel/Api/ClientApi.dart';
 import 'package:camel/DataBase/SqliteDataBase.dart';
+import 'package:camel/DataBase/config.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/ui/about.dart';
 import 'package:camel/ui/home_page.dart';
 import 'package:camel/ui/likes.dart';
 import 'package:camel/ui/my_account.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+
+import 'DataBaseConstants.dart';
 class BottomNavigationBarClass extends StatefulWidget{
   int initial ;
   BottomNavigationBarClass(this.initial);
@@ -28,6 +33,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       this._page = page;
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -57,12 +63,12 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
             Container(
               width: 24.0,
               height: 24.0,
-              child:  Icon(Icons.person,size: 26,
+              child:  Icon(Icons.info,size: 26,
                 color: _page == 2?GoodColors.brown: GoodColors.grey,
                ),
             ),
             new Container(height: 4.0),
-            new Text("حسابى",
+            new Text("عن التطبيق",
                 style: new TextStyle(
                   color: _page == 2?const Color(0xffA71E26):GoodColors.brown,
                   fontSize: 12.0,
@@ -151,7 +157,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
           children: [
             Likes(),
             HomePage(),
-            MyAccount(),
+            About(),
           ],
           controller: _pageController,
           onPageChanged: onPageChanged),

@@ -30,8 +30,6 @@ class _AboutState extends State<About>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerClass().showDrawer(context),
-      appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false ,count),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16),

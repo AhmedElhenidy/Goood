@@ -1,6 +1,7 @@
 import 'dart:async';
 
 
+import 'package:camel/statics/bottom_navigation.dart';
 import 'package:camel/ui/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _SuccesseOrderState extends State<SuccessOrder>{
     timer =new Timer(const Duration(milliseconds: 2000),
             () {
           Navigator.of(context).pushReplacement(new MaterialPageRoute(
-              builder: (BuildContext context) => HomePage()));
+              builder: (BuildContext context) =>  BottomNavigationBarClass(1)));
 
         });
     return Scaffold(
@@ -55,9 +56,9 @@ class _SuccesseOrderState extends State<SuccessOrder>{
                       child: Center(
                         child: Column(
                           children: <Widget>[
-                            Text("Account",style: TextStyle(fontSize: 35),softWrap: true,),
-                            Text("Successfully",style: TextStyle(fontSize: 35),softWrap: true,),
-                            Text("Verified",style: TextStyle(fontSize: 35),),
+                            Text("تم ارسال",style: TextStyle(fontSize: 35),softWrap: true,),
+                            Text("الطلب",style: TextStyle(fontSize: 40),softWrap: true,),
+                            Text("بنجاح",style: TextStyle(fontSize: 35),),
                           ],
                         ),
                       ),
