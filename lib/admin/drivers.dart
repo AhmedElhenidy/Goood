@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:camel/admin/api/driver_api.dart';
+import 'package:camel/admin/model/driver.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
@@ -5,17 +9,50 @@ class Drivers extends StatefulWidget {
   _DriversState createState() => _DriversState();
 }
 class _DriversState extends State<Drivers>{
+  static StreamController notifier = new StreamController.broadcast();
+  final Stream trigger = notifier.stream ;
+  StreamSubscription subscription ;
+  static List<Driver> driverList = new List();
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
+  bool getAllUsersApiCall = false ;
+  getAllDrivers(){
+    setState(() {
+      getAllUsersApiCall = true ;
+    });
+    DriverApi.getAllDriver().then((response){
+      setState(() {
+        driverList =response.driverList;
+        getAllUsersApiCall = false ;
+      });
+    },onError: (error){
+      setState(() {
+        getAllUsersApiCall = false ;
+      });
+      print("get All drivers error : : : $error");
+    });
+  }
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =GlobalKey<ScaffoldState>();
+    getAllDrivers();
+    subscription =  trigger.listen((i){
+     setState(() {
+       driverList.add(i);
+     });
+    });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AdminAppBarClass().appBar(context, _scaffoldKeyProfile,"السائقون"),
-      body: Container(
+      body: getAllUsersApiCall
+          ?Center(child:
+      CircularProgressIndicator(
+        backgroundColor: GoodColors.brownDark,
+      ),
+      )
+          :Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -30,7 +67,7 @@ class _DriversState extends State<Drivers>{
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text("العدد : 55 سائق"),
+                    Text("العدد :  ${driverList.length} سائق"),
                     InkWell(
                       onTap: (){
                         showDialog(context: context,
@@ -62,7 +99,7 @@ class _DriversState extends State<Drivers>{
                 width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
                   padding: EdgeInsets.only(left: 16,right: 16),
-                  itemCount: 9,
+                  itemCount: driverList.length,
                   itemBuilder: (context,position){
                     return Padding(
                       padding: const EdgeInsets.only(bottom:16.0),
@@ -71,7 +108,7 @@ class _DriversState extends State<Drivers>{
                         child: InkWell(
                           onTap: (){
                             showDialog(context: context,
-                              builder: (context)=>DriverInfo(position,"محمد علاء سعفان","11230216","لا توجد ملاحظات")
+                              builder: (context)=>DriverInfo(position,"${driverList[position].name}","${driverList[position].phone}","لا توجد ملاحظات")
                             );
                           },
                           child: Container(
@@ -113,7 +150,7 @@ class _DriversState extends State<Drivers>{
                                             padding: EdgeInsets.only(right: 2,top: 14),
                                             child: Align(
                                               alignment: Alignment.bottomCenter,
-                                                child: Text("محمد علاء سعفان",style: TextStyle(fontSize: 18),)),
+                                                child: Text("${driverList[position].name}",style: TextStyle(fontSize: 18),)),
                                           ),
                                         ),
                                         Flexible(
@@ -124,7 +161,7 @@ class _DriversState extends State<Drivers>{
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                                               children: <Widget>[
-                                                Text("01065432596",style: TextStyle(fontSize: 12),),
+                                                Text("${driverList[position].phone}",style: TextStyle(fontSize: 12),),
                                                 Image.asset("images/whats.png",width:20,height: 20 ,),
                                                 Image.asset("images/ring.png",width:20,height: 20 ,),
 
@@ -189,6 +226,11 @@ class AddDriver extends StatefulWidget{
 }
 class _AddDriverState extends State<AddDriver> {
   TextEditingController name ,phone ,note ;
+  addDriver(){
+      DriverApi.addNewDriver(name.text, phone.text).then((response){
+        _DriversState.notifier.sink.add(response.driver);
+      });
+  }
   @override
   void initState() {
     super.initState();
@@ -205,7 +247,7 @@ class _AddDriverState extends State<AddDriver> {
       child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(bottom: 16),
-          height: MediaQuery.of(context).size.height/1.2,
+          height: MediaQuery.of(context).size.height/1.7,
           child: Column(
             children: <Widget>[
               Flexible(
@@ -360,6 +402,7 @@ class _AddDriverState extends State<AddDriver> {
                   child: Padding(
                     padding: const EdgeInsets.only(right :8.0,left: 8,top: 2,bottom: 2),
                     child: InkWell(
+                      onTap:addDriver ,
                       child: Container(
                         decoration: BoxDecoration(
                           color: name.text!=""&&phone.text!=""?GoodColors.brownDark:GoodColors.greyLight,
@@ -394,6 +437,7 @@ class DriverInfo extends StatefulWidget{
 }
 class _DriverInfoState extends State<DriverInfo> {
   TextEditingController name ,phone ,note ;
+
   @override
   void initState() {
     super.initState();

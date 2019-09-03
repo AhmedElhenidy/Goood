@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         //canvasColor: Colors.transparent,
         bottomAppBarColor: GoodColors.grey,
       ),
-      home: SplashScreen(),
+      home: AdminHome(),
     );
   }
 }

@@ -1,8 +1,6 @@
 class ProductPriceModel {
     List<Product> products;
-
     ProductPriceModel({this.products});
-
     factory ProductPriceModel.fromJson(Map<String, dynamic> json) {
         return ProductPriceModel(
             products: json['Products'] != null ? (json['Products'] as List).map((i) => Product.fromJson(i)).toList() : null,
