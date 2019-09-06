@@ -20,7 +20,7 @@ class PromoCodeApi{
     print(jsonResponse);
     return PromoCodeServerResponse.fromJson(jsonResponse);
   }
-  static  Future<PromoCodeServerResponse> updateDriver(int id,String codeName,String startDate,String endDate,String amount)async{
+  static  Future<PromoCodeServerResponse> updatePromo(int id,String codeName,String startDate,String endDate,String amount)async{
     String url =URL+"api/promocode/updatepromocode/$id?codeName=$codeName&startDate=$startDate&endDate=$endDate&amount=$amount";
     print(url);
     final response= await http.post(url);
@@ -28,7 +28,7 @@ class PromoCodeApi{
     print(jsonResponse);
     return PromoCodeServerResponse.fromJson(jsonResponse);
   }
-  static  Future<PromoCodeServerResponse> deleteDriver(int id)async{
+  static  Future<PromoCodeServerResponse> deletePromo(int id)async{
     String url =URL+"api/promocode/deletepromocode/$id";
     print(url);
     final response= await http.post(url);

@@ -12,7 +12,7 @@ class DriverApi{
     print(jsonResponse);
     return DriverOperationsServerResponse.fromJson(jsonResponse);
   }
-  static  Future<DriverOperationsServerResponse> addNewDriver(String name,String phone)async{
+  static  Future<DriverOperationsServerResponse> addNewDriver(String name,String phone,String note)async{
     String url =URL+"api/driver/addNewDriver?name=$name&phone=$phone";
     print(url);
     final response= await http.post(url);
@@ -20,7 +20,7 @@ class DriverApi{
     print(jsonResponse);
     return DriverOperationsServerResponse.fromJson(jsonResponse);
   }
-  static  Future<DriverOperationsServerResponse> updateDriver(int id,String name,String phone)async{
+  static  Future<DriverOperationsServerResponse> updateDriver(int id,String name,String phone,String note)async{
     String url =URL+"api/driver/updateDriver/$id?name=$name&phone=$phone";
     print(url);
     final response= await http.post(url);

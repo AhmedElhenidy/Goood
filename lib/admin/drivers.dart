@@ -9,9 +9,16 @@ class Drivers extends StatefulWidget {
   _DriversState createState() => _DriversState();
 }
 class _DriversState extends State<Drivers>{
+  int position =0;
   static StreamController notifier = new StreamController.broadcast();
+  static StreamController notifier2 = new StreamController.broadcast();
+  static StreamController notifier3 = new StreamController.broadcast();
   final Stream trigger = notifier.stream ;
+  final Stream trigger2 = notifier2.stream ;
+  final Stream trigger3 = notifier3.stream ;
   StreamSubscription subscription ;
+  StreamSubscription subscription2 ;
+  StreamSubscription subscription3;
   static List<Driver> driverList = new List();
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
   bool getAllUsersApiCall = false ;
@@ -31,6 +38,13 @@ class _DriversState extends State<Drivers>{
       print("get All drivers error : : : $error");
     });
   }
+  deleteDriver(int id,int position){
+    DriverApi.deleteDriver(id).then((response){
+      setState(() {
+        driverList.removeAt(position);
+      });
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -39,6 +53,18 @@ class _DriversState extends State<Drivers>{
     subscription =  trigger.listen((i){
      setState(() {
        driverList.add(i);
+     });
+    });
+    subscription2 =  trigger2.listen((i){
+     setState(() {
+       print("posion::   $position");
+       driverList[position]=i;
+     });
+    });
+    subscription3 =  trigger3.listen((i){
+      print("posion::   $position");
+     setState(() {
+       driverList.removeAt(i);
      });
     });
   }
@@ -107,8 +133,9 @@ class _DriversState extends State<Drivers>{
                         borderRadius: BorderRadius.circular(8),
                         child: InkWell(
                           onTap: (){
+                            this.position =position;
                             showDialog(context: context,
-                              builder: (context)=>DriverInfo(position,"${driverList[position].name}","${driverList[position].phone}","لا توجد ملاحظات")
+                              builder: (context)=>DriverInfo(position,driverList[position].id,"${driverList[position].name}","${driverList[position].phone}","لا توجد ملاحظات")
                             );
                           },
                           child: Container(
@@ -193,11 +220,16 @@ class _DriversState extends State<Drivers>{
                                         ),
                                         Flexible(
                                           flex: 1,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: GoodColors.brownDark,
+                                          child: InkWell(
+                                            onTap: (){
+                                              deleteDriver(driverList[position].id,position);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: GoodColors.brownDark,
+                                              ),
+                                              child: Center(child: Icon(Icons.delete,color: Colors.white,)),
                                             ),
-                                            child: Center(child: Icon(Icons.delete,color: Colors.white,)),
                                           ),
                                         ),
                                       ],
@@ -227,7 +259,7 @@ class AddDriver extends StatefulWidget{
 class _AddDriverState extends State<AddDriver> {
   TextEditingController name ,phone ,note ;
   addDriver(){
-      DriverApi.addNewDriver(name.text, phone.text).then((response){
+      DriverApi.addNewDriver(name.text, phone.text,note.text).then((response){
         _DriversState.notifier.sink.add(response.driver);
       });
   }
@@ -429,15 +461,23 @@ class _AddDriverState extends State<AddDriver> {
 }
 
 class DriverInfo extends StatefulWidget{
-  int id ;
+  int id ,position;
   String name ,phone ,note;
-  DriverInfo(this.id,this.name,this.phone,this.note);
-
+  DriverInfo(this.position,this.id,this.name,this.phone,this.note);
   _DriverInfoState createState()=> _DriverInfoState();
 }
 class _DriverInfoState extends State<DriverInfo> {
   TextEditingController name ,phone ,note ;
-
+  updateDriver(){
+    DriverApi.updateDriver(widget.id, name.text, phone.text, note.text).then((response){
+      _DriversState.notifier2.sink.add(response.driver);
+    });
+  }
+  deleteDriver(){
+    DriverApi.deleteDriver(widget.id).then((response){
+      _DriversState.notifier3.sink.add(widget.position);
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -593,6 +633,7 @@ class _DriverInfoState extends State<DriverInfo> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left:8.0),
                                 child: InkWell(
+                                  onTap: updateDriver,
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: name.text!=""&&phone.text!=""?GoodColors.brownLight:GoodColors.greyLight,
@@ -618,6 +659,7 @@ class _DriverInfoState extends State<DriverInfo> {
                               child: Padding(
                                 padding: const EdgeInsets.only(right:8.0),
                                 child: InkWell(
+                                  onTap: deleteDriver,
                                   child: Container(
                                     padding: EdgeInsets.only(top: 2,bottom: 2),
                                     decoration: BoxDecoration(
@@ -653,6 +695,9 @@ class _DriverInfoState extends State<DriverInfo> {
                   child: Padding(
                     padding: const EdgeInsets.only(right :8.0,left: 8,top: 2,bottom: 2),
                     child: InkWell(
+                      onTap: (){
+                              Navigator.pop(context);
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           color: name.text!=""&&phone.text!=""?GoodColors.brownDark:GoodColors.greyLight,

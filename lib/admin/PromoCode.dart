@@ -1,36 +1,77 @@
+import 'dart:async';
+
+import 'package:camel/admin/api/driver_api.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 
+import 'api/promoCode_api.dart';
+import 'model/promo_code.dart';
+
 
 class PromoCode extends StatefulWidget {
   PromoCode({Key key}) : super(key: key);
-
   @override
   _PromoCodeState createState() {
     return _PromoCodeState();
   }
 }
-
 class _PromoCodeState extends State<PromoCode> {
-
-
+  static StreamController notifier = new StreamController.broadcast();
+  final Stream trigger = notifier.stream ;
+  StreamSubscription subscription ;
+   List<PromoCodeModel> promoList = new List();
+  bool getAllPromoApiCall = false ;
+  getAllPromo(){
+    setState(() {
+      getAllPromoApiCall = true ;
+    });
+    PromoCodeApi.getAllPromoCodes().then((response){
+      setState(() {
+        this.promoList =response.promoList;
+        getAllPromoApiCall = false ;
+      });
+    },onError: (error){
+      setState(() {
+        getAllPromoApiCall = false ;
+      });
+      print("get All promo error : : : $error");
+    });
+  }
+  deletePromo(int id,int position){
+    PromoCodeApi.deletePromo(id).then((response){
+      setState(() {
+        promoList.removeAt(position);
+      });
+    });
+  }
   @override
   void dispose() {
     super.dispose();
   }
-
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =GlobalKey<ScaffoldState>();
+    this.getAllPromo();
+    subscription =  trigger.listen((i){
+      setState(() {
+        promoList.add(i);
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AdminAppBarClass().appBar(context, _scaffoldKeyProfile,"اكواد الخصم"),
-      body: Container(
+      body: getAllPromoApiCall
+          ?Center(child:
+      CircularProgressIndicator(
+        backgroundColor: GoodColors.brownDark,
+      ),
+      )
+          :Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -45,11 +86,11 @@ class _PromoCodeState extends State<PromoCode> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text("العدد : 55 كود"),
+                    Text("العدد : ${promoList.length} كود"),
                     InkWell(
                       onTap: (){
                         showDialog(context: context,
-                            builder: (context)=>PromoInfo( id :0 , name :"" ,phone:"" ,note:"")
+                            builder: (context)=>PromoInfo()
                         );
                       },
                       child: Container(
@@ -77,7 +118,7 @@ class _PromoCodeState extends State<PromoCode> {
                 width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
                   padding: EdgeInsets.only(left: 16,right: 16),
-                  itemCount: 9,
+                  itemCount: promoList.length,
                   itemBuilder: (context,position){
                     return Padding(
                       padding: const EdgeInsets.only(bottom:16.0),
@@ -112,7 +153,7 @@ class _PromoCodeState extends State<PromoCode> {
                                               children: <Widget>[
                                                 Align(
                                                     alignment: Alignment.bottomRight,
-                                                    child: Text("خصم 50%",style: TextStyle(fontSize: 18),)),
+                                                    child: Text("${promoList[position].codeName}",style: TextStyle(fontSize: 18),)),
                                                 Container(
                                                   height: MediaQuery.of(context).size.width/11,
                                                   width: MediaQuery.of(context).size.width/5,
@@ -120,10 +161,8 @@ class _PromoCodeState extends State<PromoCode> {
                                                       color: GoodColors.brownDark,
                                                       borderRadius: BorderRadius.circular(8)
                                                   ),
-                                                  child: Center(child: Text("50%",style: TextStyle(fontSize: 14 , color: Colors.white),),),
+                                                  child: Center(child: Text("${promoList[position].amount}%",style: TextStyle(fontSize: 14 , color: Colors.white),),),
                                                 )
-
-
                                               ],
                                             ),
                                           ),
@@ -136,9 +175,9 @@ class _PromoCodeState extends State<PromoCode> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                                               children: <Widget>[
-                                                Text("البدايه :20/5/2019",style: TextStyle(fontSize: 12),),
+                                                Text("البدايه :${promoList[position].startDate}",style: TextStyle(fontSize: 12),),
 
-                                                Text("النهايه :20/6/2019",style: TextStyle(fontSize: 12),),
+                                                Text("النهايه :${promoList[position].endDate}",style: TextStyle(fontSize: 12),),
                                               ],
                                             ),
                                           ),
@@ -149,19 +188,24 @@ class _PromoCodeState extends State<PromoCode> {
                                 ),
                                 Expanded(
                                   flex: 1,
-                                  child: Container(
-                                    child: Column(
-                                      children: <Widget>[
-                                        Flexible(
-                                          flex: 1,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: GoodColors.brownDark,
+                                  child: InkWell(
+                                    onTap: (){
+                                      deletePromo(promoList[position].id,position);
+                                    },
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Flexible(
+                                            flex: 1,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: GoodColors.brownDark,
+                                              ),
+                                              child: Center(child: Icon(Icons.delete,color: Colors.white,)),
                                             ),
-                                            child: Center(child: Icon(Icons.delete,color: Colors.white,)),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -183,20 +227,22 @@ class _PromoCodeState extends State<PromoCode> {
 }
 
 class PromoInfo extends StatefulWidget{
-  int id ;
-  String name ,phone ,note;
-  PromoInfo({this.id,this.name,this.phone,this.note});
-
   _PromoInfoState createState()=> _PromoInfoState();
 }
 class _PromoInfoState extends State<PromoInfo> {
-  TextEditingController name ,phone ,note ;
+  TextEditingController codeName ,amount ,startDate,endDate ;
+  addPromo(){
+    PromoCodeApi.addNewPromoCode( codeName.text,startDate.text,endDate.text,amount.text).then((response){
+      _PromoCodeState.notifier.sink.add(response.promo);
+    });
+  }
   @override
   void initState() {
     super.initState();
-    name =TextEditingController(text: widget.name);
-    phone =TextEditingController(text :widget.phone) ;
-    note =TextEditingController(text: widget.note);
+    codeName =TextEditingController();
+    amount =TextEditingController() ;
+    startDate =TextEditingController();
+    endDate =TextEditingController();
   }
   @override
   Widget build(BuildContext context) {
@@ -260,7 +306,7 @@ class _PromoInfoState extends State<PromoInfo> {
                           ),
                         ),
                         child: TextField(
-                          controller: name,
+                          controller: codeName,
                           style: TextStyle(
                             height: .5,
                           ),
@@ -283,7 +329,7 @@ class _PromoInfoState extends State<PromoInfo> {
                           ),
                         ),
                         child: TextField(
-                          controller: phone,
+                          controller: amount,
                           style: TextStyle(
                             height: .5,
                           ),
@@ -307,7 +353,7 @@ class _PromoInfoState extends State<PromoInfo> {
                           ),
                         ),
                         child: TextField(
-                          controller: phone,
+                          controller: startDate,
                           style: TextStyle(
                             height: .5,
                           ),
@@ -332,7 +378,7 @@ class _PromoInfoState extends State<PromoInfo> {
                           ),
                         ),
                         child: TextField(
-                          controller: phone,
+                          controller: endDate,
                           style: TextStyle(
                             height: .5,
                           ),
@@ -347,8 +393,6 @@ class _PromoInfoState extends State<PromoInfo> {
                           ),
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
@@ -360,6 +404,10 @@ class _PromoInfoState extends State<PromoInfo> {
                   child: Padding(
                     padding: const EdgeInsets.only(right :8.0,left: 8,top: 2,bottom: 2),
                     child: InkWell(
+                      onTap: (){
+                        addPromo();
+                        Navigator.pop(context);
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           color: GoodColors.brownDark,

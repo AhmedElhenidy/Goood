@@ -1,24 +1,59 @@
+import 'package:camel/admin/api/prices_api.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 
+import 'model/product.dart';
 class PricesPage extends StatefulWidget {
   PricesPage({Key key}) : super(key: key);
-
   @override
   _PricesPageState createState() {
     return _PricesPageState();
   }
 }
-
 class _PricesPageState extends State<PricesPage> {
-  GlobalKey<ScaffoldState> _scaffoldKeyProfile = GlobalKey<ScaffoldState>();
+  TextEditingController hor ,lbany,mfrood,hashymeat,tisBalady,n3imy,hry,nagdy;
+  List<ProductModel> priceList = new List();
+  bool getAllPricesApiCall = false ;
+  getAllPrices(){
+    setState(() {
+      getAllPricesApiCall = true ;
+    });
+    PricesApi.getAllPrices().then((response){
+      setState(() {
+        this.priceList =response.productList;
+        hor.text =response.productList[0].price;
+        lbany.text =response.productList[1].price;
+        mfrood.text =response.productList[2].price;
+        hashymeat.text =response.productList[3].price;
+        tisBalady.text =response.productList[4].price;
+        n3imy.text =response.productList[5].price;
+        hry.text =response.productList[6].price;
+        nagdy.text =response.productList[7].price;
+        getAllPricesApiCall = false ;
+      });
 
+    },onError: (error){
+      setState(() {
+        getAllPricesApiCall = false ;
+      });
+      print("get All promo error : : : $error");
+    });
+  }
+  GlobalKey<ScaffoldState> _scaffoldKeyProfile = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
+    hor =  TextEditingController();
+    lbany=  TextEditingController();
+    mfrood=  TextEditingController();
+    hashymeat=  TextEditingController();
+    tisBalady=  TextEditingController();
+    n3imy=  TextEditingController();
+    hry=  TextEditingController();
+    nagdy=  TextEditingController();
+    this.getAllPrices();
   }
-
   @override
   void dispose() {
     super.dispose();
@@ -28,7 +63,13 @@ class _PricesPageState extends State<PricesPage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AdminAppBarClass().appBar(context, _scaffoldKeyProfile,"الاسعار"),
-      body:SingleChildScrollView(
+      body:getAllPricesApiCall
+          ?Center(child:
+      CircularProgressIndicator(
+        backgroundColor: GoodColors.brownDark,
+      ),
+      )
+          :SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -89,7 +130,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: hor,
                                               decoration: InputDecoration(
                                                 border: InputBorder.none,
                                                 hintText: "السعر"
@@ -127,7 +168,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: lbany,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
@@ -140,13 +181,11 @@ class _PricesPageState extends State<PricesPage> {
                                               child: IconButton(icon: Icon(Icons.done ,size: 17,color: Colors.white,), onPressed:(){}),
                                             ),
                                           ),flex: 1,),
-
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),flex: 1,),
-
                               ],
                             ),
                           ),flex: 1,),
@@ -175,7 +214,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: mfrood,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
@@ -213,7 +252,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: hashymeat,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
@@ -300,7 +339,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: tisBalady,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
@@ -338,7 +377,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: n3imy,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
@@ -386,7 +425,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller:hry,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
@@ -424,7 +463,7 @@ class _PricesPageState extends State<PricesPage> {
                                           Expanded(child: Container(
                                             padding: EdgeInsets.only(top: 6 ,left: 5 ,right: 5),
                                             child: TextField(
-
+                                              controller: nagdy,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: "السعر"
