@@ -19,8 +19,8 @@ class _DriversState extends State<Drivers>{
   StreamSubscription subscription ;
   StreamSubscription subscription2 ;
   StreamSubscription subscription3;
-  static List<Driver> driverList = new List();
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
+  static List<Driver> driverList = new List();
   bool getAllUsersApiCall = false ;
   getAllDrivers(){
     setState(() {

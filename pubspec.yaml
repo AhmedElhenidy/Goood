@@ -22,6 +22,7 @@ dependencies:
     sdk: flutter
   fancy_bottom_navigation: ^0.3.2
   carousel_slider: ^1.3.0
+  image_picker: ^0.6.1+4
   badges: ^0.0.6
   http: ^0.12.0+1
   flutter_cupertino_date_picker: ^1.0.11
