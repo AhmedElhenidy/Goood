@@ -39,7 +39,7 @@ Future<void> initDb() async {
     'INSERT INTO ${DataBaseConstants.PRODUCT_TABLE}(${DataBaseConstants.PRODUCT_TABLE_NAME},${DataBaseConstants.PRODUCT_TABLE_IMAGE},${DataBaseConstants.PRODUCT_TABLE_PRICE},${DataBaseConstants.PRODUCT_TABLE_CATEGORY}) VALUES("مفرود" ,"images/mafrood.png",150 ,1)',
     'INSERT INTO ${DataBaseConstants.PRODUCT_TABLE}(${DataBaseConstants.PRODUCT_TABLE_NAME},${DataBaseConstants.PRODUCT_TABLE_IMAGE},${DataBaseConstants.PRODUCT_TABLE_PRICE},${DataBaseConstants.PRODUCT_TABLE_CATEGORY}) VALUES("لحم حاشى" ,"images/meat.png",150 ,1)',
     // Category zpaeh with Its Products
-    'INSERT INTO ${DataBaseConstants.CATEGORY_TABLE}(${DataBaseConstants.CATEGORY_TABLE_NAME},${DataBaseConstants.CATEGORY_TABLE_IMAGE}) VALUES("قسم الذيائح" ,"cheap1.png")',
+    'INSERT INTO ${DataBaseConstants.CATEGORY_TABLE}(${DataBaseConstants.CATEGORY_TABLE_NAME},${DataBaseConstants.CATEGORY_TABLE_IMAGE}) VALUES("قسم الذبائح" ,"cheap1.png")',
     'INSERT INTO ${DataBaseConstants.PRODUCT_TABLE}(${DataBaseConstants.PRODUCT_TABLE_NAME},${DataBaseConstants.PRODUCT_TABLE_IMAGE},${DataBaseConstants.PRODUCT_TABLE_PRICE},${DataBaseConstants.PRODUCT_TABLE_CATEGORY}) VALUES("تيس بلدى" ,"images/11.png",150 ,2)',
     'INSERT INTO ${DataBaseConstants.PRODUCT_TABLE}(${DataBaseConstants.PRODUCT_TABLE_NAME},${DataBaseConstants.PRODUCT_TABLE_IMAGE},${DataBaseConstants.PRODUCT_TABLE_PRICE},${DataBaseConstants.PRODUCT_TABLE_CATEGORY}) VALUES("نعيمي" ,"images/12.png",150 ,2)',
     'INSERT INTO ${DataBaseConstants.PRODUCT_TABLE}(${DataBaseConstants.PRODUCT_TABLE_NAME},${DataBaseConstants.PRODUCT_TABLE_IMAGE},${DataBaseConstants.PRODUCT_TABLE_PRICE},${DataBaseConstants.PRODUCT_TABLE_CATEGORY}) VALUES("حري" ,"images/13.png",150 ,2)',

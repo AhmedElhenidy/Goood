@@ -4,6 +4,7 @@ import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 class SnapChat extends StatefulWidget{
   _SnapChatState createState()=> _SnapChatState();
 }
@@ -41,7 +42,7 @@ class _SnapChatState extends State<SnapChat>{
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width/1.25,
-                height: MediaQuery.of(context).size.height/2.6,
+                height: MediaQuery.of(context).size.height/2.5,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -49,7 +50,7 @@ class _SnapChatState extends State<SnapChat>{
                       ),
                     ),
                     Positioned(
-                      top: MediaQuery.of(context).size.height/20,
+                      top: MediaQuery.of(context).size.height/14,
                       left: 5,
                       right: 5,
                       bottom: 5,
@@ -81,13 +82,14 @@ class _SnapChatState extends State<SnapChat>{
                                       borderRadius: BorderRadius.circular(18),
                                     ),
                                     child: InkWell(
+                                      onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
                                       child: Center(
                                         child: Text("snapchat.com/add/almm99"),
                                       ),
                                     ),
                                   ),
                                   Text("عند اضافتنا عبر سناب شات",style: TextStyle( fontSize: 18,color: GoodColors.brownDark),),
-                                  Text("فأنت تتابع طلبك أو الذبح اليومي "
+                                  Text("فأنت تتابع طلبك و الذبح اليومي "
                                     ,style: TextStyle(color: GoodColors.brownDark,fontSize: 18),
                                   ),
                                 ],
@@ -101,7 +103,7 @@ class _SnapChatState extends State<SnapChat>{
                         alignment: Alignment.topCenter,
                         child: Container(
                           width: MediaQuery.of(context).size.width/3.5,
-                          height: MediaQuery.of(context).size.width/4,
+                          height: MediaQuery.of(context).size.height/5.65,
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             color: GoodColors.brownDark,
@@ -126,7 +128,7 @@ class _SnapChatState extends State<SnapChat>{
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Center(
-                  child: Text("بشاهدة تحميل الأغنام من البر الي المزارع"),
+                  child: Text("بمشاهدة تحميل الأغنام من البر الي المزارع"),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height/30,),
@@ -168,10 +170,6 @@ class _SnapChatState extends State<SnapChat>{
                     ),
                     Container(
                       child: Image.asset("images/2.png",fit: BoxFit.fill,
-                      ),
-                    ),
-                    Container(
-                      child: Image.asset("images/3.png",fit: BoxFit.fill,
                       ),
                     ),
                   ],

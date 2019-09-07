@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   bool getCategoriesCall = false;
 
   getPrices(){
-
     ClientApi.getPrices().then((response) {
       setState(() {
         this.text = response.products.toString();
@@ -58,7 +57,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       this.getCategoriesCall = true;
     });
-
     print("get Categories ");
     List<Map<String, dynamic>> rows = await db
         .select(

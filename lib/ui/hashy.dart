@@ -17,7 +17,7 @@ class Hashy extends StatefulWidget {
 }
 
 class _HashyState extends State<Hashy> {
-  int _current, kg = 1, number = 1;
+  int _current, kg = 0, number = 1;
   double sizeAnimatedWidth = 2;
   String sizeValue = "", headValue = "", cuttingValue = "", taghleefValue = "";
   bool mafroomTapped = false;
@@ -887,7 +887,7 @@ int count = 0 ;
                                                               InkWell(
                                                                 onTap: () {
                                                                   setState(() {
-                                                                    if (kg > 1)
+                                                                    if (!(kg < 0))
                                                                       kg--;
                                                                   });
                                                                 },
@@ -1099,7 +1099,7 @@ int count = 0 ;
                                                               InkWell(
                                                                 onTap: () {
                                                                   setState(() {
-                                                                    if (kg > 1)
+                                                                    if (kg > 0)
                                                                       kg--;
                                                                   });
                                                                 },
@@ -1157,21 +1157,21 @@ int count = 0 ;
                 ),
                 child: Row(
                   children: <Widget>[
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: GoodColors.brown,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "العدد",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
+//                    Expanded(
+//                      flex: 2,
+//                      child: Container(
+//                        decoration: BoxDecoration(
+//                          borderRadius: BorderRadius.circular(7),
+//                          color: GoodColors.brown,
+//                        ),
+//                        child: Center(
+//                          child: Text(
+//                            "العدد",
+//                            style: TextStyle(color: Colors.white),
+//                          ),
+//                        ),
+//                      ),
+//                    ),
                     Expanded(
                       flex: 1,
                       child: IconButton(
@@ -1336,6 +1336,7 @@ int count = 0 ;
                 Flexible(
                   flex: 1,
                   child: Container(
+                    padding:EdgeInsets.only(left: 16,right: 16) ,
                     decoration: BoxDecoration(
                       color: GoodColors.brownDark,
                       borderRadius: BorderRadius.only(
@@ -1343,14 +1344,43 @@ int count = 0 ;
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "الحجم",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 6,
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                "الحجم",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -1468,14 +1498,42 @@ int count = 0 ;
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "التقطيع",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            child: Text(
+                              "التقطيع",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -1626,14 +1684,42 @@ int count = 0 ;
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "التغليف",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            child: Text(
+                              "التغليف",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

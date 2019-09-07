@@ -3,6 +3,7 @@ import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:camel/statics/app_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 class ContactUs extends StatefulWidget{
   _ContactUsState createState()=> _ContactUsState();
 }
@@ -78,6 +79,77 @@ class _ContactUsState extends State<ContactUs>{
                                 ),
                                 Flexible(
                                   child: Container(
+                                    child: InkWell(
+                                     onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Image.asset("images/instagram.png",height: 25,width: 25,),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: Text("   تابعنا على إنستجرام",
+                                                  textDirection: TextDirection.rtl,
+                                                  style: TextStyle(
+                                                      color: GoodColors.brown
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  flex: 1,
+                                ),
+                                Flexible(
+                                  child: Container(
+                                    child: InkWell(
+                                      onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Image.asset("images/twitter.png",height: 25,width: 25,),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: Text("   تابعنا على تويتر",
+                                                  textDirection: TextDirection.rtl,
+                                                  style: TextStyle(
+                                                      color: GoodColors.brown
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),),flex: 1,),
+                                Flexible(
+                                  child: Container(
+                                  child: InkWell(
+                                    onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
                                     child: Row(
                                       children: <Widget>[
                                         Expanded(
@@ -85,7 +157,7 @@ class _ContactUsState extends State<ContactUs>{
                                           child: Container(
                                             child: Align(
                                               alignment: Alignment.centerLeft,
-                                              child: Image.asset("images/instagram.png",height: 25,width: 25,),
+                                              child: Image.asset("images/youtube.png",height: 25,width: 25,),
                                             ),
                                           ),
                                         ),
@@ -94,7 +166,7 @@ class _ContactUsState extends State<ContactUs>{
                                           child: Container(
                                             child: Align(
                                               alignment: Alignment.centerRight,
-                                              child: Text("   تابعنا على إنستجرام",
+                                              child: Text("   تابعنا على يوتيوب",
                                                 textDirection: TextDirection.rtl,
                                                 style: TextStyle(
                                                     color: GoodColors.brown
@@ -106,48 +178,18 @@ class _ContactUsState extends State<ContactUs>{
 
                                       ],
                                     ),
-                                  ),
-                                  flex: 1,
-                                ),
-                                Flexible(
-                                  child: Container(
-                                    child: Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Image.asset("images/twitter.png",height: 25,width: 25,),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 2,
-                                          child: Container(
-                                            child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: Text("   تابعنا على تويتر",
-                                                textDirection: TextDirection.rtl,
-                                                style: TextStyle(
-                                                    color: GoodColors.brown
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                      ],
-                                    ),),flex: 1,),
+                                  ),),flex: 1,),
                                 Flexible(child: Container(
-                                  child: Row(
+                                  child: InkWell(
+                                    onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
+                                    child: Row(
                                     children: <Widget>[
                                       Expanded(
                                         flex: 1,
                                         child: Container(
                                           child: Align(
                                             alignment: Alignment.centerLeft,
-                                            child: Image.asset("images/youtube.png",height: 25,width: 25,),
+                                            child: Image.asset("images/snapshat.png",height: 25,width: 25,),
                                           ),
                                         ),
                                       ),
@@ -156,7 +198,7 @@ class _ContactUsState extends State<ContactUs>{
                                         child: Container(
                                           child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text("   تابعنا على يوتيوب",
+                                            child: Text("   تابعنا على اسناب شات",
                                               textDirection: TextDirection.rtl,
                                               style: TextStyle(
                                                   color: GoodColors.brown
@@ -167,36 +209,8 @@ class _ContactUsState extends State<ContactUs>{
                                       ),
 
                                     ],
+                                ),
                                   ),),flex: 1,),
-                                Flexible(child: Container(
-                                  child: Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Image.asset("images/snap.png",height: 25,width: 25,),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text("   تابعنا على اسناب شات",
-                                            textDirection: TextDirection.rtl,
-                                            style: TextStyle(
-                                                color: GoodColors.brown
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-
-                                  ],
-                                ),),flex: 1,),
                                 Flexible(child: Container(
                                   child: Row(
                                   children: <Widget>[

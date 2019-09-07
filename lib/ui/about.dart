@@ -3,6 +3,7 @@ import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 class About extends StatefulWidget{
   _AboutState createState()=> _AboutState();
 }
@@ -15,8 +16,6 @@ class _AboutState extends State<About>{
     _scaffoldKeyProfile =new GlobalKey<ScaffoldState>();
 
   }
-
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies() ;
@@ -228,7 +227,7 @@ class _AboutState extends State<About>{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("الضبح فى مسلخ البلدية تحت الإشراف الطبى"
+                        Text("الذبح فى مسلخ البلدية تحت الإشراف الطبي"
                           ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
@@ -254,7 +253,7 @@ class _AboutState extends State<About>{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("تعليف معقم ويتم تغليف الطلب بأحدث الأجهزة حتى يتم نقله"
+                        Text("تغليف معقم ويتم تغليف الطلب بأحدث الأجهزة حتى يتم نقله"
                           ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],
@@ -280,7 +279,7 @@ class _AboutState extends State<About>{
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("يمكنك مشاهدة طلبك او الذبح اليومى عبر اسناب شات"
+                        Text("يمكنك مشاهدة طلبك و الذبح اليومى عبر سناب شات."
                           ,style: TextStyle(fontSize:18 ,color: GoodColors.brownDark),
                         ),
                       ],

@@ -760,7 +760,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                         InkWell(
                                                           onTap: () {
                                                             setState(() {
-                                                              if (kg > 1) kg--;
+                                                              if (kg > 0) kg--;
                                                             });
                                                           },
                                                           child: Container(
@@ -814,7 +814,7 @@ class _ZbaehState extends State<Zbaeh> {
                 ),
                 child: Row(
                   children: <Widget>[
-                    Expanded(
+                   /* Expanded(
                       flex: 2,
                       child: Container(
                         decoration: BoxDecoration(
@@ -828,7 +828,7 @@ class _ZbaehState extends State<Zbaeh> {
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                     Expanded(
                       flex: 1,
                       child: IconButton(
@@ -1003,14 +1003,42 @@ class _ZbaehState extends State<Zbaeh> {
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "الحجم",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            child: Text(
+                              "الحجم",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -1128,14 +1156,42 @@ class _ZbaehState extends State<Zbaeh> {
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "الرأس والكارعين",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            child: Text(
+                              "الرأس والكارعين",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -1150,7 +1206,7 @@ class _ZbaehState extends State<Zbaeh> {
                             headValue = "";
                             break;
                           case 1:
-                            headValue = "مشلوطة";
+                            headValue = "شلوطة";
                             break;
                           case 2:
                             headValue = "مسلوخ";
@@ -1226,14 +1282,42 @@ class _ZbaehState extends State<Zbaeh> {
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "التقطيع",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            child: Text(
+                              "التقطيع",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -1384,14 +1468,42 @@ class _ZbaehState extends State<Zbaeh> {
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "التغليف",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                   child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            child: Text(
+                              "التغليف",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Center(
+                                child: Text("تم",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
