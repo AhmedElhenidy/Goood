@@ -9,8 +9,7 @@ class OrderTab extends StatefulWidget{
   _OrderTabState createState()=>_OrderTabState();
 }
 class _OrderTabState extends State<OrderTab>{
-  Map<String, dynamic> product = new Map();
-  List<Product> products=new List();
+  List<Map<String, dynamic>> product = new List();
   bool getProductCall = true;
   getProduct() async {
     setState(() {
@@ -22,9 +21,8 @@ class _OrderTabState extends State<OrderTab>{
           where: "${DataBaseConstants.PRODUCT_TABLE_ID} = ${pro.id}",
           limit: 1);
       setState(() {
-        product = response[0];
+        product.add(response[0]);
         print("product choosen : : ${this.product}");
-        products.add(Product.fromJson(product));
         this.getProductCall = false;
       });
     });
@@ -90,6 +88,7 @@ class _OrderTabState extends State<OrderTab>{
               child: ListView.builder(
                 itemCount: widget.order.product.length,
                 itemBuilder: (context,position){
+                  Map<String,dynamic> produc = product[position];
                   return Padding(
                     padding: const EdgeInsets.only(top :16.0,left: 16,right: 16),
                     child: ClipRRect(
@@ -109,7 +108,7 @@ class _OrderTabState extends State<OrderTab>{
                                     Expanded(
                                       flex: 2,
                                       child: Container(
-                                        child: Image.asset("images/cheap.png",fit: BoxFit.fill,),
+                                        child: Image.asset(produc[DataBaseConstants.PRODUCT_TABLE_IMAGE],fit: BoxFit.fill,),
                                       ),
                                     ),
                                     Expanded(
@@ -120,7 +119,7 @@ class _OrderTabState extends State<OrderTab>{
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                                           children: <Widget>[
-                                            Text("  نعيمي",
+                                            Text("  ${produc[DataBaseConstants.PRODUCT_TABLE_NAME]}",
                                               style: TextStyle(
                                                 color: GoodColors.brown,
                                                 fontSize: 17,
@@ -151,7 +150,7 @@ class _OrderTabState extends State<OrderTab>{
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   2 نعيمي",
+                                                Text("   ${widget.order.product[position].spacifcation.length} ${produc[DataBaseConstants.PRODUCT_TABLE_NAME]}",
                                                   style: TextStyle(
                                                     color: GoodColors.brown
                                                   ),
@@ -189,14 +188,14 @@ class _OrderTabState extends State<OrderTab>{
                                                     borderRadius: BorderRadius.circular(17),
                                                   ),
                                                   child: Center(
-                                                    child: Text("الحجم",
+                                                    child: Text("${widget.order.product[position].spacifcation[0].key}",
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   كبير",
+                                                Text("   ${widget.order.product[position].spacifcation[0].value}",
                                                   style: TextStyle(
                                                       color: GoodColors.brownDark
                                                   ),
@@ -225,14 +224,14 @@ class _OrderTabState extends State<OrderTab>{
                                                     borderRadius: BorderRadius.circular(17),
                                                   ),
                                                   child: Center(
-                                                    child: Text("الرأس",
+                                                    child: Text("${widget.order.product[position].spacifcation[1].key}",
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   مسلوح",
+                                                Text("   ${widget.order.product[position].spacifcation[1].value}",
                                                   style: TextStyle(
                                                       color: GoodColors.brownDark
                                                   ),
@@ -270,14 +269,14 @@ class _OrderTabState extends State<OrderTab>{
                                                     borderRadius: BorderRadius.circular(17),
                                                   ),
                                                   child: Center(
-                                                    child: Text("التقطيع",
+                                                    child: Text("${widget.order.product[position].spacifcation[2].key}",
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   أنصاف",
+                                                Text("   ${widget.order.product[position].spacifcation[2].value}",
                                                   style: TextStyle(
                                                       color: GoodColors.brownDark
                                                   ),
@@ -306,14 +305,14 @@ class _OrderTabState extends State<OrderTab>{
                                                     borderRadius: BorderRadius.circular(17),
                                                   ),
                                                   child: Center(
-                                                    child: Text("مفروم",
+                                                    child: Text("${widget.order.product[position].spacifcation[3].key}",
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   5 ك",
+                                                Text("   ${widget.order.product[position].spacifcation[3].value}",
                                                   style: TextStyle(
                                                       color: GoodColors.brownDark
                                                   ),
@@ -351,14 +350,14 @@ class _OrderTabState extends State<OrderTab>{
                                                     borderRadius: BorderRadius.circular(17),
                                                   ),
                                                   child: Center(
-                                                    child: Text("التغليف",
+                                                    child: Text("${widget.order.product[position].spacifcation[3].key}",
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   بدون تغليف",
+                                                Text("   ${widget.order.product[position].spacifcation[3].value}",
                                                   style: TextStyle(
                                                       color: GoodColors.brownDark
                                                   ),
@@ -393,7 +392,7 @@ class _OrderTabState extends State<OrderTab>{
                                             borderRadius: BorderRadius.circular(8)
                                           ),
                                           child: Center(
-                                            child: Text("سعر هذا الطلب : 150 ريال",
+                                            child: Text("سعر هذا الطلب : ${widget.order.product[position].price} ريال",
                                                style: TextStyle(
                                                  color: Colors.white,
                                                  fontSize: 16,
@@ -420,5 +419,4 @@ class _OrderTabState extends State<OrderTab>{
       ),
     );
   }
-
 }
