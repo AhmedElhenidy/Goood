@@ -98,6 +98,7 @@ class _LikesState extends State<Likes>{
                                               style: TextStyle(
                                                 color:GoodColors.brown ,
                                                 fontSize: 18,
+                                                fontFamily: 'black75',
                                               ),
                                             ),
                                             Container(
@@ -160,9 +161,12 @@ class _LikesState extends State<Likes>{
                                                     ),
                                                   ),
                                                   Text(" السعر ",
-                                                    style: TextStyle(fontSize: 16),
+                                                    style: TextStyle(fontSize: 16,fontFamily: 'bold65',),
                                                   ),
                                                   Text(" ${product[DataBaseConstants.PRODUCT_TABLE_PRICE]} ر.س ",
+                                                    style: TextStyle(
+                                                      fontFamily: 'bold65',
+                                                    ),
                                                   ),
 
                                                 ],
@@ -189,7 +193,7 @@ class _LikesState extends State<Likes>{
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   children: <Widget>[
                                                     Icon(Icons.shopping_cart,color: Colors.white,),
-                                                    Text("    اطلب الآن   "),
+                                                    Text("    اطلب الآن   ",style: TextStyle(fontFamily: 'bold65',),),
                                                   ],
                                                 ),
                                               ),

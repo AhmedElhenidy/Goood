@@ -1,9 +1,40 @@
+import 'package:camel/DataBase/config.dart';
+import 'package:camel/model/OrderModel.dart';
+import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 class OrderTab extends StatefulWidget{
+  Order order;
+  OrderTab(this.order);
   _OrderTabState createState()=>_OrderTabState();
 }
 class _OrderTabState extends State<OrderTab>{
+  Map<String, dynamic> product = new Map();
+  List<Product> products=new List();
+  bool getProductCall = true;
+  getProduct() async {
+    setState(() {
+      this.getProductCall = true;
+    });
+    widget.order.product.forEach((pro)async{
+      final response = await db.select(
+          table: DataBaseConstants.PRODUCT_TABLE,
+          where: "${DataBaseConstants.PRODUCT_TABLE_ID} = ${pro.id}",
+          limit: 1);
+      setState(() {
+        product = response[0];
+        print("product choosen : : ${this.product}");
+        products.add(Product.fromJson(product));
+        this.getProductCall = false;
+      });
+    });
+
+  }
+  @override
+  void initState() {
+    super.initState();
+    getProduct();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +60,7 @@ class _OrderTabState extends State<OrderTab>{
                             bottomRight: Radius.circular(7),
                           ),
                         ),
-                        child: Center(child: Text("3 طلبات")),
+                        child: Center(child: Text("${widget.order.product.length} طلبات")),
                       ),
                     ),
                   ),
@@ -45,7 +76,7 @@ class _OrderTabState extends State<OrderTab>{
                               bottomLeft: Radius.circular(7),
                             ),
                         ),
-                        child: Center(child: Text("1500 ريال")),
+                        child: Center(child: Text("${widget.order.price} ريال")),
                       ),
                     ),
                   ),
@@ -57,6 +88,7 @@ class _OrderTabState extends State<OrderTab>{
             flex: 6,
             child: Container(
               child: ListView.builder(
+                itemCount: widget.order.product.length,
                 itemBuilder: (context,position){
                   return Padding(
                     padding: const EdgeInsets.only(top :16.0,left: 16,right: 16),

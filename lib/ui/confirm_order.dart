@@ -113,7 +113,9 @@ String selectDate = "حدد اليوم" ;
                             ),
                             child: Center(
                               child: Text("بيانات الطلب",
-                                style: TextStyle(color: GoodColors.brownDark ,fontSize: 16),
+                                style: TextStyle(color: GoodColors.brownDark ,fontSize: 16,
+                                  fontFamily: 'black75',
+                                ),
                               ),
                             ),
                           ),
@@ -123,12 +125,12 @@ String selectDate = "حدد اليوم" ;
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Expanded(child: Container(
-                                child: Center(child: Text("عدد المنتجات :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                child: Center(child: Text("عدد المنتجات :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 1,),
                               Expanded(child: Container(
                                 child:Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text("${widget.order.product.length} منتجات",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                  child: Text("${widget.order.product.length} منتجات",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 2,),
                             ],
                           ),
@@ -138,12 +140,12 @@ String selectDate = "حدد اليوم" ;
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Expanded(child: Container(
-                                child: Center(child: Text(" سعر الطلب :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                child: Center(child: Text(" سعر الطلب :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 1,),
                               Expanded(child: Container(
                                 child:Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text("${widget.order.price} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                  child: Text("${widget.order.price} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 2,),
                             ],
                           ),
@@ -153,12 +155,12 @@ String selectDate = "حدد اليوم" ;
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Expanded(child: Container(
-                                child: Center(child: Text("سعر التوصيل :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                child: Center(child: Text("سعر التوصيل :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 1,),
                               Expanded(child: Container(
                                 child:Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text("20 ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                  child: Text("20 ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 2,),
                             ],
                           ),
@@ -168,12 +170,12 @@ String selectDate = "حدد اليوم" ;
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Expanded(child: Container(
-                                child: Center(child: Text("الاجمالي :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                child: Center(child: Text("الاجمالي :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 1,),
                               Expanded(child: Container(
                                 child:Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text("${int.parse(widget.order.price)+20} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark),),),
+                                  child: Text("${int.parse(widget.order.price)+20} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 2,),
                             ],
                           ),
@@ -194,7 +196,7 @@ String selectDate = "حدد اليوم" ;
                                   color: GoodColors.brownDark,
                                   borderRadius: BorderRadius.circular(8)
                                 ),
-                                child: Center(child: Text("كود الخصم",style: TextStyle(fontSize: 16 , color: Colors.white),),),
+                                child: Center(child: Text("كود الخصم",style: TextStyle(fontSize: 16 , color: Colors.white,fontFamily: 'black75',),),),
                               ) ,flex: 1,),
                               Expanded(child: Container(
                                 padding: EdgeInsets.only(right: 16),
@@ -234,7 +236,7 @@ String selectDate = "حدد اليوم" ;
                                       color: GoodColors.brownDark,
                                       borderRadius: BorderRadius.circular(8)
                                   ),
-                                  child: Center(child: Text("تاكيد",style: TextStyle(fontSize: 16 , color: Colors.white),),),
+                                  child: Center(child: Text("تاكيد",style: TextStyle(fontSize: 16 , color: Colors.white,fontFamily: 'black75',),),),
                                 ) ,flex: 1,),
 
                             ],
@@ -266,7 +268,7 @@ String selectDate = "حدد اليوم" ;
                           ),
                           child: Center(
                             child: Text("بيانات شخصية",
-                              style: TextStyle(color: GoodColors.brownDark),
+                              style: TextStyle(color: GoodColors.brownDark,fontFamily: 'black75',),
                             ),
                           ),
                         ),
@@ -344,7 +346,7 @@ String selectDate = "حدد اليوم" ;
                             ),
                             child: Center(
                               child: Text("حدد العنوان على الخريطة",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.white,fontFamily: 'black75',),
                               ),
                             ),
                           ),
@@ -376,7 +378,7 @@ String selectDate = "حدد اليوم" ;
                             ),
                             child: Center(
                               child: Text("وقت التوصيل",
-                                style: TextStyle(color: GoodColors.brownDark),
+                                style: TextStyle(color: GoodColors.brownDark,fontFamily: 'black75',),
                               ),
                             ),
                           ),
@@ -457,7 +459,7 @@ String selectDate = "حدد اليوم" ;
                             ),
                             child: Center(
                               child: Text("كتابة ملحوظة",
-                                style: TextStyle(color: GoodColors.brownDark),
+                                style: TextStyle(color: GoodColors.brownDark,fontFamily: 'black75',),
                               ),
 
                             ),
@@ -509,7 +511,7 @@ String selectDate = "حدد اليوم" ;
                       borderRadius: BorderRadius.circular(6)
                     ),
                     child: Center(
-                      child:this.confirmOrderApi ? CircularProgressIndicator(): Text("تم",style: TextStyle(color: Colors.white),),
+                      child:this.confirmOrderApi ? CircularProgressIndicator(): Text("تم",style: TextStyle(color: Colors.white,fontFamily: 'black75',),),
                     ),
                   ),
                 ),

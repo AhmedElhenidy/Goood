@@ -110,6 +110,7 @@ class _ZbaehState extends State<Zbaeh> {
                                   style: TextStyle(
                                     fontSize: 28,
                                     color: GoodColors.brown,
+                                    fontFamily: 'black75',
                                   ),
                                 ),
                                 LikeButton(
@@ -174,6 +175,7 @@ class _ZbaehState extends State<Zbaeh> {
                                             child: Text(
                                               "السعر ${this.product[DataBaseConstants.PRODUCT_TABLE_PRICE]} رس",
                                               style: TextStyle(
+                                                  fontFamily: 'bold65',
                                                   color: GoodColors.brownDark),
                                             ),
                                           ),
@@ -223,6 +225,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                 style: TextStyle(
                                                   color: GoodColors.brownDark,
                                                   fontSize: 18,
+                                                  fontFamily: 'bold65',
                                                 ),
                                               ),
                                             ),
@@ -266,6 +269,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 18,
+                                                        fontFamily: 'bold65',
                                                       ),
                                                     ),
                                                   ),
@@ -282,6 +286,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                       color:
                                                           GoodColors.brownDark,
                                                       fontSize: 16,
+                                                      fontFamily: 'bold65',
                                                     ),
                                                   ),
                                                 ),
@@ -325,6 +330,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                   style: TextStyle(
                                                     color: GoodColors.brownDark,
                                                     fontSize: 14,
+                                                    fontFamily: 'bold65',
                                                   ),
                                                 ),
                                               ),
@@ -372,6 +378,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                           style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 14,
+                                                            fontFamily: 'bold65',
                                                           ),
                                                         ),
                                                       ),
@@ -386,6 +393,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                         "$headValue",
                                                         style: TextStyle(
                                                           fontSize: 16,
+                                                          fontFamily: 'bold65',
                                                           color: GoodColors
                                                               .brownDark,
                                                         ),
@@ -427,6 +435,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                   style: TextStyle(
                                                     color: GoodColors.brownDark,
                                                     fontSize: 18,
+                                                    fontFamily: 'bold65',
                                                   ),
                                                 ),
                                               ),
@@ -472,6 +481,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                           style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 18,
+                                                            fontFamily: 'bold65',
                                                           ),
                                                         ),
                                                       ),
@@ -485,6 +495,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                       child: Text(
                                                         "$cuttingValue",
                                                         style: TextStyle(
+                                                            fontFamily: 'bold65',
                                                             color: GoodColors
                                                                 .brownDark,
                                                             fontSize: cuttingValue ==
@@ -529,6 +540,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                 child: Text(
                                                   "التغليف",
                                                   style: TextStyle(
+                                                    fontFamily: 'bold65',
                                                     color: GoodColors.brownDark,
                                                     fontSize: 18,
                                                   ),
@@ -574,6 +586,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                         child: Text(
                                                           "التغليف",
                                                           style: TextStyle(
+                                                            fontFamily: 'bold65',
                                                             color: Colors.white,
                                                             fontSize: 18,
                                                           ),
@@ -589,6 +602,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                       child: Text(
                                                         "$taghleefValue",
                                                         style: TextStyle(
+                                                          fontFamily: 'bold65',
                                                           fontSize: 16,
                                                           color: GoodColors
                                                               .brownDark,
@@ -642,6 +656,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                 style: TextStyle(
                                                   color: GoodColors.brownDark,
                                                   fontSize: 19,
+                                                  fontFamily: 'bold65',
                                                 ),
                                               ),
                                             ),
@@ -695,6 +710,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                           style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 16,
+                                                            fontFamily: 'bold65',
                                                           ),
                                                         ),
                                                       ),
@@ -754,7 +770,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                             ),
                                                           ),
                                                           child: Center(
-                                                            child: Text("$kg"),
+                                                            child: Text("$kg",style: TextStyle(fontFamily: 'bold65',),),
                                                           ),
                                                         ),
                                                         InkWell(
@@ -777,6 +793,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                         Text(
                                                           "ك.ج",
                                                           style: TextStyle(
+                                                              fontFamily: 'bold65',
                                                               color: GoodColors
                                                                   .brown,
                                                               fontSize: 16),
@@ -858,6 +875,7 @@ class _ZbaehState extends State<Zbaeh> {
                           child: Text(
                             "$number",
                             style: TextStyle(
+                              fontFamily: 'bold65',
                               color: Colors.white,
                             ),
                           ),
@@ -889,7 +907,7 @@ class _ZbaehState extends State<Zbaeh> {
                         child: Center(
                           child: Text(
                             "الإجمالى",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
                           ),
                         ),
                       ),
@@ -906,7 +924,7 @@ class _ZbaehState extends State<Zbaeh> {
                           child: Center(
                             child: Text(
                                 "${this.number * (this.product ==null ? 0:this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
                             ),
                           ),
                         ),
@@ -955,7 +973,8 @@ class _ZbaehState extends State<Zbaeh> {
                         "إضافة الى السلة  ",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18,
+                          fontFamily: 'bold65',
                         ),
                       ),
                       Icon(
@@ -1015,6 +1034,7 @@ class _ZbaehState extends State<Zbaeh> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
+                                fontFamily: 'bold65',
                               ),
                             ),
                           ),
@@ -1026,12 +1046,22 @@ class _ZbaehState extends State<Zbaeh> {
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1081,6 +1111,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1090,6 +1121,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1099,6 +1131,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1108,6 +1141,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1117,6 +1151,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1168,6 +1203,7 @@ class _ZbaehState extends State<Zbaeh> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
+                                fontFamily: 'bold65',
                               ),
                             ),
                           ),
@@ -1179,12 +1215,22 @@ class _ZbaehState extends State<Zbaeh> {
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1225,6 +1271,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1234,6 +1281,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1243,6 +1291,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1294,6 +1343,7 @@ class _ZbaehState extends State<Zbaeh> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
+                                fontFamily: 'bold65',
                               ),
                             ),
                           ),
@@ -1305,12 +1355,22 @@ class _ZbaehState extends State<Zbaeh> {
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1366,6 +1426,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1375,6 +1436,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1384,6 +1446,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1393,6 +1456,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1402,6 +1466,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1411,6 +1476,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1420,6 +1486,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1429,6 +1496,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1480,6 +1548,7 @@ class _ZbaehState extends State<Zbaeh> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
+                                fontFamily: 'bold65',
                               ),
                             ),
                           ),
@@ -1491,12 +1560,22 @@ class _ZbaehState extends State<Zbaeh> {
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1540,6 +1619,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1549,6 +1629,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1558,6 +1639,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1567,6 +1649,7 @@ class _ZbaehState extends State<Zbaeh> {
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),

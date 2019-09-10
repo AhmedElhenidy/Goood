@@ -58,7 +58,7 @@ class _ContactUsState extends State<ContactUs>{
                           borderRadius: BorderRadius.circular(7),
                           borderSide: BorderSide(
                               color: GoodColors.brownLight,
-                              width: 2,
+                              width: 3,
                             style: BorderStyle.solid
                           ),
                         ),
@@ -100,7 +100,8 @@ class _ContactUsState extends State<ContactUs>{
                                                 child: Text("   تابعنا على إنستجرام",
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
-                                                      color: GoodColors.brown
+                                                      color: GoodColors.brown,
+                                                    fontFamily: 'bold65',
                                                   ),
                                                 ),
                                               ),
@@ -136,7 +137,8 @@ class _ContactUsState extends State<ContactUs>{
                                                 child: Text("   تابعنا على تويتر",
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
-                                                      color: GoodColors.brown
+                                                      color: GoodColors.brown,
+                                                    fontFamily: 'bold65',
                                                   ),
                                                 ),
                                               ),
@@ -169,7 +171,8 @@ class _ContactUsState extends State<ContactUs>{
                                               child: Text("   تابعنا على يوتيوب",
                                                 textDirection: TextDirection.rtl,
                                                 style: TextStyle(
-                                                    color: GoodColors.brown
+                                                    color: GoodColors.brown,
+                                                  fontFamily: 'bold65',
                                                 ),
                                               ),
                                             ),
@@ -201,7 +204,8 @@ class _ContactUsState extends State<ContactUs>{
                                             child: Text("   تابعنا على اسناب شات",
                                               textDirection: TextDirection.rtl,
                                               style: TextStyle(
-                                                  color: GoodColors.brown
+                                                  color: GoodColors.brown,
+                                                fontFamily: 'bold65',
                                               ),
                                             ),
                                           ),
@@ -231,7 +235,8 @@ class _ContactUsState extends State<ContactUs>{
                                           child: Text("   +966502661634",
                                             textDirection: TextDirection.rtl,
                                             style: TextStyle(
-                                                color: GoodColors.brown
+                                                color: GoodColors.brown,
+                                              fontFamily: 'bold65',
                                             ),
                                           ),
                                         ),
@@ -255,7 +260,7 @@ class _ContactUsState extends State<ContactUs>{
                           children: <Widget>[
                             Center(
                               child: Container(
-                                height: 38,
+                                height: 40,
                                 width: 216,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -264,7 +269,7 @@ class _ContactUsState extends State<ContactUs>{
                                 child: Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Text("حساباتنا",
-                                    style: TextStyle(fontSize: 17),
+                                    style: TextStyle(fontSize: 17,fontFamily: 'black75',),
                                   ),
                                 ),
                               ),
@@ -280,7 +285,7 @@ class _ContactUsState extends State<ContactUs>{
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Image.asset("images/share.png",
+                          Image.asset("images/sharr.png",
                             width: 40,height: 40,
                           ),
                         ],
@@ -307,7 +312,7 @@ class _ContactUsState extends State<ContactUs>{
                             borderRadius: BorderRadius.circular(7),
                             borderSide: BorderSide(
                                 color: GoodColors.brownLight,
-                                width: 2,
+                                width: 3,
                                 style: BorderStyle.solid
                             ),
                           ),
@@ -405,7 +410,7 @@ class _ContactUsState extends State<ContactUs>{
                           children: <Widget>[
                             Center(
                               child: Container(
-                                height: 38,
+                                height: 40,
                                 width: 216,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -414,7 +419,7 @@ class _ContactUsState extends State<ContactUs>{
                                 child: Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Text("راسلنا بكل سهولة",
-                                    style: TextStyle(fontSize: 17),
+                                    style: TextStyle(fontSize: 17,fontFamily: 'black75',),
                                   ),
                                 ),
                               ),
@@ -449,7 +454,7 @@ class _ContactUsState extends State<ContactUs>{
                         width: 100,
                         height: 40,
                         child: Center(
-                          child: Text("ارسال",style: TextStyle(color: Colors.white),),
+                          child: Text("ارسال",style: TextStyle(fontSize: 16,color: Colors.white,fontFamily: 'black75',),),
                         ),
                       ),
                     ),

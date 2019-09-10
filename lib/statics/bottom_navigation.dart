@@ -70,8 +70,9 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
             new Container(height: 4.0),
             new Text("عن التطبيق",
                 style: new TextStyle(
-                  color: _page == 2?const Color(0xffA71E26):GoodColors.brown,
+                  color: _page == 2?GoodColors.brown:Colors.grey,
                   fontSize: 12.0,
+                  fontFamily: 'bold65',
                 ))
           ],
         )
@@ -92,8 +93,9 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
              Container(height: 4.0),
              Text("المفضلة",
                 style: new TextStyle(
-                  color: _page == 0?const Color(0xffA71E26):GoodColors.brown,
+                  color: _page == 0?GoodColors.brown:Colors.grey,
                   fontSize: 12.0,
+                  fontFamily: 'bold65',
                 ))
           ],
         )
@@ -111,8 +113,9 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
             new Container(height: 4.0),
             new Text("الرئيسية",
                 style: new TextStyle(
-                  color: _page == 1 ?const Color(0xffA71E26):GoodColors.grey,
+                  color: _page == 1 ?GoodColors.brown:GoodColors.grey,
                   fontSize: 12.0,
+                  fontFamily: 'bold65',
                 ))
           ],
         ));
@@ -147,7 +150,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       key: _globalKeyScafoldState,
       bottomNavigationBar: bottomNavigationBarWidget,
       appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,true,count ,
-          title: _page==0?"المفضلة":_page==1?"logo":"حسابى"
+          title: _page==0?"المفضلة":_page==1?"logo":"عن الجود"
       ),
       body: new PageView(
           scrollDirection: Axis.horizontal,

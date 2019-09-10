@@ -1,3 +1,6 @@
+import 'package:camel/DataBase/SqliteDataBase.dart';
+import 'package:camel/statics/app_bar.dart';
+import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 class MyAccount extends StatefulWidget{
@@ -7,9 +10,29 @@ class MyAccount extends StatefulWidget{
   }
 }
 class _MyAccountState extends State<MyAccount>{
+  int count = 0;
+  void didChangeDependencies() {
+    super.didChangeDependencies() ;
+    SqlLiteDataBase.getShoppingCartCount().then((count){
+      setState(() {
+        this.count = count ;
+      });
+    });
+  }
+  GlobalKey<ScaffoldState> _globalKeyScafoldState;
+  @override
+  void initState() {
+    super.initState();
+    _globalKeyScafoldState =GlobalKey<ScaffoldState>();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKeyScafoldState,
+      appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,true,count ,
+          title: "حسابى",
+      ),
+      drawer: DrawerClass().showDrawer(context),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -22,7 +45,9 @@ class _MyAccountState extends State<MyAccount>{
                   Image.asset("images/man.png"),
                   SizedBox(height: MediaQuery.of(context).size.height/50,),
                   Text("Mohamed Alaa",
-                    style: TextStyle(color: GoodColors.brown,fontSize: 25),
+                    style: TextStyle(color: GoodColors.brown,fontSize: 25,
+                      fontFamily: 'bold65',
+                    ),
                   ),
                 ],
               ),
@@ -54,6 +79,7 @@ class _MyAccountState extends State<MyAccount>{
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
+                              fontFamily: 'black75',
                             ),
                           ),
                         ),
@@ -66,15 +92,17 @@ class _MyAccountState extends State<MyAccount>{
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             color: GoodColors.brown,
-                            fontSize: 38,
+                            fontSize: 50,
+                            fontFamily: 'black75',
                           ),
                         ),
                         Text(" ر.س ",
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
-                              height: 2
+                              fontSize: 26,
+                              height: 2,
+                            fontFamily: 'black75',
                           ),
                         ),
                       ],
@@ -101,8 +129,9 @@ class _MyAccountState extends State<MyAccount>{
                         padding: const EdgeInsets.only(right:16.0),
                         child: Text("المعلومات الشخصية  ",
                           style: TextStyle(
-                            fontSize: 14,
-                            color: GoodColors.brown
+                            fontSize: 16,
+                            color: GoodColors.brown,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -129,8 +158,9 @@ class _MyAccountState extends State<MyAccount>{
                         padding: const EdgeInsets.only(right:16.0),
                         child: Text("الطلبات السابقة  ",
                           style: TextStyle(
-                            fontSize: 14,
-                            color: GoodColors.brown
+                            fontSize: 16,
+                            color: GoodColors.brown,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -157,8 +187,9 @@ class _MyAccountState extends State<MyAccount>{
                         padding: const EdgeInsets.only(right:16.0),
                         child: Text("عناوينى  ",
                           style: TextStyle(
-                            fontSize: 14,
-                            color: GoodColors.brown
+                            fontSize: 16,
+                            color: GoodColors.brown,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),

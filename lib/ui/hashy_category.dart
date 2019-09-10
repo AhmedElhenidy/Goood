@@ -189,7 +189,7 @@ class _HashyCategyState extends State<HashyCategory> {
                                             color: Colors.white,
                                             child: Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.end,
+                                                  MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Flexible(
                                                   flex: 1,
@@ -197,7 +197,10 @@ class _HashyCategyState extends State<HashyCategory> {
                                                     snapShot.data[index][DataBaseConstants.PRODUCT_TABLE_NAME],
                                                     style: TextStyle(
                                                         fontSize: 16,
-                                                        color: GoodColors.brown),
+                                                        color: GoodColors.brown,
+                                                        fontFamily: 'black75',
+
+                                                    ),
                                                   ),
                                                 ),
                                                 Flexible(
@@ -211,10 +214,15 @@ class _HashyCategyState extends State<HashyCategory> {
                                                        "${ snapShot.data[index][DataBaseConstants.PRODUCT_TABLE_PRICE]}",
                                                         style: TextStyle(
                                                             fontSize: 16,
+                                                            fontFamily: 'bold65',
                                                             color:
                                                                 GoodColors.brown),
                                                       ),
-                                                      Text("رس "),
+                                                      Text("رس ",
+                                                        style: TextStyle(
+                                                          fontFamily: 'bold65',
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -237,6 +245,8 @@ class _HashyCategyState extends State<HashyCategory> {
                                                     "اطلب الآن ",
                                                     style: TextStyle(
                                                       color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontFamily: 'bold65',
                                                     ),
                                                   ),
                                                   Icon(

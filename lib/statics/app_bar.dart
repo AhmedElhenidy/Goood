@@ -24,14 +24,14 @@ class AppBarClass{
                     Text('الجــود',
                       style: TextStyle(
                         fontSize:20.0,
-                        fontWeight: FontWeight.bold,
+                        fontFamily: 'black75',
                       ),
                     ):title=="logo" ?Container(
                       child: Image.asset("images/logo.png",width: 50,height: 50,),
                     ):Text('$title',
                       style: TextStyle(
                         fontSize:20.0,
-                        fontWeight: FontWeight.bold,
+                        fontFamily: 'black75',
                       ),
                     ),
                   ),

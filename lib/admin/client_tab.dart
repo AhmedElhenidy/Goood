@@ -1,6 +1,9 @@
+import 'package:camel/model/OrderModel.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 class ClientTab extends StatefulWidget{
+  Order order;
+  ClientTab(this.order);
   _ClientTabState createState()=>_ClientTabState();
 }
 class _ClientTabState extends State<ClientTab>{
@@ -34,7 +37,7 @@ class _ClientTabState extends State<ClientTab>{
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         padding: EdgeInsets.only(top: 16,bottom: 4),
-                        child: Text("Mohamed Saafan",
+                        child: Text("${widget.order.name}",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18
@@ -76,7 +79,7 @@ class _ClientTabState extends State<ClientTab>{
                                   padding: const EdgeInsets.only(right :16.0),
                                   child: Align(
                                     alignment: Alignment.centerRight,
-                                    child: Text("جدة، شارع الأدهم عمارة 115",
+                                    child: Text("${widget.order.address}",
                                       style: TextStyle(
                                       ),
                                     ),
@@ -122,7 +125,7 @@ class _ClientTabState extends State<ClientTab>{
                                   padding: const EdgeInsets.only(right :16.0),
                                   child: Align(
                                     alignment: Alignment.centerRight,
-                                    child: Text("01009081658",
+                                    child: Text("${widget.order.phone_1}",
                                       style: TextStyle(
                                       ),
                                     ),
@@ -169,7 +172,7 @@ class _ClientTabState extends State<ClientTab>{
                                   padding: const EdgeInsets.only(right :16.0),
                                   child: Align(
                                     alignment: Alignment.centerRight,
-                                    child: Text("جدة، شارع  عمارة 115",
+                                    child: Text("${widget.order.note}",
                                       style: TextStyle(
                                       ),
                                     ),

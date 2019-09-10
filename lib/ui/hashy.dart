@@ -105,8 +105,9 @@ int count = 0 ;
                                 Text(
                                   product[DataBaseConstants.PRODUCT_TABLE_NAME],
                                   style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 28,
                                     color: GoodColors.brown,
+                                    fontFamily: 'black75',
                                   ),
                                 ),
                                 LikeButton(
@@ -171,6 +172,7 @@ int count = 0 ;
                                             child: Text(
                                               " السعر  ${this.product[DataBaseConstants.PRODUCT_TABLE_PRICE]} رس ",
                                               style: TextStyle(
+                                                  fontFamily: 'bold65',
                                                   color: GoodColors.brownDark),
                                             ),
                                           ),
@@ -226,6 +228,7 @@ int count = 0 ;
                                                           color: GoodColors
                                                               .brownDark,
                                                           fontSize: 18,
+                                                          fontFamily: 'bold65',
                                                         ),
                                                       ),
                                                     ),
@@ -278,6 +281,7 @@ int count = 0 ;
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 18,
+                                                                      fontFamily: 'bold65',
                                                                 ),
                                                               ),
                                                             ),
@@ -293,6 +297,7 @@ int count = 0 ;
                                                               style: TextStyle(
                                                                   color: GoodColors
                                                                       .brownDark,
+                                                                  fontFamily: 'bold65',
                                                                   fontSize: cuttingValue ==
                                                                               "تفاصيل كبيرة" ||
                                                                           cuttingValue ==
@@ -340,6 +345,7 @@ int count = 0 ;
                                                           color: GoodColors
                                                               .brownDark,
                                                           fontSize: 18,
+                                                          fontFamily: 'bold65',
                                                         ),
                                                       ),
                                                     ),
@@ -392,6 +398,7 @@ int count = 0 ;
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 18,
+                                                                      fontFamily: 'bold65',
                                                                 ),
                                                               ),
                                                             ),
@@ -406,6 +413,7 @@ int count = 0 ;
                                                               "$taghleefValue",
                                                               style: TextStyle(
                                                                 fontSize: 16,
+                                                                fontFamily: 'bold65',
                                                                 color: GoodColors
                                                                     .brownDark,
                                                               ),
@@ -452,6 +460,7 @@ int count = 0 ;
                                                         color: GoodColors
                                                             .brownDark,
                                                         fontSize: 18,
+                                                        fontFamily: 'bold65',
                                                       ),
                                                     ),
                                                   ),
@@ -496,6 +505,7 @@ int count = 0 ;
                                                               style: TextStyle(
                                                                 color: Colors
                                                                     .white,
+                                                                fontFamily: 'bold65',
                                                                 fontSize: 18,
                                                               ),
                                                             ),
@@ -511,6 +521,7 @@ int count = 0 ;
                                                             "$sizeValue",
                                                             style: TextStyle(
                                                               fontSize: 16,
+                                                              fontFamily: 'bold65',
                                                               color: GoodColors
                                                                   .brownDark,
                                                             ),
@@ -546,6 +557,7 @@ int count = 0 ;
                                                         color: GoodColors
                                                             .brownDark,
                                                         fontSize: 18,
+                                                        fontFamily: 'bold65',
                                                       ),
                                                     ),
                                                   ),
@@ -589,6 +601,7 @@ int count = 0 ;
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 18,
+                                                                fontFamily: 'bold65',
                                                               ),
                                                             ),
                                                           ),
@@ -604,6 +617,7 @@ int count = 0 ;
                                                             style: TextStyle(
                                                                 color: GoodColors
                                                                     .brownDark,
+                                                                fontFamily: 'bold65',
                                                                 fontSize: cuttingValue ==
                                                                             "تفاصيل كبيرة" ||
                                                                         cuttingValue ==
@@ -642,6 +656,7 @@ int count = 0 ;
                                                         color: GoodColors
                                                             .brownDark,
                                                         fontSize: 18,
+                                                        fontFamily: 'bold65',
                                                       ),
                                                     ),
                                                   ),
@@ -685,6 +700,7 @@ int count = 0 ;
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 18,
+                                                                fontFamily: 'bold65',
                                                               ),
                                                             ),
                                                           ),
@@ -701,6 +717,7 @@ int count = 0 ;
                                                               fontSize: 14,
                                                               color: GoodColors
                                                                   .brownDark,
+                                                              fontFamily: 'bold65',
                                                             ),
                                                           ),
                                                         ),
@@ -753,6 +770,7 @@ int count = 0 ;
                                                         color: GoodColors
                                                             .brownDark,
                                                         fontSize: 19,
+                                                        fontFamily: 'bold65',
                                                       ),
                                                     ),
                                                   ),
@@ -814,6 +832,7 @@ int count = 0 ;
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 18,
+                                                                      fontFamily: 'bold65',
                                                                 ),
                                                               ),
                                                             ),
@@ -881,7 +900,11 @@ int count = 0 ;
                                                                 ),
                                                                 child: Center(
                                                                   child: Text(
-                                                                      "$kg"),
+                                                                      "$kg",
+                                                                    style: TextStyle(
+                                                                      fontFamily: 'bold65',
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                               InkWell(
@@ -909,6 +932,7 @@ int count = 0 ;
                                                                 style: TextStyle(
                                                                     color: GoodColors
                                                                         .brown,
+                                                                    fontFamily: 'bold65',
                                                                     fontSize:
                                                                         16),
                                                               ),
@@ -964,6 +988,7 @@ int count = 0 ;
                                                       style: TextStyle(
                                                         color: GoodColors
                                                             .brownDark,
+                                                        fontFamily: 'bold65',
                                                         fontSize: 19,
                                                       ),
                                                     ),
@@ -1023,6 +1048,7 @@ int count = 0 ;
                                                                 "مفروم",
                                                                 style:
                                                                     TextStyle(
+                                                                      fontFamily: 'bold65',
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 16,
@@ -1093,7 +1119,11 @@ int count = 0 ;
                                                                 ),
                                                                 child: Center(
                                                                   child: Text(
-                                                                      "$kg"),
+                                                                      "$kg",
+                                                                  style: TextStyle(
+                                                                    fontFamily: 'bold65',
+                                                                  ),
+                                                                  ),
                                                                 ),
                                                               ),
                                                               InkWell(
@@ -1121,6 +1151,7 @@ int count = 0 ;
                                                                 style: TextStyle(
                                                                     color: GoodColors
                                                                         .brown,
+                                                                    fontFamily: 'bold65',
                                                                     fontSize:
                                                                         16),
                                                               ),
@@ -1201,6 +1232,7 @@ int count = 0 ;
                           child: Text(
                             "$number",
                             style: TextStyle(
+                              fontFamily: 'bold65',
                               color: Colors.white,
                             ),
                           ),
@@ -1232,7 +1264,7 @@ int count = 0 ;
                         child: Center(
                           child: Text(
                             "الإجمالى",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
                           ),
                         ),
                       ),
@@ -1249,7 +1281,7 @@ int count = 0 ;
                           child: Center(
                             child: Text(
                               "${this.number * (this.product ==null ? 0:this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
                             ),
                           ),
                         ),
@@ -1295,7 +1327,8 @@ int count = 0 ;
                         "إضافة الى السلة  ",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18,
+                          fontFamily: 'bold65',
                         ),
                       ),
                       Icon(
@@ -1356,6 +1389,7 @@ int count = 0 ;
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
+                                  fontFamily: 'bold65',
                                 ),
                               ),
                             ),
@@ -1368,12 +1402,22 @@ int count = 0 ;
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1423,6 +1467,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1432,6 +1477,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1441,6 +1487,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1450,6 +1497,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1459,6 +1507,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1510,6 +1559,7 @@ int count = 0 ;
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
+                                fontFamily: 'bold65',
                               ),
                             ),
                           ),
@@ -1521,12 +1571,22 @@ int count = 0 ;
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1582,6 +1642,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1591,6 +1652,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1600,6 +1662,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1609,6 +1672,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1618,6 +1682,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1627,6 +1692,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1636,6 +1702,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1645,6 +1712,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1696,6 +1764,7 @@ int count = 0 ;
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
+                                fontFamily: 'bold65',
                               ),
                             ),
                           ),
@@ -1707,12 +1776,22 @@ int count = 0 ;
                               onTap: (){
                                 Navigator.pop(context);
                               },
-                              child: Center(
-                                child: Text("تم",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown
+                                  ),
+                                  child: Center(
+                                    child: Text("تم",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: 'bold65',
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1756,6 +1835,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 18,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1765,6 +1845,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1774,6 +1855,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),
@@ -1783,6 +1865,7 @@ int count = 0 ;
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
+                            fontFamily: 'bold65',
                           ),
                         ),
                       ),

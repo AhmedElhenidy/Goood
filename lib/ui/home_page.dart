@@ -155,7 +155,8 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   "  الأقسام",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
+                                    fontFamily: 'black75',
                                   ),
                                 ),
                               ],
@@ -245,6 +246,7 @@ class _HomePageState extends State<HomePage> {
                                                       style: TextStyle(
                                                         fontSize: 17,
                                                         color: Colors.white,
+                                                        fontFamily: 'black75',
                                                       ),
                                                     ),
                                                   ),
@@ -334,6 +336,7 @@ class _HomePageState extends State<HomePage> {
                                                       style: TextStyle(
                                                         fontSize: 17,
                                                         color: Colors.white,
+                                                        fontFamily: 'black75',
                                                       ),
                                                     ),
                                                   ),

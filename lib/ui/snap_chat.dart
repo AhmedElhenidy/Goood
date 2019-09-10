@@ -60,7 +60,7 @@ class _SnapChatState extends State<SnapChat>{
                           borderRadius: BorderRadius.circular(7),
                           borderSide: BorderSide(
                               color: GoodColors.brownLight,
-                              width: 2,
+                              width: 3,
                               style: BorderStyle.solid
                           ),
                         ),
@@ -84,13 +84,18 @@ class _SnapChatState extends State<SnapChat>{
                                     child: InkWell(
                                       onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
                                       child: Center(
-                                        child: Text("snapchat.com/add/almm99"),
+                                        child: Text("snapchat.com/add/almm99",
+                                          style: TextStyle(
+                                            fontFamily: 'black75',
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                  Text("عند اضافتنا عبر سناب شات",style: TextStyle( fontSize: 18,color: GoodColors.brownDark),),
+                                  Text("عند اضافتنا عبر سناب شات",
+                                    style: TextStyle( fontSize: 18,color: GoodColors.brownDark,fontFamily: 'black75',),),
                                   Text("فأنت تتابع طلبك و الذبح اليومي "
-                                    ,style: TextStyle(color: GoodColors.brownDark,fontSize: 18),
+                                    ,style: TextStyle(color: GoodColors.brownDark,fontSize: 18,fontFamily: 'black75',),
                                   ),
                                 ],
                               )
@@ -128,7 +133,11 @@ class _SnapChatState extends State<SnapChat>{
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Center(
-                  child: Text("بمشاهدة تحميل الأغنام من البر الي المزارع"),
+                  child: Text("بمشاهدة تحميل الأغنام من البر الي المزارع",
+                    style: TextStyle(
+                      fontFamily: 'black75',
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height/30,),
@@ -157,7 +166,11 @@ class _SnapChatState extends State<SnapChat>{
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Center(
-                  child: Text("مشاهدة الذبح والسلخ فى المسلخ"),
+                  child: Text("مشاهدة الذبح والسلخ فى المسلخ",
+                    style: TextStyle(
+                      fontFamily: 'black75',
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height/30,),
@@ -194,7 +207,11 @@ class _SnapChatState extends State<SnapChat>{
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Center(
-                  child: Text("ومشاهدتها أيضا فى المعمل"),
+                  child: Text("ومشاهدتها أيضا فى المعمل",
+                    style: TextStyle(
+                      fontFamily: 'black75',
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height/30,),
@@ -223,7 +240,11 @@ class _SnapChatState extends State<SnapChat>{
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Center(
-                  child: Text("ومشاهدتها بعد التقطيع والتغليف والتجهيز"),
+                  child: Text("ومشاهدتها بعد التقطيع والتغليف والتجهيز",
+                    style: TextStyle(
+                      fontFamily: 'black75',
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height/30,),

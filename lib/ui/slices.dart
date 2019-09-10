@@ -191,7 +191,7 @@ class _SlicesState extends State<Slices> {
                                             color: Colors.white,
                                             child: Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.end,
+                                                  MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Flexible(
                                                   flex: 1,
@@ -201,6 +201,7 @@ class _SlicesState extends State<Slices> {
                                                             .PRODUCT_TABLE_NAME],
                                                     style: TextStyle(
                                                         fontSize: 16,
+                                                        fontFamily: 'black75',
                                                         color:
                                                             GoodColors.brown),
                                                   ),
@@ -218,10 +219,15 @@ class _SlicesState extends State<Slices> {
                                                         " ${snapShot.data[index][DataBaseConstants.PRODUCT_TABLE_PRICE]} ",
                                                         style: TextStyle(
                                                             fontSize: 16,
+                                                            fontFamily: 'bold65',
                                                             color: GoodColors
                                                                 .brown),
                                                       ),
-                                                      Text("رس "),
+                                                      Text("رس ",
+                                                        style: TextStyle(
+                                                          fontFamily: 'bold65',
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -244,6 +250,7 @@ class _SlicesState extends State<Slices> {
                                                     "اطلب الآن ",
                                                     style: TextStyle(
                                                       color: Colors.white,
+                                                      fontFamily: 'bold65',
                                                     ),
                                                   ),
                                                   Icon(

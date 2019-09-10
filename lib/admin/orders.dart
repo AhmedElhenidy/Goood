@@ -1,24 +1,47 @@
+import 'package:camel/admin/api/orders_api.dart';
 import 'package:camel/admin/client_tab.dart';
 import 'package:camel/admin/drivers.dart';
 import 'package:camel/admin/order_tab.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
+import 'package:camel/model/OrderModel.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 class Orders extends StatefulWidget {
   _OrdersState createState() => _OrdersState();
 }
 class _OrdersState extends State<Orders>{
+  List<Order> orderList = List();
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
+  bool getAllOrdersApiCall=false;
+  getAllOrders(){
+    setState(() {
+      getAllOrdersApiCall=true;
+    });
+    OrdersApi.getAllProducts().then((response){
+      setState(() {
+        getAllOrdersApiCall=false;
+      });
+      orderList =response.orderList;
+    },onError: (error){
+      print("get All orders erorr ::  $error");
+      setState(() {
+        getAllOrdersApiCall=false;
+      });
+    });
+  }
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =GlobalKey<ScaffoldState>();
+    this.getAllOrders();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AdminAppBarClass().appBar(context, _scaffoldKeyProfile,"الطلبات"),
-      body: Container(
+      body: getAllOrdersApiCall
+          ?Center(child: CircularProgressIndicator(),)
+          :Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -29,7 +52,7 @@ class _OrdersState extends State<Orders>{
                 padding: EdgeInsets.all(16),
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Text("العدد : 125 طلب"),
+                  child: Text("العدد : ${orderList.length} طلب"),
                 )
               ),
             ),
@@ -37,7 +60,7 @@ class _OrdersState extends State<Orders>{
               flex: 8,
               child: Container(
                 child: ListView.builder(
-                  itemCount: 9,
+                  itemCount: orderList.length,
                   padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
                   itemBuilder: (context,position){
                     return Padding(
@@ -47,7 +70,7 @@ class _OrdersState extends State<Orders>{
                         height: 230,
                         child: InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderDetails()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderDetails(orderList[position])));
                           },
                           child: Stack(
                             children: <Widget>[
@@ -91,12 +114,13 @@ class _OrdersState extends State<Orders>{
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                       children: <Widget>[
-                                                        Text("تاريخ الطلب : 20/9/2019",
+                                                        Text("تاريخ الطلب : ${orderList[position].created_at.substring(0,10)}",
                                                           style: TextStyle(
                                                             color: GoodColors.brown,
                                                           ),
                                                         ),
-                                                        Text("03:30 pm",
+                                                        Text("${orderList[position].created_at.substring(10,16)}  "
+                                                            "${int.parse(orderList[position].created_at.substring(11,13))>12?"pm":"am"}",
                                                           textDirection: TextDirection.ltr,
                                                           style: TextStyle(
                                                             color: GoodColors.brown,
@@ -129,12 +153,11 @@ class _OrdersState extends State<Orders>{
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                       children: <Widget>[
-                                                        Text("اسم العميل : محمد علاء سعفان",
+                                                        Text("اسم العميل : ${orderList[position].name}",
                                                           style: TextStyle(
                                                             color: GoodColors.brown,
                                                           ),
                                                         ),
-
                                                       ],
                                                     ),
                                                   ),
@@ -162,12 +185,11 @@ class _OrdersState extends State<Orders>{
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                       children: <Widget>[
-                                                        Text("عدد الطلبات : 3 طلبات",
+                                                        Text("عدد الطلبات : ${orderList[position].product.length} طلبات",
                                                           style: TextStyle(
                                                             color: GoodColors.brown,
                                                           ),
                                                         ),
-
                                                       ],
                                                     ),
                                                   ),
@@ -195,12 +217,11 @@ class _OrdersState extends State<Orders>{
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                       children: <Widget>[
-                                                        Text("السعر الكلى : 150 رس",
+                                                        Text("السعر الكلى : ${orderList[position].price} رس",
                                                           style: TextStyle(
                                                             color: GoodColors.brown,
                                                           ),
                                                         ),
-
                                                       ],
                                                     ),
                                                   ),
@@ -260,6 +281,8 @@ class _OrdersState extends State<Orders>{
 }
 
 class OrderDetails extends StatefulWidget{
+  Order order ;
+  OrderDetails(this.order);
   _OrderDetailsState createState()=> _OrderDetailsState();
 }
 class _OrderDetailsState extends State<OrderDetails>{
@@ -381,8 +404,8 @@ class _OrderDetailsState extends State<OrderDetails>{
           ),
           body: TabBarView(
             children: [
-              OrderTab(),
-              ClientTab(),
+              OrderTab(widget.order),
+              ClientTab(widget.order),
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/about.dart';
 import 'package:camel/ui/contact_us.dart';
+import 'package:camel/ui/my_account.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom_navigation.dart';
@@ -8,12 +9,12 @@ class DrawerClass{
   Widget showDrawer(BuildContext context) {
     return Container(
        height: MediaQuery.of(context).size.height,
-       width: MediaQuery.of(context).size.width/1.5,
+       width: MediaQuery.of(context).size.width/1.2,
       child: Column(
         children: <Widget>[
           Flexible(
             child: Container(
-              width: MediaQuery.of(context).size.width/1.5,
+              width: MediaQuery.of(context).size.width/1.2,
               color: GoodColors.brownDark,
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -47,9 +48,10 @@ class DrawerClass{
                     title: new Text(
                       "الرئيسية",
                       style: new TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           color: GoodColors.brownDark,
-                          fontFamily: 'JF Flat'),
+                          fontFamily: 'black75',
+                      ),
                       textAlign: TextAlign.right,
                     ),
                     leading: new Image.asset("images/home_drawer.png",
@@ -70,15 +72,16 @@ class DrawerClass{
                     title: new Text(
                       "حسابى",
                       style: new TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           color: GoodColors.brownDark,
+                        fontFamily: 'black75',
                           ),
                       textAlign: TextAlign.right,
                     ),
-                    leading: new Image.asset("images/man.png",
+                    leading: new Image.asset("images/man.png",width: 41,height: 41,
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>About()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyAccount()));
                     },
                   ),
                   Padding(
@@ -90,16 +93,17 @@ class DrawerClass{
                     title: new Text(
                       "عن التطبيق",
                       style: new TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           color:GoodColors.brownDark,
-                          fontFamily: 'JF Flat'),
+                        fontFamily: 'black75',
+                      ),
                       textAlign: TextAlign.right,
                     ),
                     leading: new Image.asset("images/about.png",
                     ),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=>ContactUs()),);
+                          builder: (context)=>BottomNavigationBarClass(2)),);
                     },
                   ),
                   Padding(
@@ -111,9 +115,10 @@ class DrawerClass{
                     title: new Text(
                       "تواصل معنا",
                       style: new TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           color:GoodColors.brownDark,
-                          fontFamily: 'JF Flat'),
+                        fontFamily: 'black75',
+                      ),
                       textAlign: TextAlign.right,
                     ),
                     leading: new Image.asset("images/contact.png",
@@ -132,23 +137,38 @@ class DrawerClass{
                     title: new Text(
                       "مشاركة التطبيق مع الأصدقاء",
                       style: new TextStyle(
+                          fontSize: 18.0,
+                          color:GoodColors.brownDark,
+                        fontFamily: 'black75',
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+                    leading: new Image.asset("images/sharr.png",width: 41,height: 41,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                 /* Padding(
+                    padding: const EdgeInsets.only(right: 20.0,left: 20.0),
+                    child: Divider(color: GoodColors.grey,),
+                  ),*/
+
+                  /*new ListTile(
+                    title: new Text(
+                      "تسجيل الخروج",
+                      style: new TextStyle(
                           fontSize: 20.0,
                           color:GoodColors.brownDark,
                           fontFamily: 'JF Flat'),
                       textAlign: TextAlign.right,
                     ),
-                    leading: new Image.asset("images/share.png",
+                    leading: new Image.asset("images/log_out.png",
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=>ContactUs()),);
+                      Navigator.pop(context);
                     },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0,left: 20.0),
-                    child: Divider(color: GoodColors.grey,),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height/55,),
+                  ),*/
                 ],
               ),
             ),
