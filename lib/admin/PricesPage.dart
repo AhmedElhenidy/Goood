@@ -1,5 +1,7 @@
+import 'package:camel/DataBase/config.dart';
 import 'package:camel/admin/api/prices_api.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
+import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -20,17 +22,13 @@ class _PricesPageState extends State<PricesPage> {
       getAllPricesApiCall = true ;
     });
     PricesApi.getAllPrices().then((response){
-      setState(() {
-        this.priceList =response.productList;
-        hor.text =response.productList[0].price;
-        lbany.text =response.productList[1].price;
-        mfrood.text =response.productList[2].price;
-        hashymeat.text =response.productList[3].price;
-        tisBalady.text =response.productList[4].price;
-        n3imy.text =response.productList[5].price;
-        hry.text =response.productList[6].price;
-        nagdy.text =response.productList[7].price;
-        getAllPricesApiCall = false ;
+      response.productList?.forEach((product)async{
+        Map<String,String> row ={
+          DataBaseConstants.PRODUCT_TABLE_PRICE : product.price
+        };
+        //await db.update(table: DataBaseConstants.PRODUCT_TABLE, row: row, where: "${DataBaseConstants.PRODUCT_TABLE_ID} = ${product.id}");
+        final testResponse= await db.select(table: DataBaseConstants.PRODUCT_TABLE);
+        print(testResponse);
       });
 
     },onError: (error){

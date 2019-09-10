@@ -11,4 +11,12 @@ class PricesApi{
     print(jsonResponse);
     return GetAllPricesServerResponse.fromJson(jsonResponse);
   }
+  static  Future<GetAllPricesServerResponse> updatePrices(List<ProductModel>product)async{
+    String url =URL+"api/Product/updatePrice";
+    print(url);
+    final response= await http.post(url);
+    final jsonResponse = json.decode(response.body);
+    print(jsonResponse);
+    return GetAllPricesServerResponse.fromJson(jsonResponse);
+  }
 }
