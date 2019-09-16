@@ -58,7 +58,7 @@ class _OrderTabState extends State<OrderTab>{
                             bottomRight: Radius.circular(7),
                           ),
                         ),
-                        child: Center(child: Text("${widget.order.product.length} طلبات")),
+                        child: Center(child: Text("${widget.order.product.length} منتجات")),
                       ),
                     ),
                   ),
@@ -86,7 +86,7 @@ class _OrderTabState extends State<OrderTab>{
             flex: 6,
             child: Container(
               child: ListView.builder(
-                itemCount: widget.order.product.length,
+                itemCount: product.length,
                 itemBuilder: (context,position){
                   Map<String,dynamic> produc = product[position];
                   return Padding(
@@ -150,6 +150,7 @@ class _OrderTabState extends State<OrderTab>{
                                                     ),
                                                   ),
                                                 ),
+                                                //TODO get right qty from api
                                                 Text("   ${widget.order.product[position].spacifcation.length} ${produc[DataBaseConstants.PRODUCT_TABLE_NAME]}",
                                                   style: TextStyle(
                                                     color: GoodColors.brown
@@ -172,7 +173,7 @@ class _OrderTabState extends State<OrderTab>{
                                   children: <Widget>[
                                     Expanded(
                                       flex: 1,
-                                      child: Container(
+                                      child: widget.order.product[position].spacifcation.length >0 ? Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(17),
@@ -204,11 +205,11 @@ class _OrderTabState extends State<OrderTab>{
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ) : Container(),
                                     ),
                                     Expanded(
                                       flex: 1,
-                                      child: Container(
+                                      child: widget.order.product[position].spacifcation.length >1 ? Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(17),
@@ -240,20 +241,20 @@ class _OrderTabState extends State<OrderTab>{
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ) : Container(),
                                     ),
                                   ],
-                                ),
+                                ) ,
                               ),
                             ),
                             Flexible(
                               flex: 1,
                               child: Container(
-                                child: Row(
+                                  child: Row(
                                   children: <Widget>[
                                     Expanded(
                                       flex: 1,
-                                      child: Container(
+                                      child: widget.order.product[position].spacifcation.length>2 ?Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(17),
@@ -285,11 +286,11 @@ class _OrderTabState extends State<OrderTab>{
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ) :Container(),
                                     ),
                                     Expanded(
                                       flex: 1,
-                                      child: Container(
+                                      child: widget.order.product[position].spacifcation.length >3 ?Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(17),
@@ -321,10 +322,10 @@ class _OrderTabState extends State<OrderTab>{
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ):Container(),
                                     ),
                                   ],
-                                ),
+                                ) ,
                               ),
                             ),
                             Flexible(
@@ -334,7 +335,7 @@ class _OrderTabState extends State<OrderTab>{
                                   children: <Widget>[
                                     Expanded(
                                       flex: 2,
-                                      child: Container(
+                                      child:widget.order.product[position].spacifcation.length >4 ? Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(17),
@@ -350,14 +351,14 @@ class _OrderTabState extends State<OrderTab>{
                                                     borderRadius: BorderRadius.circular(17),
                                                   ),
                                                   child: Center(
-                                                    child: Text("${widget.order.product[position].spacifcation[3].key}",
+                                                    child: Text("${widget.order.product[position].spacifcation[4].key}",
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Text("   ${widget.order.product[position].spacifcation[3].value}",
+                                                Text("   ${widget.order.product[position].spacifcation[4].value}",
                                                   style: TextStyle(
                                                       color: GoodColors.brownDark
                                                   ),
@@ -366,7 +367,7 @@ class _OrderTabState extends State<OrderTab>{
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ) : Container(),
                                     ),
                                     Expanded(
                                       flex: 1,
@@ -374,13 +375,13 @@ class _OrderTabState extends State<OrderTab>{
                                       ),
                                     ),
                                   ],
-                                ),
+                                )
                               ),
                             ),
                             Flexible(
                               flex: 1,
                               child: Container(
-                                child: Row(
+                                child:Row(
                                   children: <Widget>[
                                     Expanded(
                                       flex: 1,
@@ -403,7 +404,7 @@ class _OrderTabState extends State<OrderTab>{
                                       ),
                                     ),
                                   ],
-                                ),
+                                ) ,
                               ),
                             ),
                           ],

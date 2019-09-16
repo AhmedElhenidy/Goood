@@ -81,7 +81,7 @@ class _OffersState extends State<Offers>{
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text("العدد : 3 صور"),
+                    Text("العدد : ${sliderList.length} صور"),
                     Text("الحجم : 148 * 312 "),
                   ],
                 ),
@@ -94,9 +94,8 @@ class _OffersState extends State<Offers>{
                 child: Container(
                   padding: EdgeInsets.all(16),
                   width: MediaQuery.of(context).size.width,
-                  child:_image == null?
-                  Image.asset("images/add_photo.png",fit: BoxFit.fill,):
-                  Image.file(_image,fit: BoxFit.cover),
+                  child:
+                  Image.asset("images/add_photo.png",fit: BoxFit.fill,)
                 ),
               ),
             ),
@@ -123,7 +122,7 @@ class _OffersState extends State<Offers>{
                             child: Container(
                               height: MediaQuery.of(context).size.height/7,
                               color: Colors.green,
-                              child: Image.network("http://goot.drugs-house.com/public/images/Slider/1567250892.png",fit: BoxFit.fill,),
+                              child: Image.network(sliderList[position].imageLink ?? "",fit: BoxFit.fill,),
                             ),
                           ),
                           Expanded(

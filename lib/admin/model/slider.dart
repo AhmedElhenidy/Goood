@@ -12,7 +12,7 @@ class SliderModel {
             created_at: json['created_at'],
             id: json['id'],
             image: json['image'],
-            imageLink: json['imageLink'],
+            imageLink: json['ImageLink'],
             updated_at: json['updated_at'],
         );
     }

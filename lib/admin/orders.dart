@@ -426,6 +426,7 @@ class _SendOrderState extends State<SendOrder>{
       child: Container(
         padding: EdgeInsets.only(bottom: 16),
         height: MediaQuery.of(context).size.height/1.2,
+
         child: Column(
           children: <Widget>[
             Flexible(

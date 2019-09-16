@@ -279,7 +279,7 @@ class _AddDriverState extends State<AddDriver> {
       child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(bottom: 16),
-          height: MediaQuery.of(context).size.height/1.7,
+          height: MediaQuery.of(context).size.height/1.5,
           child: Column(
             children: <Widget>[
               Flexible(

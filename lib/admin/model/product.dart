@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ProductModel {
     String created_at;
     int id;
@@ -13,9 +15,9 @@ class ProductModel {
         );
     }
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
+        final Map<String, String> data = new Map<String, String>();
         data['created_at'] = this.created_at;
-        data['id'] = this.id;
+        data['id'] = this.id.toString();
         data['price'] = this.price;
         data['updated_at'] = this.updated_at;
         return data;
@@ -28,5 +30,13 @@ class GetAllPricesServerResponse{
     return GetAllPricesServerResponse(
       productList: json['Products'] != null ? (json['Products'] as List).map((i) => ProductModel.fromJson(i)).toList() : null,
     );
+  }
+
+  Map<String ,String >toJson(){
+    final Map<String, String> data = new Map<String, String>();
+    if(this.productList!=null)
+    data['Products'] = json.encode(this.productList.map((v) => v.toJson()).toList());
+
+    return data ;
   }
 }
