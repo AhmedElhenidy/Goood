@@ -1,6 +1,8 @@
+import 'package:camel/admin/api/driver_api.dart';
 import 'package:camel/admin/api/orders_api.dart';
 import 'package:camel/admin/client_tab.dart';
 import 'package:camel/admin/drivers.dart';
+import 'package:camel/admin/model/driver.dart';
 import 'package:camel/admin/order_tab.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/model/OrderModel.dart';
@@ -417,6 +419,29 @@ class SendOrder extends StatefulWidget{
   _SendOrderState createState()=> _SendOrderState();
 }
 class _SendOrderState extends State<SendOrder>{
+  static List<Driver> driverList = new List();
+  bool getAllUsersApiCall = false ;
+  getAllDrivers(){
+    setState(() {
+      getAllUsersApiCall = true ;
+    });
+    DriverApi.getAllDriver().then((response){
+      setState(() {
+        driverList =response.driverList;
+        getAllUsersApiCall = false ;
+      });
+    },onError: (error){
+      setState(() {
+        getAllUsersApiCall = false ;
+      });
+      print("get All drivers error : : : $error");
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    this.getAllDrivers();
+  }
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -426,8 +451,7 @@ class _SendOrderState extends State<SendOrder>{
       child: Container(
         padding: EdgeInsets.only(bottom: 16),
         height: MediaQuery.of(context).size.height/1.2,
-
-        child: Column(
+        child: getAllUsersApiCall?Center(child: CircularProgressIndicator(),):Column(
           children: <Widget>[
             Flexible(
               flex: 1,
@@ -466,7 +490,7 @@ class _SendOrderState extends State<SendOrder>{
               flex: 4,
               child: Container(
                 child: ListView.builder(
-                  itemCount: 9,
+                  itemCount: driverList.length,
                   itemBuilder: (context,position){
                     return Padding(
                       padding: const EdgeInsets.only(bottom:16.0),
@@ -516,7 +540,7 @@ class _SendOrderState extends State<SendOrder>{
                                               padding: EdgeInsets.only(right: 1,top: 16),
                                               child: Align(
                                                   alignment: Alignment.bottomCenter,
-                                                  child: Text("محمد علاء سعفان",style: TextStyle(fontSize: 17),)),
+                                                  child: Text("${driverList[position].name}",style: TextStyle(fontSize: 17),)),
                                             ),
                                           ),
                                           Flexible(
@@ -527,10 +551,9 @@ class _SendOrderState extends State<SendOrder>{
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                 children: <Widget>[
-                                                  Text("01065432596",style: TextStyle(fontSize: 12),),
+                                                  Text("${driverList[position].phone}",style: TextStyle(fontSize: 12),),
                                                   Image.asset("images/whats.png",width:20,height: 20 ,),
                                                   Image.asset("images/ring.png",width:20,height: 20 ,),
-
                                                 ],
                                               ),
                                             ),

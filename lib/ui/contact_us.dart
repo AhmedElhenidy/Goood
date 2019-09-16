@@ -80,7 +80,7 @@ class _ContactUsState extends State<ContactUs>{
                                 Flexible(
                                   child: Container(
                                     child: InkWell(
-                                     onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
+                                     onTap: ()=>launch('https://www.instagram.com/aljoodmeat/'),
                                       child: Row(
                                         children: <Widget>[
                                           Expanded(
@@ -117,7 +117,7 @@ class _ContactUsState extends State<ContactUs>{
                                 Flexible(
                                   child: Container(
                                     child: InkWell(
-                                      onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
+                                      onTap: ()=>launch('https://twitter.com/aljoodmeat'),
                                       child: Row(
                                         children: <Widget>[
                                           Expanded(
@@ -184,7 +184,7 @@ class _ContactUsState extends State<ContactUs>{
                                   ),),flex: 1,),
                                 Flexible(child: Container(
                                   child: InkWell(
-                                    onTap: ()=>launch('https://www.snapchat.com/add/almm99'),
+                                    onTap: ()=>launch('https://www.snapchat.com/add/almmm99'),
                                     child: Row(
                                     children: <Widget>[
                                       Expanded(
@@ -216,35 +216,38 @@ class _ContactUsState extends State<ContactUs>{
                                 ),
                                   ),),flex: 1,),
                                 Flexible(child: Container(
-                                  child: Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Image.asset("images/telephone.png",height: 25,width: 25,),
+                                  child:InkWell(
+                                    onTap:()=>launch('https://iwtsp.com/966537537823'),
+                                    child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Image.asset("images/telephone.png",height: 25,width: 25,),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text("   +966502661634",
-                                            textDirection: TextDirection.rtl,
-                                            style: TextStyle(
-                                                color: GoodColors.brown,
-                                              fontFamily: 'bold65',
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text("   +966502661634",
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  color: GoodColors.brown,
+                                                fontFamily: 'bold65',
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
 
-                                  ],
-                                ),),flex: 1,),
+                                    ],
+                                ),
+                                  ),),flex: 1,),
                                 Flexible(child: Container(),flex: 1,),
 
                               ],

@@ -39,10 +39,11 @@ class _DriversState extends State<Drivers>{
     });
   }
   deleteDriver(int id,int position){
+    setState(() {
+      getAllUsersApiCall =true;
+    });
     DriverApi.deleteDriver(id).then((response){
-      setState(() {
-        driverList.removeAt(position);
-      });
+      this.getAllDrivers();
     });
   }
   @override
@@ -258,9 +259,24 @@ class AddDriver extends StatefulWidget{
 }
 class _AddDriverState extends State<AddDriver> {
   TextEditingController name ,phone ,note ;
-  addDriver(){
+  bool addDriverApiCal =false ;
+  addDriver(BuildContext context){
+    setState(() {
+      addDriverApiCal =true ;
+    });
       DriverApi.addNewDriver(name.text, phone.text,note.text).then((response){
-        _DriversState.notifier.sink.add(response.driver);
+        if(!response.errors){
+          _DriversState.notifier.sink.add(response.driver);
+        }
+        setState(() {
+          addDriverApiCal =false ;
+        });
+        Navigator.pop(context);
+      },onError: (error){
+        setState(() {
+          addDriverApiCal =false ;
+        });
+        print("Add Driver error : : $error");
       });
   }
   @override
@@ -279,8 +295,8 @@ class _AddDriverState extends State<AddDriver> {
       child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(bottom: 16),
-          height: MediaQuery.of(context).size.height/1.5,
-          child: Column(
+          height: MediaQuery.of(context).size.height/1.8,
+          child: addDriverApiCal?Center(child: CircularProgressIndicator(),):Column(
             children: <Widget>[
               Flexible(
                 flex: 2,
@@ -434,7 +450,9 @@ class _AddDriverState extends State<AddDriver> {
                   child: Padding(
                     padding: const EdgeInsets.only(right :8.0,left: 8,top: 2,bottom: 2),
                     child: InkWell(
-                      onTap:addDriver ,
+                      onTap:(){
+                        addDriver(context);
+                      } ,
                       child: Container(
                         decoration: BoxDecoration(
                           color: name.text!=""&&phone.text!=""?GoodColors.brownDark:GoodColors.greyLight,
@@ -443,7 +461,8 @@ class _AddDriverState extends State<AddDriver> {
                         child: Center(
                           child: Text("حفظ",
                             style: TextStyle(
-                              color: name.text!=""&&phone.text!=""?GoodColors.brownDark:GoodColors.grey,
+                              fontSize: 16,
+                              color: name.text!=""&&phone.text!=""?GoodColors.brownLight:GoodColors.grey,
                             ),
                           ),
                         ),
@@ -468,15 +487,45 @@ class DriverInfo extends StatefulWidget{
 }
 class _DriverInfoState extends State<DriverInfo> {
   TextEditingController name ,phone ,note ;
-  updateDriver(){
+  bool updateDriverApiCall =false ;
+  updateDriver(BuildContext context){
+    setState(() {
+      updateDriverApiCall =true ;
+    });
     DriverApi.updateDriver(widget.id, name.text, phone.text, note.text).then((response){
-      _DriversState.notifier2.sink.add(response.driver);
+      if(!response.errors){
+        _DriversState.notifier2.sink.add(response.driver);
+      }
+     setState(() {
+       updateDriverApiCall =false ;
+     });
+      Navigator.pop(context);
+    },onError: (error){
+      setState(() {
+        updateDriverApiCall =false ;
+      });
+      print("Update driver error : : $error");
     });
   }
-  deleteDriver(){
-    DriverApi.deleteDriver(widget.id).then((response){
-      _DriversState.notifier3.sink.add(widget.position);
+  deleteDriver(BuildContext context){
+    setState(() {
+      updateDriverApiCall =true ;
     });
+    DriverApi.deleteDriver(widget.id).then((response){
+      if(!response.errors){
+        _DriversState.notifier3.sink.add(widget.position);
+      }
+      setState(() {
+        updateDriverApiCall =false ;
+      });
+      Navigator.pop(context);
+    },onError: (error){
+      setState(() {
+        updateDriverApiCall =false ;
+      });
+      print("delete driver error : : $error");
+    });
+
   }
   @override
   void initState() {
@@ -494,10 +543,11 @@ class _DriverInfoState extends State<DriverInfo> {
       child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(bottom: 16),
-          height: MediaQuery.of(context).size.height/1.2,
-          child: Column(
+          height: MediaQuery.of(context).size.height/1.5,
+          child:updateDriverApiCall?Center(child: CircularProgressIndicator(),): Column(
             children: <Widget>[
               Flexible(
+                fit: FlexFit.loose,
                 flex: 2,
                 child: Container(
                   padding: EdgeInsets.all(16),
@@ -531,6 +581,7 @@ class _DriverInfoState extends State<DriverInfo> {
                 ),
               ),
               Flexible(
+                fit: FlexFit.loose,
                 flex: 2,
                 child: Container(
                   child: Column(
@@ -633,8 +684,11 @@ class _DriverInfoState extends State<DriverInfo> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left:8.0),
                                 child: InkWell(
-                                  onTap: updateDriver,
+                                  onTap:(){
+                                    updateDriver(context);
+                                  } ,
                                   child: Container(
+                                    padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                       color: name.text!=""&&phone.text!=""?GoodColors.brownLight:GoodColors.greyLight,
                                       borderRadius: BorderRadius.circular(7),
@@ -659,9 +713,11 @@ class _DriverInfoState extends State<DriverInfo> {
                               child: Padding(
                                 padding: const EdgeInsets.only(right:8.0),
                                 child: InkWell(
-                                  onTap: deleteDriver,
+                                  onTap: (){
+                                    deleteDriver(context);
+                                  },
                                   child: Container(
-                                    padding: EdgeInsets.only(top: 2,bottom: 2),
+                                    padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                       color: name.text!=""&&phone.text!=""?GoodColors.brownDark:GoodColors.greyLight,
                                       borderRadius: BorderRadius.circular(7),

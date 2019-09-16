@@ -52,8 +52,6 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       });
     });
   }
-
-
   @override
   Widget build(BuildContext context) {
     BottomNavigationBarItem account =  BottomNavigationBarItem(

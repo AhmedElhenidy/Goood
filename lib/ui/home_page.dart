@@ -1,11 +1,12 @@
 import 'package:camel/Api/ClientApi.dart';
 import 'package:camel/DataBase/config.dart';
+import 'package:camel/admin/api/slider_api.dart';
+import 'package:camel/admin/model/slider.dart';
 import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/slices.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import 'hashy_category.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,13 +23,46 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     this.getCategories();
     this.getPrices();
+    this.getSlider();
     super.initState();
     _scaffoldKeyProfile = new GlobalKey<ScaffoldState>();
   }
-
   List<Map<String, dynamic>> categories = new List();
+  List<SliderModel> sliderList = new List();
+  List<Widget> carouselSliderItems = new List();
   bool getCategoriesCall = false;
-
+  bool getSliderCall = false;
+  Widget sliderItem(SliderModel slider){
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: EdgeInsets.all(4),
+        height: MediaQuery.of(context).size.height / 3,
+        width: MediaQuery.of(context).size.width / 1.2,
+        child: Image.network(slider.imageLink,
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
+  getSlider(){
+    setState(() {
+     getSliderCall = true;
+    });
+    SliderApi.getAllSlider().then((response){
+      sliderList =response.sliderList;
+      setState(() {
+        sliderList.forEach((slider) =>
+            carouselSliderItems.add(sliderItem(slider)));
+        getSliderCall = false;
+      });
+    },onError: (error){
+      print("get Slider Error : :  $error");
+      setState(() {
+        getSliderCall = false;
+      });
+    });
+  }
   getPrices(){
     ClientApi.getPrices().then((response) {
       setState(() {
@@ -94,35 +128,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: CarouselSlider(
-                          items: [
-                            Container(
-                              padding: EdgeInsets.all(4),
-                              height: MediaQuery.of(context).size.height / 3,
-                              width: MediaQuery.of(context).size.width / 1.2,
-                              child: Image.asset(
-                                "images/caro1.png",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(4),
-                              height: MediaQuery.of(context).size.height / 4,
-                              width: MediaQuery.of(context).size.width / 1.2,
-                              child: Image.asset(
-                                "images/caro2.png",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(4),
-                              height: MediaQuery.of(context).size.height / 4,
-                              width: MediaQuery.of(context).size.width / 1.2,
-                              child: Image.asset(
-                                "images/caro2.png",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ],
+                          items:carouselSliderItems,
                           viewportFraction: .80,
                           autoPlay: true,
                           enableInfiniteScroll: true,
