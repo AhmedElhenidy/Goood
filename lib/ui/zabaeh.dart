@@ -1395,7 +1395,7 @@ class _ZbaehState extends State<Zbaeh> {
                             cuttingValue = "ثلاجة";
                             break;
                           case 2:
-                            cuttingValue = "تفاصيل سغيرة";
+                            cuttingValue = "تفاصيل صغيرة";
                             break;
                           case 3:
                             cuttingValue = "تفاصيل كبيرة";

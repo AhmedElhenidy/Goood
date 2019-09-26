@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         //canvasColor: Colors.transparent,
         bottomAppBarColor: GoodColors.grey,
       ),
-      home: ContactUs(),
+      home: SplashScreen(),
     );
   }
 }

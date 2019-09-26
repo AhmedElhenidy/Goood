@@ -9,7 +9,6 @@ import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:toast/toast.dart';
 
-
 class Hashy extends StatefulWidget {
   int id;
   Hashy(this.id);
@@ -48,27 +47,28 @@ class _HashyState extends State<Hashy> {
       this.getProductCall = false;
     });
   }
-int count = 0 ;
+
+  int count = 0;
   @override
   void didChangeDependencies() {
-    super.didChangeDependencies() ;
-  this.getShoppingCartCount();
+    super.didChangeDependencies();
+    this.getShoppingCartCount();
   }
-  void getShoppingCartCount(){
-    SqlLiteDataBase.getShoppingCartCount().then((count){
+
+  void getShoppingCartCount() {
+    SqlLiteDataBase.getShoppingCartCount().then((count) {
       setState(() {
-        this.count = count ;
+        this.count = count;
       });
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKeyProfile,
       appBar: AppBarClass()
-          .appBar(context, _scaffoldKeyProfile, false, count,title: "الحاشى"),
+          .appBar(context, _scaffoldKeyProfile, false, count, title: "الحاشى"),
       backgroundColor: Colors.white,
       body: this.getProductCall
           ? Container(
@@ -281,7 +281,8 @@ int count = 0 ;
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 18,
-                                                                      fontFamily: 'bold65',
+                                                                  fontFamily:
+                                                                      'bold65',
                                                                 ),
                                                               ),
                                                             ),
@@ -297,7 +298,8 @@ int count = 0 ;
                                                               style: TextStyle(
                                                                   color: GoodColors
                                                                       .brownDark,
-                                                                  fontFamily: 'bold65',
+                                                                  fontFamily:
+                                                                      'bold65',
                                                                   fontSize: cuttingValue ==
                                                                               "تفاصيل كبيرة" ||
                                                                           cuttingValue ==
@@ -398,7 +400,8 @@ int count = 0 ;
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 18,
-                                                                      fontFamily: 'bold65',
+                                                                  fontFamily:
+                                                                      'bold65',
                                                                 ),
                                                               ),
                                                             ),
@@ -413,7 +416,8 @@ int count = 0 ;
                                                               "$taghleefValue",
                                                               style: TextStyle(
                                                                 fontSize: 16,
-                                                                fontFamily: 'bold65',
+                                                                fontFamily:
+                                                                    'bold65',
                                                                 color: GoodColors
                                                                     .brownDark,
                                                               ),
@@ -439,7 +443,7 @@ int count = 0 ;
                                             const EdgeInsets.only(top: 16.0),
                                         child: sizeValue == ""
                                             ? Container(
-                                              width: 100,
+                                                width: 100,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -505,7 +509,8 @@ int count = 0 ;
                                                               style: TextStyle(
                                                                 color: Colors
                                                                     .white,
-                                                                fontFamily: 'bold65',
+                                                                fontFamily:
+                                                                    'bold65',
                                                                 fontSize: 18,
                                                               ),
                                                             ),
@@ -521,7 +526,8 @@ int count = 0 ;
                                                             "$sizeValue",
                                                             style: TextStyle(
                                                               fontSize: 16,
-                                                              fontFamily: 'bold65',
+                                                              fontFamily:
+                                                                  'bold65',
                                                               color: GoodColors
                                                                   .brownDark,
                                                             ),
@@ -538,7 +544,7 @@ int count = 0 ;
                                             const EdgeInsets.only(top: 16.0),
                                         child: cuttingValue == ""
                                             ? Container(
-                                               width: 100,
+                                                width: 100,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
@@ -601,7 +607,8 @@ int count = 0 ;
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 18,
-                                                                fontFamily: 'bold65',
+                                                                fontFamily:
+                                                                    'bold65',
                                                               ),
                                                             ),
                                                           ),
@@ -617,7 +624,8 @@ int count = 0 ;
                                                             style: TextStyle(
                                                                 color: GoodColors
                                                                     .brownDark,
-                                                                fontFamily: 'bold65',
+                                                                fontFamily:
+                                                                    'bold65',
                                                                 fontSize: cuttingValue ==
                                                                             "تفاصيل كبيرة" ||
                                                                         cuttingValue ==
@@ -700,7 +708,8 @@ int count = 0 ;
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 18,
-                                                                fontFamily: 'bold65',
+                                                                fontFamily:
+                                                                    'bold65',
                                                               ),
                                                             ),
                                                           ),
@@ -717,7 +726,8 @@ int count = 0 ;
                                                               fontSize: 14,
                                                               color: GoodColors
                                                                   .brownDark,
-                                                              fontFamily: 'bold65',
+                                                              fontFamily:
+                                                                  'bold65',
                                                             ),
                                                           ),
                                                         ),
@@ -832,7 +842,8 @@ int count = 0 ;
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 18,
-                                                                      fontFamily: 'bold65',
+                                                                  fontFamily:
+                                                                      'bold65',
                                                                 ),
                                                               ),
                                                             ),
@@ -900,9 +911,11 @@ int count = 0 ;
                                                                 ),
                                                                 child: Center(
                                                                   child: Text(
-                                                                      "$kg",
-                                                                    style: TextStyle(
-                                                                      fontFamily: 'bold65',
+                                                                    "$kg",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          'bold65',
                                                                     ),
                                                                   ),
                                                                 ),
@@ -910,7 +923,8 @@ int count = 0 ;
                                                               InkWell(
                                                                 onTap: () {
                                                                   setState(() {
-                                                                    if (!(kg < 0))
+                                                                    if (!(kg <
+                                                                        0))
                                                                       kg--;
                                                                   });
                                                                 },
@@ -932,7 +946,8 @@ int count = 0 ;
                                                                 style: TextStyle(
                                                                     color: GoodColors
                                                                         .brown,
-                                                                    fontFamily: 'bold65',
+                                                                    fontFamily:
+                                                                        'bold65',
                                                                     fontSize:
                                                                         16),
                                                               ),
@@ -1048,7 +1063,8 @@ int count = 0 ;
                                                                 "مفروم",
                                                                 style:
                                                                     TextStyle(
-                                                                      fontFamily: 'bold65',
+                                                                  fontFamily:
+                                                                      'bold65',
                                                                   color: Colors
                                                                       .white,
                                                                   fontSize: 16,
@@ -1119,10 +1135,12 @@ int count = 0 ;
                                                                 ),
                                                                 child: Center(
                                                                   child: Text(
-                                                                      "$kg",
-                                                                  style: TextStyle(
-                                                                    fontFamily: 'bold65',
-                                                                  ),
+                                                                    "$kg",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          'bold65',
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1151,7 +1169,8 @@ int count = 0 ;
                                                                 style: TextStyle(
                                                                     color: GoodColors
                                                                         .brown,
-                                                                    fontFamily: 'bold65',
+                                                                    fontFamily:
+                                                                        'bold65',
                                                                     fontSize:
                                                                         16),
                                                               ),
@@ -1264,7 +1283,10 @@ int count = 0 ;
                         child: Center(
                           child: Text(
                             "الإجمالى",
-                            style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'bold65',
+                            ),
                           ),
                         ),
                       ),
@@ -1280,8 +1302,11 @@ int count = 0 ;
                           ),
                           child: Center(
                             child: Text(
-                              "${this.number * (this.product ==null ? 0:this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
-                              style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
+                              "${this.number * (this.product == null ? 0 : this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'bold65',
+                              ),
                             ),
                           ),
                         ),
@@ -1291,25 +1316,32 @@ int count = 0 ;
                 ),
               ),
               InkWell(
-                onTap: ()async {
-                  if(sizeValue.isEmpty || taghleefValue.isEmpty || cuttingValue.isEmpty){
+                onTap: () async {
+                  if (sizeValue.isEmpty ||
+                      taghleefValue.isEmpty ||
+                      cuttingValue.isEmpty) {
                     print("not all Specification Specified ....");
-                    Toast.show("من فضلك اضف الخصائص.. ", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+                    Toast.show("من فضلك اضف الخصائص.. ", context,
+                        duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
 
-                   // showInSnackBar("من فضلك اضف الخصائص.. " , context ,_scaffoldKeyProfile );
-                  }else{
-                    Map<String,String> specification = {
-                      'الحجم' : sizeValue,
-                      'التغليف' :taghleefValue,
-                      'التقطيع' :cuttingValue,
+                    // showInSnackBar("من فضلك اضف الخصائص.. " , context ,_scaffoldKeyProfile );
+                  } else {
+                    Map<String, String> specification = {
+                      'الحجم': sizeValue,
+                      'التغليف': taghleefValue,
+                      'التقطيع': cuttingValue,
                     };
-                    if(mafroomTapped){
-                      specification['مفروم'] = "$kg كجم " ;
+                    if (mafroomTapped) {
+                      specification['مفروم'] = "$kg كجم ";
                     }
                     await SqlLiteDataBase.addToShoppingCart(
                         this.product[DataBaseConstants.PRODUCT_TABLE_ID],
-                        this.number ,specification: specification);
-                    Toast.show("تم اضافة المنتج بنجاح", context,duration: Toast.LENGTH_LONG ,backgroundColor: Color(0xaa5eff00) ,textColor: Colors.black);
+                        this.number,
+                        specification: specification);
+                    Toast.show("تم اضافة المنتج بنجاح", context,
+                        duration: Toast.LENGTH_LONG,
+                        backgroundColor: Color(0xaa5eff00),
+                        textColor: Colors.black);
 
                     this.getShoppingCartCount();
                   }
@@ -1369,7 +1401,7 @@ int count = 0 ;
                 Flexible(
                   flex: 1,
                   child: Container(
-                    padding:EdgeInsets.only(left: 16,right: 16) ,
+                    padding: EdgeInsets.only(left: 16, right: 16),
                     decoration: BoxDecoration(
                       color: GoodColors.brownDark,
                       borderRadius: BorderRadius.only(
@@ -1399,18 +1431,18 @@ int count = 0 ;
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: GoodColors.brown
-                                  ),
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -1568,7 +1600,7 @@ int count = 0 ;
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
@@ -1576,10 +1608,10 @@ int count = 0 ;
                                 child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: GoodColors.brown
-                                  ),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -1611,7 +1643,7 @@ int count = 0 ;
                             cuttingValue = "ثلاجة";
                             break;
                           case 2:
-                            cuttingValue = "تفاصيل سغيرة";
+                            cuttingValue = "تفاصيل صغيرة";
                             break;
                           case 3:
                             cuttingValue = "تفاصيل كبيرة";
@@ -1773,7 +1805,7 @@ int count = 0 ;
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
@@ -1781,10 +1813,10 @@ int count = 0 ;
                                 child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: GoodColors.brown
-                                  ),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -1810,19 +1842,19 @@ int count = 0 ;
                       setState(() {
                         switch (i) {
                           case 0:
-                            taghleefValue = "" ;
+                            taghleefValue = "";
                             break;
                           case 1:
-                            taghleefValue = "سحب حرارى هواء" ;
+                            taghleefValue = "سحب حرارى هواء";
                             break;
                           case 2:
-                            taghleefValue = "صحون مغلفة" ;
+                            taghleefValue = "صحون مغلفة";
                             break;
                           case 3:
-                            taghleefValue = "بدون" ;
+                            taghleefValue = "بدون";
                             break;
                           default:
-                            taghleefValue = "" ;
+                            taghleefValue = "";
                         }
                       });
                     },

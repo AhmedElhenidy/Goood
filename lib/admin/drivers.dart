@@ -5,6 +5,7 @@ import 'package:camel/admin/model/driver.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
+
 class Drivers extends StatefulWidget {
   _DriversState createState() => _DriversState();
 }
@@ -260,11 +261,11 @@ class AddDriver extends StatefulWidget{
 class _AddDriverState extends State<AddDriver> {
   TextEditingController name ,phone ,note ;
   bool addDriverApiCal =false ;
-  addDriver(BuildContext context){
+  addDriver(BuildContext context) async{
     setState(() {
       addDriverApiCal =true ;
     });
-      DriverApi.addNewDriver(name.text, phone.text,note.text).then((response){
+    DriverApi.addNewDriver(name.text, phone.text,note.text).then((response){
         if(!response.errors){
           _DriversState.notifier.sink.add(response.driver);
         }

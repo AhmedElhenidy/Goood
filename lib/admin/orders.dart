@@ -1,3 +1,4 @@
+import 'package:camel/DataBase/config.dart';
 import 'package:camel/admin/api/driver_api.dart';
 import 'package:camel/admin/api/orders_api.dart';
 import 'package:camel/admin/client_tab.dart';
@@ -6,8 +7,14 @@ import 'package:camel/admin/model/driver.dart';
 import 'package:camel/admin/order_tab.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/model/OrderModel.dart';
+import 'package:camel/statics/DataBaseConstants.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+import 'package:toast/toast.dart';
+//TODO get Quantity from server
+//TODO get orders with Order Decs
 class Orders extends StatefulWidget {
   _OrdersState createState() => _OrdersState();
 }
@@ -37,244 +44,249 @@ class _OrdersState extends State<Orders>{
     _scaffoldKeyProfile =GlobalKey<ScaffoldState>();
     this.getAllOrders();
   }
+  String message ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AdminAppBarClass().appBar(context, _scaffoldKeyProfile,"الطلبات"),
       body: getAllOrdersApiCall
           ?Center(child: CircularProgressIndicator(),)
-          :Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: <Widget>[
-            Flexible(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.all(16),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text("العدد : ${orderList.length} طلب"),
-                )
+          :Material(
+        elevation: 3,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: <Widget>[
+              Flexible(
+                flex: 1,
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text("العدد : ${orderList.length} طلب"),
+                  )
+                ),
               ),
-            ),
-            Flexible(
-              flex: 8,
-              child: Container(
-                child: ListView.builder(
-                  itemCount: orderList.length,
-                  padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
-                  itemBuilder: (context,position){
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 230,
-                        child: InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderDetails(orderList[position])));
-                          },
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned(
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 20,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
+              Flexible(
+                flex: 8,
+                child: Container(
+                  child: ListView.builder(
+                    itemCount: orderList.length,
+                    padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
+                    itemBuilder: (context,position){
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 230,
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderDetails(orderList[position])));
+                            },
+                            child: Stack(
+                              children: <Widget>[
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 20,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Flexible(
+                                            flex: 2,
+                                            fit: FlexFit.tight,
+                                            child: Container(
+                                              width: MediaQuery.of(context).size.width,
+                                              color: Colors.purpleAccent,
+                                              child: Image.asset("images/order_photo.png",fit: BoxFit.fill,),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      child: Center(
+                                                        child: Image.asset("images/time.png",width: 24,height: 24,),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Container(
+                                                      padding: EdgeInsets.only(left: 16),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: <Widget>[
+                                                          Text("تاريخ الطلب : ${orderList[position].created_at.substring(0,10)}",
+                                                            style: TextStyle(
+                                                              color: GoodColors.brown,
+                                                            ),
+                                                          ),
+                                                          Text("${orderList[position].created_at.substring(10,16)}  "
+                                                              "${int.parse(orderList[position].created_at.substring(11,13))>12?"pm":"am"}",
+                                                            textDirection: TextDirection.ltr,
+                                                            style: TextStyle(
+                                                              color: GoodColors.brown,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      child: Center(
+                                                        child: Image.asset("images/man_order.png",width: 24,height: 24,),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Container(
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: <Widget>[
+                                                          Text("اسم العميل : ${orderList[position].name}",
+                                                            style: TextStyle(
+                                                              color: GoodColors.brown,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      child: Center(
+                                                        child: Image.asset("images/sheep_order.png",width: 24,height: 24,),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Container(
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: <Widget>[
+                                                          Text("عدد الطلبات : ${orderList[position].product.length} طلبات",
+                                                            style: TextStyle(
+                                                              color: GoodColors.brown,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      child: Center(
+                                                        child: Image.asset("images/dollar_sign.png",width: 24,height: 24,),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 5,
+                                                    child: Container(
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: <Widget>[
+                                                          Text("السعر الكلى : ${orderList[position].price} رس",
+                                                            style: TextStyle(
+                                                              color: GoodColors.brown,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Container(
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 190,
+                                  left: MediaQuery.of(context).size.width/6,
+                                  right: MediaQuery.of(context).size.width/6,
+                                  bottom: 0,
                                   child: Container(
-                                    color: Colors.white,
-                                    child: Column(
+                                    decoration: BoxDecoration(
+                                      color: GoodColors.brownLight,
+                                      borderRadius: BorderRadius.circular(20)
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
-                                        Flexible(
-                                          flex: 2,
-                                          fit: FlexFit.tight,
-                                          child: Container(
-                                            width: MediaQuery.of(context).size.width,
-                                            color: Colors.purpleAccent,
-                                            child: Image.asset("images/order_photo.png",fit: BoxFit.fill,),
+                                        Text("مشاركة عبر الواتس اب  ",
+                                          style: TextStyle(
+                                            color: Colors.white,
                                           ),
                                         ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Container(
-                                                    child: Center(
-                                                      child: Image.asset("images/time.png",width: 24,height: 24,),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 5,
-                                                  child: Container(
-                                                    padding: EdgeInsets.only(left: 16),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: <Widget>[
-                                                        Text("تاريخ الطلب : ${orderList[position].created_at.substring(0,10)}",
-                                                          style: TextStyle(
-                                                            color: GoodColors.brown,
-                                                          ),
-                                                        ),
-                                                        Text("${orderList[position].created_at.substring(10,16)}  "
-                                                            "${int.parse(orderList[position].created_at.substring(11,13))>12?"pm":"am"}",
-                                                          textDirection: TextDirection.ltr,
-                                                          style: TextStyle(
-                                                            color: GoodColors.brown,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Container(
-                                                    child: Center(
-                                                      child: Image.asset("images/man_order.png",width: 24,height: 24,),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 5,
-                                                  child: Container(
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: <Widget>[
-                                                        Text("اسم العميل : ${orderList[position].name}",
-                                                          style: TextStyle(
-                                                            color: GoodColors.brown,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Container(
-                                                    child: Center(
-                                                      child: Image.asset("images/sheep_order.png",width: 24,height: 24,),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 5,
-                                                  child: Container(
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: <Widget>[
-                                                        Text("عدد الطلبات : ${orderList[position].product.length} طلبات",
-                                                          style: TextStyle(
-                                                            color: GoodColors.brown,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Container(
-                                                    child: Center(
-                                                      child: Image.asset("images/dollar_sign.png",width: 24,height: 24,),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 5,
-                                                  child: Container(
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: <Widget>[
-                                                        Text("السعر الكلى : ${orderList[position].price} رس",
-                                                          style: TextStyle(
-                                                            color: GoodColors.brown,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Container(
-                                          ),
-                                        ),
+                                        Image.asset("images/whatsapp.png",width: 26,height: 26,),
                                       ],
                                     ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 190,
-                                left: MediaQuery.of(context).size.width/6,
-                                right: MediaQuery.of(context).size.width/6,
-                                bottom: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: GoodColors.brownLight,
-                                    borderRadius: BorderRadius.circular(20)
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text("مشاركة عبر الواتس اب  ",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Image.asset("images/whatsapp.png",width: 26,height: 26,),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -288,6 +300,8 @@ class OrderDetails extends StatefulWidget{
   _OrderDetailsState createState()=> _OrderDetailsState();
 }
 class _OrderDetailsState extends State<OrderDetails>{
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -301,7 +315,7 @@ class _OrderDetailsState extends State<OrderDetails>{
           floatingActionButton: InkWell(
             onTap: (){
               showDialog(context: context,
-                builder: (_)=>SendOrder()
+                builder: (_)=>SendOrder(widget.order)
               );
             },
             child: CircleAvatar(
@@ -416,11 +430,57 @@ class _OrderDetailsState extends State<OrderDetails>{
   }
 }
 class SendOrder extends StatefulWidget{
+  Order order ;
+
+  SendOrder(this.order);
+
   _SendOrderState createState()=> _SendOrderState();
 }
 class _SendOrderState extends State<SendOrder>{
   static List<Driver> driverList = new List();
   bool getAllUsersApiCall = false ;
+
+  String message = "" ;
+  getMessageToSend() async{
+
+    setState(() {
+      this.message = "" ;
+      this.message+= "المعلومات الاساسية :-" ;
+      this.message+= "\n" ;
+      this.message+= "اسم العميل :${widget.order.name}" ;
+      this.message+= "\n" ;
+      this.message+="العنوان : ${widget.order.address}" ;
+      this.message+= "\n" ;
+      this.message += "رقم الهاتف : ${widget.order.phone_1}" ;
+      this.message+= "\n" ;
+      this.message+= "السعر : ${widget.order.price} ريال سعودي" ;
+
+    });
+
+    for(int i = 0 ; i < widget.order.product.length ; i++){
+      this.message+= "\n\n\n" ;
+      this.message+= "المنتجات المطلوبة :- " ;
+      final response = await db.select(
+          table: DataBaseConstants.PRODUCT_TABLE,
+          where: "${DataBaseConstants.PRODUCT_TABLE_ID} = ${widget.order.product[i].id}",
+          limit: 1);
+      this.message+= "\n" ;
+      this.message+= " المنتج رقم(${i+1})" ;
+      this.message+= "\n" ;
+      this.message+= "اسم المنتج : ${response[0][DataBaseConstants.PRODUCT_TABLE_NAME]}" ;
+      this.message+= "\n" ;
+      //TODO add real qty
+      this.message+= "العدد : ${widget.order.product[i].quantity}" ;
+      this.message+= "\n" ;
+      this.message+= "الخصائص :" ;
+      this.message+= "\n" ;
+      widget.order.product[i].spacifcation.forEach((speci){
+        this.message+="${speci.key} : ${speci.value}";
+        this.message+= "\n" ;
+      });
+     this.message+= "\n\n" ;
+    }
+  }
   getAllDrivers(){
     setState(() {
       getAllUsersApiCall = true ;
@@ -564,15 +624,24 @@ class _SendOrderState extends State<SendOrder>{
                                   ),
                                   Expanded(
                                     flex: 1,
-                                    child: Container(
-                                      padding: EdgeInsets.only(left:2,right: 2),
-                                      color: GoodColors.brownLight,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Image.asset("images/sent-mail.png",fit: BoxFit.fill,),
-                                        ],
+                                    child: InkWell(
+                                      onTap: ()async{
+                                       await  this.getMessageToSend();
+                                        ClipboardManager.copyToClipBoard(this.message).then((result) {
+                                          Toast.show("تم نسخ الطلب لاستخدامة لاحقا", context ,duration: Toast.LENGTH_LONG);
+                                          FlutterOpenWhatsapp.sendSingleMessage(driverList[position].phone, this.message);
+                                        });
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.only(left:2,right: 2),
+                                        color: GoodColors.brownLight,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Image.asset("images/sent-mail.png",fit: BoxFit.fill,),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

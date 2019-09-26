@@ -5,13 +5,15 @@ class ProductModel {
     int id;
     String price;
     String updated_at;
-    ProductModel({this.created_at, this.id, this.price, this.updated_at});
+    String quantity ;
+    ProductModel({this.created_at, this.id, this.price,this.quantity ,this.updated_at});
     factory ProductModel.fromJson(Map<String, dynamic> json) {
         return ProductModel(
             created_at: json['created_at'],
             id: json['id'],
             price: json['price'],
             updated_at: json['updated_at'],
+            quantity: "${json['quantity']}"
         );
     }
     Map<String, dynamic> toJson() {

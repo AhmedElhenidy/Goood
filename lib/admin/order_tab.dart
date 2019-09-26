@@ -150,8 +150,7 @@ class _OrderTabState extends State<OrderTab>{
                                                     ),
                                                   ),
                                                 ),
-                                                //TODO get right qty from api
-                                                Text("   ${widget.order.product[position].spacifcation.length} ${produc[DataBaseConstants.PRODUCT_TABLE_NAME]}",
+                                                Text("   ${widget.order.product[position].quantity} ${produc[DataBaseConstants.PRODUCT_TABLE_NAME]}",
                                                   style: TextStyle(
                                                     color: GoodColors.brown
                                                   ),
@@ -172,7 +171,7 @@ class _OrderTabState extends State<OrderTab>{
                                 child: Row(
                                   children: <Widget>[
                                     Expanded(
-                                      flex: 1,
+                                      flex: 2,
                                       child: widget.order.product[position].spacifcation.length >0 ? Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(
@@ -208,7 +207,7 @@ class _OrderTabState extends State<OrderTab>{
                                       ) : Container(),
                                     ),
                                     Expanded(
-                                      flex: 1,
+                                      flex: 3,
                                       child: widget.order.product[position].spacifcation.length >1 ? Container(
                                         padding: EdgeInsets.only(top:9,bottom: 9,left: 9),
                                         child: ClipRRect(

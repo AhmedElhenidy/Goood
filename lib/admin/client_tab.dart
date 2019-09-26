@@ -1,6 +1,8 @@
 import 'package:camel/model/OrderModel.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class ClientTab extends StatefulWidget{
   Order order;
   ClientTab(this.order);
@@ -199,6 +201,10 @@ class _ClientTabState extends State<ClientTab>{
                             child: Padding(
                               padding: const EdgeInsets.only(left :8.0),
                               child: InkWell(
+                                onTap: (){
+                                  _launchURL("tel:${widget.order.phone_1}");
+
+                                },
                                 child: Container(
                                   padding: EdgeInsets.only(top: 4,bottom: 4),
                                   decoration: BoxDecoration(
@@ -220,32 +226,32 @@ class _ClientTabState extends State<ClientTab>{
                               ),
                             ),
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right:8.0),
-                              child: InkWell(
-                                child: Container(
-                                  padding: EdgeInsets.only(top: 4,bottom: 4),
-                                  decoration: BoxDecoration(
-                                      color: GoodColors.brownDark,
-                                      borderRadius: BorderRadius.circular(7)
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text("مراسلة   ",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Image.asset("images/whatsapp.png",width: 24,height: 24,)
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+//                          Expanded(
+//                            flex: 1,
+//                            child: Padding(
+//                              padding: const EdgeInsets.only(right:8.0),
+//                              child: InkWell(
+//                                child: Container(
+//                                  padding: EdgeInsets.only(top: 4,bottom: 4),
+//                                  decoration: BoxDecoration(
+//                                      color: GoodColors.brownDark,
+//                                      borderRadius: BorderRadius.circular(7)
+//                                  ),
+//                                  child: Row(
+//                                    mainAxisAlignment: MainAxisAlignment.center,
+//                                    children: <Widget>[
+//                                      Text("مراسلة   ",
+//                                        style: TextStyle(
+//                                          color: Colors.white,
+//                                        ),
+//                                      ),
+//                                      Image.asset("images/whatsapp.png",width: 24,height: 24,)
+//                                    ],
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                          ),
                         ],
                       ),
                     ),
@@ -275,4 +281,11 @@ class _ClientTabState extends State<ClientTab>{
     );
   }
 
+  _launchURL(String url ) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

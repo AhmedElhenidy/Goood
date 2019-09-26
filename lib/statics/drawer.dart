@@ -3,9 +3,21 @@ import 'package:camel/ui/about.dart';
 import 'package:camel/ui/contact_us.dart';
 import 'package:camel/ui/my_account.dart';
 import 'package:flutter/material.dart';
-
+import 'package:wc_flutter_share/wc_flutter_share.dart';
 import 'bottom_navigation.dart';
 class DrawerClass{
+
+  void _shareText() async {
+    try {
+      WcFlutterShare.share(
+          sharePopupTitle: 'شارك تطبيق الجود',
+          text: ' Android : https://play.google.com/store/apps/details?id=com.memy.camel\n\n '
+              'Ios : ',
+          mimeType: 'text/plain');
+    } catch (e) {
+      print(e);
+    }
+  }
   Widget showDrawer(BuildContext context) {
     return Container(
        height: MediaQuery.of(context).size.height,
@@ -63,27 +75,7 @@ class DrawerClass{
                       );
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0,left: 20.0),
-                    child: Divider(color: GoodColors.grey,),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height/55,),
-                  new ListTile(
-                    title: new Text(
-                      "حسابى",
-                      style: new TextStyle(
-                          fontSize: 18.0,
-                          color: GoodColors.brownDark,
-                        fontFamily: 'black75',
-                          ),
-                      textAlign: TextAlign.right,
-                    ),
-                    leading: new Image.asset("images/man.png",width: 41,height: 41,
-                    ),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyAccount()));
-                    },
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.only(right: 20.0,left: 20.0),
                     child: Divider(color: GoodColors.grey,),
@@ -146,6 +138,7 @@ class DrawerClass{
                     leading: new Image.asset("images/sharr.png",width: 41,height: 41,
                     ),
                     onTap: () {
+                      _shareText();
                       Navigator.pop(context);
                     },
                   ),

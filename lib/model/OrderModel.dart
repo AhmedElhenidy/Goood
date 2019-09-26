@@ -84,10 +84,11 @@ class Product {
     String created_at;
     int id;
     String price;
+    String quantity ;
     List<Spacifcation> spacifcation;
     String updated_at;
 
-    Product({this.created_at, this.id, this.price, this.spacifcation, this.updated_at});
+    Product({this.created_at, this.id,this.quantity ,this.price, this.spacifcation, this.updated_at});
 
     factory Product.fromJson(Map<String, dynamic> json) {
         return Product(
@@ -96,6 +97,7 @@ class Product {
             price: json['price'],
             spacifcation: json['spacifcation'] != null ? (json['spacifcation'] as List).map((i) => Spacifcation.fromJson(i)).toList() : null,
             updated_at: json['updated_at'],
+            quantity: "${json['quantity']}"
         );
     }
 

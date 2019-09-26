@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "298949462410",
+    "firebase_url": "https://goood-9948e.firebaseio.com",
+    "project_id": "goood-9948e",
+    "storage_bucket": "goood-9948e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298949462410:android:2d0948d8261847142ba073",
+        "android_client_info": {
+          "package_name": "com.memy.camel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298949462410-q2gtg3eofcedk1nilh1to63pvj62meu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-YnF8-xGTha_AElfgZW8Cqc2169KsKIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298949462410-q2gtg3eofcedk1nilh1to63pvj62meu8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
