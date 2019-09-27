@@ -872,6 +872,8 @@ class _HashyState extends State<Hashy> {
                                                                 onTap: () {
                                                                   setState(() {
                                                                     kg++;
+                                                                    if(widget.id == 4 )
+                                                                    this.number = kg ;
                                                                   });
                                                                 },
                                                                 child:
@@ -923,9 +925,11 @@ class _HashyState extends State<Hashy> {
                                                               InkWell(
                                                                 onTap: () {
                                                                   setState(() {
-                                                                    if (!(kg <
-                                                                        0))
+                                                                    if (kg > 1 )
+                                                                      if(widget.id == 4 )
                                                                       kg--;
+
+                                                                    this.number = kg ;
                                                                   });
                                                                 },
                                                                 child:
@@ -1222,9 +1226,9 @@ class _HashyState extends State<Hashy> {
 //                        ),
 //                      ),
 //                    ),
-                    Expanded(
+                    widget.id == 4 ? Container():  Expanded(
                       flex: 1,
-                      child: IconButton(
+                      child: widget.id == 4 ? Container(): IconButton(
                         icon: Icon(
                           Icons.add,
                           color: Colors.white,
@@ -1238,8 +1242,18 @@ class _HashyState extends State<Hashy> {
                       ),
                     ),
                     Expanded(
-                      flex: 1,
-                      child: Container(
+                      flex: widget.id == 4 ? 3 : 1,
+                      child:widget.id == 4 ? Container(
+                          child: Center(
+                            child: Text(
+                              "يزيد 50 رس توصيل",
+                              style: TextStyle(
+                                fontFamily: 'bold65',
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                      ): Container(
                         padding: EdgeInsets.only(left: 8, right: 8),
                         decoration: BoxDecoration(
                             color: GoodColors.brownDark,
@@ -1258,7 +1272,7 @@ class _HashyState extends State<Hashy> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    widget.id == 4 ? Container(): Expanded(
                       flex: 1,
                       child: IconButton(
                         icon: Icon(
@@ -1302,7 +1316,7 @@ class _HashyState extends State<Hashy> {
                           ),
                           child: Center(
                             child: Text(
-                              "${this.number * (this.product == null ? 0 : this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
+                              "${this.number * (this.product == null ? 0 : this.product[DataBaseConstants.PRODUCT_TABLE_PRICE]) + 50} رس",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'bold65',
@@ -1317,9 +1331,13 @@ class _HashyState extends State<Hashy> {
               ),
               InkWell(
                 onTap: () async {
-                  if (sizeValue.isEmpty ||
+                  bool check = widget.id == 4 ? (
                       taghleefValue.isEmpty ||
-                      cuttingValue.isEmpty) {
+                      cuttingValue.isEmpty) :(sizeValue.isEmpty ||
+                      taghleefValue.isEmpty ||
+                      cuttingValue.isEmpty) ;
+
+                  if (check) {
                     print("not all Specification Specified ....");
                     Toast.show("من فضلك اضف الخصائص.. ", context,
                         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
@@ -1327,11 +1345,13 @@ class _HashyState extends State<Hashy> {
                     // showInSnackBar("من فضلك اضف الخصائص.. " , context ,_scaffoldKeyProfile );
                   } else {
                     Map<String, String> specification = {
-                      'الحجم': sizeValue,
                       'التغليف': taghleefValue,
                       'التقطيع': cuttingValue,
                     };
-                    if (mafroomTapped) {
+                    if(widget.id != 4 ){
+                      specification['الحجم'] = sizeValue ;
+                    }
+                    if (mafroomTapped && widget.id != 4 ) {
                       specification['مفروم'] = "$kg كجم ";
                     }
                     await SqlLiteDataBase.addToShoppingCart(

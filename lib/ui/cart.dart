@@ -144,11 +144,15 @@ class _CartState extends State<Cart> {
                 "${product[DataBaseConstants.PRODUCT_TABLE_PRICE]}") *
             int.parse(
                 "${product[DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY]}"));
+        if(product['productId'] == 4 ){
+          this.totalPrice += 50 ;
+          this.hashMeetCheck = true ;
+        }
       });
     });
     print("total Price : :: $totalPrice");
   }
-
+bool hashMeetCheck = false ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -559,6 +563,20 @@ class _CartState extends State<Cart> {
                               ],
                             ),
                           ),
+
+                        !hashMeetCheck ? Container():  Container(
+                            padding: EdgeInsets.only(right: 16),
+                              child: Center(
+                                child: Text(
+                                  "يزيد 50 رس توصيل",
+                                  style: TextStyle(
+                                    fontFamily: 'bold65',
+                                    color: Colors.white,
+                                    fontSize: 10
+                                  ),
+                                ),
+                              )
+                          )
                         ],
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:camel/model/DefultServerResponse.dart';
 import 'package:camel/model/OrderModel.dart';
 import 'package:camel/model/OrderToSent.dart';
 import 'package:camel/model/ProductPricesModel.dart';
@@ -31,5 +32,23 @@ class ClientApi{
     final jsonResponse = json.decode(respones.body);
     print(jsonResponse);
     return jsonResponse['errors'];
+  }
+
+  static  Future<DefultServerResponse> promoCode( int orderId,String promoCode )async{
+    String url =URL+"api/order/checkPromoCode/$orderId?codeName=$promoCode";
+    print(url);
+    final respones = await http.post(url );
+    final jsonResponse = json.decode(respones.body);
+    print(jsonResponse);
+    return DefultServerResponse.fromJson(jsonResponse);
+  }
+
+  static  Future<DefultServerResponse> contactUs( String name , String mobile , String message )async{
+    String url =URL+"api/Product/contact?name=$name&phone=$mobile&message=$message";
+    print(url);
+    final responds = await http.post(url );
+    final jsonResponse = json.decode(responds.body);
+    print(jsonResponse);
+    return DefultServerResponse.fromJson(jsonResponse);
   }
 }

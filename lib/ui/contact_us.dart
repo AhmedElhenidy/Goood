@@ -1,8 +1,11 @@
+import 'package:camel/Api/ClientApi.dart';
 import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/statics/snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:camel/statics/app_bar.dart';
+import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 class ContactUs extends StatefulWidget{
   _ContactUsState createState()=> _ContactUsState();
@@ -10,11 +13,39 @@ class ContactUs extends StatefulWidget{
 class _ContactUsState extends State<ContactUs>{
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
   int count = 0 ;
+
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =new GlobalKey<ScaffoldState>();
   }
+  bool contactUsApi = false ;
+   contactUs(){
+    if(name.text.isEmpty || phone.text.isEmpty || message.text.isEmpty){
+      showInSnackBar("من فضلك تاكد من اضافة جميع البيانات", context, _scaffoldKey);
+      return 0 ;
+    }
+    setState(() {
+      this.contactUsApi = true ;
+    });
+    ClientApi.contactUs(name.text, phone.text, message.text).then((response){
+      setState(() {
+        this.contactUsApi =false ;
+      });
+      if(!response.errors )
+        showInSnackBar("ارسلت الرسالة بنجاح", context, _scaffoldKey);
+      else
+        showInSnackBar(response.message, context, _scaffoldKey);
+    },onError: (error){
+      setState(() {
+        this.contactUsApi =false ;
+      });
+      print("contact Us error : : : $error");
+
+    });
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies() ;
@@ -24,11 +55,14 @@ class _ContactUsState extends State<ContactUs>{
       });
     });
   }
-
+TextEditingController message = new TextEditingController();
+TextEditingController name = new TextEditingController();
+TextEditingController phone = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: DrawerClass().showDrawer(context),
       appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false,count),
       body: SingleChildScrollView(
@@ -335,6 +369,7 @@ class _ContactUsState extends State<ContactUs>{
                                       width: MediaQuery.of(context).size.width/1.9,
                                       child: Center(
                                         child: TextField(
+                                          controller: name,
                                           textDirection: TextDirection.rtl,
                                           decoration: InputDecoration(
                                             contentPadding: EdgeInsets.all(8),
@@ -357,6 +392,7 @@ class _ContactUsState extends State<ContactUs>{
                                       width: MediaQuery.of(context).size.width/1.9,
                                       child: Center(
                                         child: TextField(
+                                          controller: phone,
                                           textDirection: TextDirection.rtl,
                                           decoration: InputDecoration(
                                             contentPadding: EdgeInsets.all(8),
@@ -384,6 +420,7 @@ class _ContactUsState extends State<ContactUs>{
                                         ),
                                       ),
                                       child: TextField(
+                                        controller: message,
                                         keyboardType: TextInputType.multiline,
                                         maxLines: 3,
                                         scrollPhysics: BouncingScrollPhysics(),
@@ -449,15 +486,20 @@ class _ContactUsState extends State<ContactUs>{
                       left: (MediaQuery.of(context).size.width/1.9)/2.5,
                       right: (MediaQuery.of(context).size.width/1.9)/2.5,
                       bottom: MediaQuery.of(context).size.height/25,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: GoodColors.brown,
-                          borderRadius: BorderRadius.circular(7)
-                        ),
-                        width: 100,
-                        height: 40,
-                        child: Center(
-                          child: Text("ارسال",style: TextStyle(fontSize: 16,color: Colors.white,fontFamily: 'black75',),),
+                      child: InkWell(
+                        onTap: (){
+                          contactUs();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: GoodColors.brown,
+                            borderRadius: BorderRadius.circular(7)
+                          ),
+                          width: 100,
+                          height: 40,
+                          child: Center(
+                            child: this.contactUsApi ? CircularProgressIndicator(): Text("ارسال",style: TextStyle(fontSize: 16,color: Colors.white,fontFamily: 'black75',),),
+                          ),
                         ),
                       ),
                     ),

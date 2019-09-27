@@ -1,21 +1,37 @@
 import 'package:camel/admin/PricesPage.dart';
 import 'package:camel/admin/PromoCode.dart';
+import 'package:camel/admin/api/HomeApi.dart';
 import 'package:camel/admin/drivers.dart';
 import 'package:camel/admin/offers.dart';
 import 'package:camel/admin/orders.dart';
 import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 class AdminHome extends StatefulWidget{
   _AdminHomeState createState()=> _AdminHomeState();
 }
 class _AdminHomeState extends State<AdminHome>{
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
 
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =GlobalKey<ScaffoldState>();
+    _firebaseMessaging.onTokenRefresh.listen((String data){
+      print("on token refresh $data");
+      HomeApi.updateToken(data);
+    },onError: (error){
+        print(error);
+    } ,onDone: (){
+      print("done");
+    });
+    _firebaseMessaging.getToken().then((token){
+      print(token);
+      HomeApi.updateToken(token);
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -59,7 +75,9 @@ class _AdminHomeState extends State<AdminHome>{
                               flex: 1,
                               child: Container(
                                 width: MediaQuery.of(context).size.width/2.5,
-                                child: Image.asset("images/cart.png"),
+                               decoration: BoxDecoration(
+                                 image: DecorationImage(image: AssetImage("images/cart.png"),fit: BoxFit.contain)
+                               ),
                               ),
                             ),
                             Flexible(

@@ -3,6 +3,7 @@ import 'package:camel/DataBase/SqliteDataBase.dart';
 import 'package:camel/model/OrderModel.dart';
 import 'package:camel/statics/app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
+import 'package:camel/statics/snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
@@ -22,6 +23,8 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
   TextEditingController note = new TextEditingController();
   bool confirmOrderApi = false ;
 
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   saveOrderShipping(){
     setState(() {
       this.confirmOrderApi = true ;
@@ -32,10 +35,45 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
       }
     });
   }
+
+  bool promoCodeApi = false ;
+  TextEditingController promoCode = new TextEditingController() ;
+  checkPromoCode(){
+    if(promoCode.text.isEmpty){
+      showInSnackBar("من فضلك تاكد من اضافة كود الخصم", context, _scaffoldKey);
+      return 0 ;
+    }
+    setState(() {
+      this.promoCodeApi = true ;
+    });
+    ClientApi.promoCode(widget.order.id , promoCode.text).then((response){
+      setState(() {
+        this.promoCodeApi =false ;
+      });
+      if(!response.errors ) {
+        showInSnackBar(response.message, context, _scaffoldKey ,color: Colors.green);
+        setState(() {
+          this.totalPrice = ((100-response.amount)/100) * double.parse(widget.order.price);
+        });
+      }
+      else {
+        showInSnackBar(response.message, context, _scaffoldKey);
+      }
+    },onError: (error){
+      setState(() {
+        this.promoCodeApi =false ;
+      });
+      print("contact Us error : : : $error");
+
+    });
+  }
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =new GlobalKey<ScaffoldState>();
+    setState(() {
+      this.totalPrice = double.parse(widget.order?.price??"0.0");
+    });
   }
   int count = 0 ;
   @override
@@ -60,6 +98,7 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
         }
     );
   }
+  double totalPrice = 0;
 String selectDate = "حدد اليوم" ;
  static const String MIN_DATETIME = '2010-05-12';
  static const String MAX_DATETIME = '2021-11-25';
@@ -84,6 +123,7 @@ String selectDate = "حدد اليوم" ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBarClass().appBar(context, _scaffoldKeyProfile,false ,count),
       body: SingleChildScrollView(
         child: Padding(
@@ -145,41 +185,41 @@ String selectDate = "حدد اليوم" ;
                               Expanded(child: Container(
                                 child:Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text("${widget.order.price} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
+                                  child: Text("$totalPrice ر.س ",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
                               ) ,flex: 2,),
                             ],
                           ),
                         ),flex: 1,),
-                        Flexible(child: Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Expanded(child: Container(
-                                child: Center(child: Text("سعر التوصيل :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
-                              ) ,flex: 1,),
-                              Expanded(child: Container(
-                                child:Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text("20 ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
-                              ) ,flex: 2,),
-                            ],
-                          ),
-                        ),flex: 1,),
-                        Flexible(child: Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Expanded(child: Container(
-                                child: Center(child: Text("الاجمالي :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
-                              ) ,flex: 1,),
-                              Expanded(child: Container(
-                                child:Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text("${int.parse(widget.order.price)+20} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
-                              ) ,flex: 2,),
-                            ],
-                          ),
-                        ),flex: 1,),
+//                        Flexible(child: Container(
+//                          child: Row(
+//                            crossAxisAlignment: CrossAxisAlignment.stretch,
+//                            children: <Widget>[
+//                              Expanded(child: Container(
+//                                child: Center(child: Text("سعر التوصيل :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
+//                              ) ,flex: 1,),
+//                              Expanded(child: Container(
+//                                child:Align(
+//                                  alignment: Alignment.centerRight,
+//                                  child: Text("20 ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
+//                              ) ,flex: 2,),
+//                            ],
+//                          ),
+//                        ),flex: 1,),
+//                        Flexible(child: Container(
+//                          child: Row(
+//                            crossAxisAlignment: CrossAxisAlignment.stretch,
+//                            children: <Widget>[
+//                              Expanded(child: Container(
+//                                child: Center(child: Text("الاجمالي :",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
+//                              ) ,flex: 1,),
+//                              Expanded(child: Container(
+//                                child:Align(
+//                                  alignment: Alignment.centerRight,
+//                                  child: Text("${int.parse(widget.order.price)+20} ر.س",style: TextStyle(fontSize: 16 , color: GoodColors.brownDark,fontFamily: 'black75',),),),
+//                              ) ,flex: 2,),
+//                            ],
+//                          ),
+//                        ),flex: 1,),
                           Padding(
                             padding: const EdgeInsets.only(left:16.0 ,right: 16),
                             child: Divider(height: 3, color: GoodColors.brownLight,),
@@ -207,6 +247,7 @@ String selectDate = "حدد اليوم" ;
                                     width: MediaQuery.of(context).size.width/3.5,
                                     height: MediaQuery.of(context).size.width/11,
                                     child: TextField(
+                                      controller: promoCode,
                                       style: TextStyle(
                                           color: GoodColors.brownDark,
                                           fontSize: 14
@@ -229,14 +270,19 @@ String selectDate = "حدد اليوم" ;
                                 ),
                               ) ,flex: 2,),
                               Expanded(
-                                child: Container(
-                                  height: MediaQuery.of(context).size.width/11,
-                                  width: MediaQuery.of(context).size.width/3,
-                                  decoration: BoxDecoration(
-                                      color: GoodColors.brownDark,
-                                      borderRadius: BorderRadius.circular(8)
+                                child: InkWell(
+                                  onTap: (){
+                                    this.checkPromoCode();
+                                  },
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.width/11,
+                                    width: MediaQuery.of(context).size.width/3,
+                                    decoration: BoxDecoration(
+                                        color: GoodColors.brownDark,
+                                        borderRadius: BorderRadius.circular(8)
+                                    ),
+                                    child: Center(child:this.promoCodeApi ? CircularProgressIndicator(): Text("تاكيد",style: TextStyle(fontSize: 16 , color: Colors.white,fontFamily: 'black75',),),),
                                   ),
-                                  child: Center(child: Text("تاكيد",style: TextStyle(fontSize: 16 , color: Colors.white,fontFamily: 'black75',),),),
                                 ) ,flex: 1,),
 
                             ],

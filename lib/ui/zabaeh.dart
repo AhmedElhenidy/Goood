@@ -17,7 +17,6 @@ class Zbaeh extends StatefulWidget {
 }
 
 class _ZbaehState extends State<Zbaeh> {
-
   FixedExtentScrollController scr;
   GlobalKey<ScaffoldState> _scaffoldKeyProfile;
   int _current, kg = 1, number = 1, initialItem = 0;
@@ -378,7 +377,8 @@ class _ZbaehState extends State<Zbaeh> {
                                                           style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 14,
-                                                            fontFamily: 'bold65',
+                                                            fontFamily:
+                                                                'bold65',
                                                           ),
                                                         ),
                                                       ),
@@ -481,7 +481,8 @@ class _ZbaehState extends State<Zbaeh> {
                                                           style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 18,
-                                                            fontFamily: 'bold65',
+                                                            fontFamily:
+                                                                'bold65',
                                                           ),
                                                         ),
                                                       ),
@@ -495,7 +496,8 @@ class _ZbaehState extends State<Zbaeh> {
                                                       child: Text(
                                                         "$cuttingValue",
                                                         style: TextStyle(
-                                                            fontFamily: 'bold65',
+                                                            fontFamily:
+                                                                'bold65',
                                                             color: GoodColors
                                                                 .brownDark,
                                                             fontSize: cuttingValue ==
@@ -586,7 +588,8 @@ class _ZbaehState extends State<Zbaeh> {
                                                         child: Text(
                                                           "التغليف",
                                                           style: TextStyle(
-                                                            fontFamily: 'bold65',
+                                                            fontFamily:
+                                                                'bold65',
                                                             color: Colors.white,
                                                             fontSize: 18,
                                                           ),
@@ -710,7 +713,8 @@ class _ZbaehState extends State<Zbaeh> {
                                                           style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 16,
-                                                            fontFamily: 'bold65',
+                                                            fontFamily:
+                                                                'bold65',
                                                           ),
                                                         ),
                                                       ),
@@ -770,7 +774,13 @@ class _ZbaehState extends State<Zbaeh> {
                                                             ),
                                                           ),
                                                           child: Center(
-                                                            child: Text("$kg",style: TextStyle(fontFamily: 'bold65',),),
+                                                            child: Text(
+                                                              "$kg",
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'bold65',
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                         InkWell(
@@ -793,7 +803,8 @@ class _ZbaehState extends State<Zbaeh> {
                                                         Text(
                                                           "ك.ج",
                                                           style: TextStyle(
-                                                              fontFamily: 'bold65',
+                                                              fontFamily:
+                                                                  'bold65',
                                                               color: GoodColors
                                                                   .brown,
                                                               fontSize: 16),
@@ -831,7 +842,7 @@ class _ZbaehState extends State<Zbaeh> {
                 ),
                 child: Row(
                   children: <Widget>[
-                   /* Expanded(
+                    /* Expanded(
                       flex: 2,
                       child: Container(
                         decoration: BoxDecoration(
@@ -907,7 +918,10 @@ class _ZbaehState extends State<Zbaeh> {
                         child: Center(
                           child: Text(
                             "الإجمالى",
-                            style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'bold65',
+                            ),
                           ),
                         ),
                       ),
@@ -923,8 +937,11 @@ class _ZbaehState extends State<Zbaeh> {
                           ),
                           child: Center(
                             child: Text(
-                                "${this.number * (this.product ==null ? 0:this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
-                              style: TextStyle(color: Colors.white,fontFamily: 'bold65',),
+                              "${this.number * (this.product == null ? 0 : this.product[DataBaseConstants.PRODUCT_TABLE_PRICE])} رس",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'bold65',
+                              ),
                             ),
                           ),
                         ),
@@ -940,7 +957,8 @@ class _ZbaehState extends State<Zbaeh> {
                       cuttingValue.isEmpty ||
                       headValue.isEmpty) {
                     print("not all Specification Specified ....");
-                    Toast.show("من فضلك اضف الخصائص.. ", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM );
+                    Toast.show("من فضلك اضف الخصائص.. ", context,
+                        duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                   } else {
                     Map<String, String> specification = {
                       'الحجم': sizeValue,
@@ -955,7 +973,10 @@ class _ZbaehState extends State<Zbaeh> {
                         this.product[DataBaseConstants.PRODUCT_TABLE_ID],
                         this.number,
                         specification: specification);
-                    Toast.show("تم اضافة المنتج بنجاح", context,duration: Toast.LENGTH_LONG ,backgroundColor: Color(0xaa5eff00) ,textColor: Colors.black);
+                    Toast.show("تم اضافة المنتج بنجاح", context,
+                        duration: Toast.LENGTH_LONG,
+                        backgroundColor: Color(0xaa5eff00),
+                        textColor: Colors.black);
 
                     this.getShoppingCartCount();
                   }
@@ -1043,18 +1064,18 @@ class _ZbaehState extends State<Zbaeh> {
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: GoodColors.brown
-                                  ),
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -1212,7 +1233,7 @@ class _ZbaehState extends State<Zbaeh> {
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
@@ -1220,10 +1241,10 @@ class _ZbaehState extends State<Zbaeh> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: GoodColors.brown
-                                  ),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -1287,7 +1308,7 @@ class _ZbaehState extends State<Zbaeh> {
                       ),
                       Center(
                         child: Text(
-                          "مسلوح",
+                          "مسلوخ",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
@@ -1352,7 +1373,7 @@ class _ZbaehState extends State<Zbaeh> {
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
@@ -1360,10 +1381,10 @@ class _ZbaehState extends State<Zbaeh> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: GoodColors.brown
-                                  ),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -1536,7 +1557,7 @@ class _ZbaehState extends State<Zbaeh> {
                         topRight: Radius.circular(20),
                       ),
                     ),
-                   child: Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
@@ -1557,7 +1578,7 @@ class _ZbaehState extends State<Zbaeh> {
                           flex: 1,
                           child: Container(
                             child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.pop(context);
                               },
                               child: Padding(
@@ -1565,10 +1586,10 @@ class _ZbaehState extends State<Zbaeh> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: GoodColors.brown
-                                  ),
+                                      color: GoodColors.brown),
                                   child: Center(
-                                    child: Text("تم",
+                                    child: Text(
+                                      "تم",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         color: Colors.white,
