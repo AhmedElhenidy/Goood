@@ -4,6 +4,7 @@ import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/confirm_order.dart';
 import 'package:camel/ui/contact_us.dart';
 import 'package:camel/ui/hashy_category.dart';
+import 'package:camel/ui/login_page.dart';
 import 'package:camel/ui/snap_chat.dart';
 import 'package:camel/ui/splash_screen.dart';
 

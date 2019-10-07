@@ -8,18 +8,25 @@ import 'package:camel/admin/statics/admin_app_bar.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AdminHome extends StatefulWidget{
   _AdminHomeState createState()=> _AdminHomeState();
 }
 class _AdminHomeState extends State<AdminHome>{
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  new FlutterLocalNotificationsPlugin();
   GlobalKey<ScaffoldState> _scaffoldKeyProfile ;
 
   @override
   void initState() {
     super.initState();
     _scaffoldKeyProfile =GlobalKey<ScaffoldState>();
+    var android = new AndroidInitializationSettings('mipmap/ic_launcher');
+    var ios = new IOSInitializationSettings();
+    var platform = new InitializationSettings(android, ios);
+    flutterLocalNotificationsPlugin.initialize(platform);
     _firebaseMessaging.onTokenRefresh.listen((String data){
       print("on token refresh $data");
       HomeApi.updateToken(data);
@@ -28,10 +35,40 @@ class _AdminHomeState extends State<AdminHome>{
     } ,onDone: (){
       print("done");
     });
+    _firebaseMessaging.configure(
+      onLaunch: (Map<String, dynamic> msg) {
+        print(" onLaunch called ${(msg)}");
+      },
+      onResume: (Map<String, dynamic> msg) {
+        print(" onResume called ${(msg)}");
+      },
+      onMessage: (Map<String, dynamic> msg) {
+        showNotification(msg);
+        print(" onMessage called ${(msg)}");
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, alert: true, badge: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings setting) {
+      print('IOS Setting Registed');
+    });
     _firebaseMessaging.getToken().then((token){
       print(token);
       HomeApi.updateToken(token);
     });
+  }
+
+  showNotification(Map<String, dynamic> msg) async {
+    var android = new AndroidNotificationDetails(
+      'sdffds dsffds',
+      "CHANNLE NAME",
+      "channelDescription",
+    );
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android, iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, "This is title", "this is demo", platform);
   }
   @override
   Widget build(BuildContext context) {

@@ -61,12 +61,12 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
             Container(
               width: 24.0,
               height: 24.0,
-              child:  Icon(Icons.info,size: 26,
+              child:  Icon(Icons.person,size: 26,
                 color: _page == 2?GoodColors.brown: GoodColors.grey,
                ),
             ),
             new Container(height: 4.0),
-            new Text("عن التطبيق",
+            new Text("الصفحة الشخصية",
                 style: new TextStyle(
                   color: _page == 2?GoodColors.brown:Colors.grey,
                   fontSize: 12.0,
@@ -148,7 +148,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
       key: _globalKeyScafoldState,
       bottomNavigationBar: bottomNavigationBarWidget,
       appBar: new AppBarClass().appBar(context ,_globalKeyScafoldState ,true,count ,
-          title: _page==0?"المفضلة":_page==1?"logo":"عن الجود"
+          title: _page==0?"المفضلة":_page==1?"logo":"بروفايل"
       ),
       body: new PageView(
           scrollDirection: Axis.horizontal,
@@ -158,7 +158,7 @@ class _BottomNavigationClassState extends State<BottomNavigationBarClass>{
           children: [
             Likes(),
             HomePage(),
-            About(),
+            MyAccount(),
           ],
           controller: _pageController,
           onPageChanged: onPageChanged),

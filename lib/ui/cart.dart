@@ -65,7 +65,7 @@ class _CartState extends State<Cart> {
   }
 
   int number = 1;
-  int totalPrice = 0;
+  double totalPrice = 0;
   OrderToSent order;
   bool saveOrderApi = false;
   List<Product> productList = new List();
@@ -140,12 +140,12 @@ class _CartState extends State<Cart> {
         verbose: true);
     products.forEach((product) {
       setState(() {
-        this.totalPrice += (int.parse(
+        this.totalPrice += (double.tryParse(
                 "${product[DataBaseConstants.PRODUCT_TABLE_PRICE]}") *
-            int.parse(
+            double.parse(
                 "${product[DataBaseConstants.SHOPPING_CART_TABLE_PRODUCT_QTY]}"));
         if(product['productId'] == 4 ){
-          this.totalPrice += 50 ;
+          this.totalPrice += 40 ;
           this.hashMeetCheck = true ;
         }
       });
@@ -568,7 +568,7 @@ bool hashMeetCheck = false ;
                             padding: EdgeInsets.only(right: 16),
                               child: Center(
                                 child: Text(
-                                  "يزيد 50 رس توصيل",
+                                  "يزيد 40 رس توصيل",
                                   style: TextStyle(
                                     fontFamily: 'bold65',
                                     color: Colors.white,

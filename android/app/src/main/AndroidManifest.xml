@@ -7,13 +7,13 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="الجود"
         android:icon="@mipmap/ic_launcher">
-
-        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAT7Ij5C7m8tMxJHAgcds4AVJXDku8segY"/>
 
         <activity
             android:name=".MainActivity"
@@ -29,6 +29,9 @@
             <meta-data
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
                 android:value="true" />
+            <meta-data
+                android:name="com.google.firebase.messaging.android_channel_id"
+                android:value="mmne"/>
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

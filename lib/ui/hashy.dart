@@ -1246,7 +1246,7 @@ class _HashyState extends State<Hashy> {
                       child:widget.id == 4 ? Container(
                           child: Center(
                             child: Text(
-                              "يزيد 50 رس توصيل",
+                              "يزيد 40 رس توصيل",
                               style: TextStyle(
                                 fontFamily: 'bold65',
                                 color: Colors.white,
@@ -1316,7 +1316,7 @@ class _HashyState extends State<Hashy> {
                           ),
                           child: Center(
                             child: Text(
-                              "${this.number * (this.product == null ? 0 : this.product[DataBaseConstants.PRODUCT_TABLE_PRICE]) + 50} رس",
+                              "${this.number * (this.product == null ? 0 : this.product[DataBaseConstants.PRODUCT_TABLE_PRICE]) + 40} رس",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'bold65',

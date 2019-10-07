@@ -6,7 +6,8 @@ import 'package:camel/statics/good_colors.dart';
 import 'package:camel/statics/snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'GetLocation.dart';
 import 'Succsses_order.dart';
 class ConfirmOrder extends StatefulWidget{
   Order order ;
@@ -383,16 +384,22 @@ String selectDate = "حدد اليوم" ;
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top:16.0),
-                          child: Container(
-                            padding:EdgeInsets.only(top: 4,bottom: 4),
-                            width: MediaQuery.of(context).size.width/1.9,
-                            decoration: BoxDecoration(
-                              color: GoodColors.brownDark,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Center(
-                              child: Text("حدد العنوان على الخريطة",
-                                style: TextStyle(color: Colors.white,fontFamily: 'black75',),
+                          child: InkWell(
+                            onTap: () async {
+                              LatLng location = await Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GetLocation()));
+                              print("lat= ${location.latitude}   & lng = ${location.latitude}");
+                            },
+                            child: Container(
+                              padding:EdgeInsets.only(top: 4,bottom: 4),
+                              width: MediaQuery.of(context).size.width/1.9,
+                              decoration: BoxDecoration(
+                                color: GoodColors.brownDark,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Center(
+                                child: Text("حدد العنوان على الخريطة",
+                                  style: TextStyle(color: Colors.white,fontFamily: 'black75',),
+                                ),
                               ),
                             ),
                           ),
