@@ -29,6 +29,8 @@ class _AboutState extends State<About>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBarClass()
+          .appBar(context, _scaffoldKeyProfile, false, count, title: "عن التطبيق"),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16),

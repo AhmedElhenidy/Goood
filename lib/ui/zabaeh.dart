@@ -749,7 +749,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                                 Icons.add,
                                                                 color: Colors
                                                                     .white,
-                                                                size: 16,
+                                                                size: 25,
                                                               ),
                                                             ),
                                                           ),
@@ -795,7 +795,7 @@ class _ZbaehState extends State<Zbaeh> {
                                                                 Icons.remove,
                                                                 color: Colors
                                                                     .white,
-                                                                size: 16,
+                                                                size: 25,
                                                               ),
                                                             ),
                                                           ),
@@ -1116,7 +1116,7 @@ class _ZbaehState extends State<Zbaeh> {
                             sizeValue = "كبير";
                             break;
                           case 4:
-                            sizeValue = "جبر";
+                            sizeValue = widget.id == 5 ? "":"جبر";
                             break;
                           default:
                             sizeValue = "";
@@ -1166,7 +1166,7 @@ class _ZbaehState extends State<Zbaeh> {
                           ),
                         ),
                       ),
-                      Center(
+                      widget.id == 5 ?  Container():Center(
                         child: Text(
                           "جبر",
                           style: TextStyle(
@@ -1223,7 +1223,7 @@ class _ZbaehState extends State<Zbaeh> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontFamily: 'bold65',
                               ),
                             ),

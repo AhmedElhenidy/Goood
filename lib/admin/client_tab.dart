@@ -1,7 +1,10 @@
 import 'package:camel/model/OrderModel.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ClientTab extends StatefulWidget{
   Order order;
@@ -9,6 +12,30 @@ class ClientTab extends StatefulWidget{
   _ClientTabState createState()=>_ClientTabState();
 }
 class _ClientTabState extends State<ClientTab>{
+
+  String address = "" ;
+  void getAddress(LatLng latLng)async{
+    var address = await Geocoder.local.findAddressesFromCoordinates(new Coordinates(latLng.latitude, latLng.longitude)) ;
+    setState(() {
+      this.address = address.first.addressLine ;
+    });
+
+  }
+  @override
+  void initState() {
+    super.initState();
+
+   if(double.tryParse(widget.order.address.split(",")[0]) == null || widget.order.address.split(",").length < 2){
+     print("parseing : null");
+    setState(() {
+      this.address = widget.order.address ;
+    });
+   }else{
+     print("parseing : not null");
+    this.getAddress(new LatLng(double.parse(widget.order.address.split(",")[0]) ,double.parse(widget.order.address.split(",")[1] ))) ;
+   }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +108,7 @@ class _ClientTabState extends State<ClientTab>{
                                   padding: const EdgeInsets.only(right :16.0),
                                   child: Align(
                                     alignment: Alignment.centerRight,
-                                    child: Text("${widget.order.address}",
+                                    child: Text("${this.address}",
                                       style: TextStyle(
                                       ),
                                     ),

@@ -95,7 +95,7 @@ class DrawerClass{
                     ),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
-                          builder: (context)=>BottomNavigationBarClass(2)),);
+                          builder: (context)=>About()),);
                     },
                   ),
                   Padding(

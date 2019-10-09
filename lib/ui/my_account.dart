@@ -4,10 +4,12 @@ import 'package:camel/model/User.dart';
 import 'package:camel/statics/drawer.dart';
 import 'package:camel/statics/good_colors.dart';
 import 'package:camel/ui/GetLocation.dart';
+import 'package:camel/ui/ProfileBaseInfo.dart';
 import 'package:camel/ui/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'UserOrders.dart';
+
 class MyAccount extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -182,7 +184,9 @@ class _MyAccountState extends State<MyAccount>{
               Padding(
                 padding: const EdgeInsets.only(top :16.0),
                 child: InkWell(
-                  onTap: (){debugPrint("person");},
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileBaseInfo()));
+                  },
                   child: Container(
                     padding: EdgeInsets.only(top: 2,bottom: 2),
                     decoration: BoxDecoration(

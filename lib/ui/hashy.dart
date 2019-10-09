@@ -883,7 +883,7 @@ class _HashyState extends State<Hashy> {
                                                                       Icons.add,
                                                                       color: Colors
                                                                           .white,
-                                                                      size: 16,
+                                                                      size: 25,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -940,7 +940,7 @@ class _HashyState extends State<Hashy> {
                                                                           .remove,
                                                                       color: Colors
                                                                           .white,
-                                                                      size: 16,
+                                                                      size: 25,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1109,7 +1109,7 @@ class _HashyState extends State<Hashy> {
                                                                       Icons.add,
                                                                       color: Colors
                                                                           .white,
-                                                                      size: 16,
+                                                                      size: 25,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1163,7 +1163,7 @@ class _HashyState extends State<Hashy> {
                                                                           .remove,
                                                                       color: Colors
                                                                           .white,
-                                                                      size: 16,
+                                                                      size: 25,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1494,16 +1494,13 @@ class _HashyState extends State<Hashy> {
                             sizeAnimatedWidth = 0;
                             break;
                           case 1:
-                            sizeValue = "صغير";
+                            sizeValue = "ريع حاشي";
                             break;
                           case 2:
-                            sizeValue = "متوسط";
+                            sizeValue = "نصف حاشي";
                             break;
                           case 3:
-                            sizeValue = "كبير";
-                            break;
-                          case 4:
-                            sizeValue = "جبر";
+                            sizeValue = "حاشي كامل";
                             break;
                           default:
                             sizeValue = "";
@@ -1525,7 +1522,7 @@ class _HashyState extends State<Hashy> {
                       ),
                       Center(
                         child: Text(
-                          "صغير",
+                          "ربع حاشي",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
@@ -1535,7 +1532,7 @@ class _HashyState extends State<Hashy> {
                       ),
                       Center(
                         child: Text(
-                          "متوسط",
+                          "نصف حاشي",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
@@ -1545,17 +1542,7 @@ class _HashyState extends State<Hashy> {
                       ),
                       Center(
                         child: Text(
-                          "كبير",
-                          style: TextStyle(
-                            color: GoodColors.brown,
-                            fontSize: 16,
-                            fontFamily: 'bold65',
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "جبر",
+                          "حاشي كامل",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
@@ -1663,23 +1650,12 @@ class _HashyState extends State<Hashy> {
                             cuttingValue = "ثلاجة";
                             break;
                           case 2:
-                            cuttingValue = "تفاصيل صغيرة";
+                            cuttingValue = "كبر الكف";
                             break;
                           case 3:
-                            cuttingValue = "تفاصيل كبيرة";
+                            cuttingValue = "تقطيع كبير";
                             break;
-                          case 4:
-                            cuttingValue = "أرباع";
-                            break;
-                          case 5:
-                            cuttingValue = "أنصاف";
-                            break;
-                          case 6:
-                            cuttingValue = "كامل";
-                            break;
-                          case 7:
-                            cuttingValue = "مفطع";
-                            break;
+
                           default:
                             cuttingValue = "";
                         }
@@ -1710,7 +1686,7 @@ class _HashyState extends State<Hashy> {
                       ),
                       Center(
                         child: Text(
-                          "تفاصيل صغيرة",
+                          "كبر الكف",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
@@ -1720,47 +1696,7 @@ class _HashyState extends State<Hashy> {
                       ),
                       Center(
                         child: Text(
-                          "تفاصيل كبيرة",
-                          style: TextStyle(
-                            color: GoodColors.brown,
-                            fontSize: 16,
-                            fontFamily: 'bold65',
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "أرباع",
-                          style: TextStyle(
-                            color: GoodColors.brown,
-                            fontSize: 16,
-                            fontFamily: 'bold65',
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "أنصاف",
-                          style: TextStyle(
-                            color: GoodColors.brown,
-                            fontSize: 16,
-                            fontFamily: 'bold65',
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "كامل",
-                          style: TextStyle(
-                            color: GoodColors.brown,
-                            fontSize: 16,
-                            fontFamily: 'bold65',
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "مفطع",
+                          "تقطيع كبير",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,
@@ -1865,7 +1801,7 @@ class _HashyState extends State<Hashy> {
                             taghleefValue = "";
                             break;
                           case 1:
-                            taghleefValue = "سحب حرارى هواء";
+                            taghleefValue = "تغليف حرارى سحب هواء";
                             break;
                           case 2:
                             taghleefValue = "صحون مغلفة";
@@ -1893,7 +1829,7 @@ class _HashyState extends State<Hashy> {
                       ),
                       Center(
                         child: Text(
-                          "سحب حرارى هواء",
+                          "تغليف حرارى سحب هواء",
                           style: TextStyle(
                             color: GoodColors.brown,
                             fontSize: 16,

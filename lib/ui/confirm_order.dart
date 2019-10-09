@@ -6,6 +6,7 @@ import 'package:camel/statics/good_colors.dart';
 import 'package:camel/statics/snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'GetLocation.dart';
 import 'Succsses_order.dart';
@@ -30,7 +31,11 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
     setState(() {
       this.confirmOrderApi = true ;
     });
-    ClientApi.addShippingInfo(widget.order.id, name.text, address.text, phone.text, "$selectDate $selectedTime", note.text).then((errors){
+    String address = this.address.text ;
+    if(this.location != null){
+      address = "${location.latitude},${location.longitude}" ;
+    }
+    ClientApi.addShippingInfo(widget.order.id, name.text, address, phone.text, "$selectDate $selectedTime", note.text).then((errors){
       if(!errors){
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SuccessOrder()));
       }
@@ -68,6 +73,17 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
 
     });
   }
+  bool enableEditing = true ;
+  LatLng location  ;
+  void getAddress(LatLng latLng)async{
+    var address = await Geocoder.local.findAddressesFromCoordinates(new Coordinates(latLng.latitude, latLng.longitude)) ;
+    setState(() {
+      this.address.text = "" ;
+      this.enableEditing =false ;
+      this.address.text = address.first.addressLine ;
+    });
+
+  }
   @override
   void initState() {
     super.initState();
@@ -90,7 +106,7 @@ class _ConfirmOrderState extends State<ConfirmOrder>{
   getTime() async {
     DatePicker.showDatePicker(
         context,
-        dateFormat: "H:m",
+        dateFormat: "m:H",
         pickerMode: DateTimePickerMode.time,
         onConfirm: ( dateTime , ints){
           setState(() {
@@ -369,6 +385,7 @@ String selectDate = "حدد اليوم" ;
                               child: TextField(
                                 controller: address,
                                 textDirection: TextDirection.rtl,
+                                enabled: this.enableEditing,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(8),
                                   hintText: "العنوان",
@@ -386,8 +403,12 @@ String selectDate = "حدد اليوم" ;
                           padding: const EdgeInsets.only(top:16.0),
                           child: InkWell(
                             onTap: () async {
-                              LatLng location = await Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GetLocation()));
-                              print("lat= ${location.latitude}   & lng = ${location.latitude}");
+                              location = await Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GetLocation()));
+                              if(location != null) {
+                                getAddress(location);
+                                print("lat= ${location
+                                    .latitude}   & lng = ${location.latitude}");
+                              }
                             },
                             child: Container(
                               padding:EdgeInsets.only(top: 4,bottom: 4),

@@ -42,7 +42,7 @@ class _SnapChatState extends State<SnapChat>{
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width/1.25,
-                height: MediaQuery.of(context).size.height/2.5,
+                height: MediaQuery.of(context).size.height/2.3,
                 child: Stack(
                   children: <Widget>[
                     Positioned(
@@ -53,7 +53,7 @@ class _SnapChatState extends State<SnapChat>{
                       top: MediaQuery.of(context).size.height/14,
                       left: 5,
                       right: 5,
-                      bottom: 5,
+                      bottom:0,
                       child: Card(
                         elevation: 10,
                         shape: OutlineInputBorder(
@@ -92,10 +92,14 @@ class _SnapChatState extends State<SnapChat>{
                                       ),
                                     ),
                                   ),
-                                  Text("عند اضافتنا عبر سناب شات",
-                                    style: TextStyle( fontSize: 18,color: GoodColors.brownDark,fontFamily: 'black75',),),
-                                  Text("فأنت تتابع طلبك و الذبح اليومي "
-                                    ,style: TextStyle(color: GoodColors.brownDark,fontSize: 18,fontFamily: 'black75',),
+                                  Center(
+                                    child: Text("عند اضافتنا عبر سناب شات",
+                                      style: TextStyle( fontSize: 18,color: GoodColors.brownDark,fontFamily: 'black75',),),
+                                  ),
+                                  Center(
+                                    child: Text("فأنت تتابع طلبك و الذبح اليومي "
+                                      ,style: TextStyle(color: GoodColors.brownDark,fontSize: 18,fontFamily: 'black75',),
+                                    ),
                                   ),
                                 ],
                               )

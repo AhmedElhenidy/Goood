@@ -442,14 +442,21 @@ class _SendOrderState extends State<SendOrder>{
 
   String message = "" ;
   getMessageToSend() async{
-
+String address = "" ;
+if(double.tryParse(widget.order.address.split(",")[0]) == null || widget.order.address.split(",").length < 2){
+  print("parseing : null");
+   address = widget.order.address ;
+}else{
+  print("parseing : not null");
+  address = "https://www.google.com/maps/search/?api=1&query=${widget.order.address.split(",")[0]},${widget.order.address.split(",")[1]}" ;
+}
     setState(() {
       this.message = "" ;
       this.message+= "المعلومات الاساسية :-" ;
       this.message+= "\n" ;
       this.message+= "اسم العميل :${widget.order.name}" ;
       this.message+= "\n" ;
-      this.message+="العنوان : ${widget.order.address}" ;
+      this.message+="العنوان :  $address}" ;
       this.message+= "\n" ;
       this.message += "رقم الهاتف : ${widget.order.phone_1}" ;
       this.message+= "\n" ;
