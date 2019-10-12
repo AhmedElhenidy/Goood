@@ -79,4 +79,12 @@ class ClientApi{
     print(jsonResponse);
     return UserServerResponse.fromJson(jsonResponse);
   }
+  static  Future<UserServerResponse> editInfo( int userId,String name , String email ,String phone , String password ,String lngLat )async{
+    String url =URL+"api/profile/editInfo/$userId?email=$email&phone=$phone&password=$password&name=$name&latLng=$lngLat";
+    print(url);
+    final responds = await http.post(url );
+    final jsonResponse = json.decode(responds.body);
+    print(jsonResponse);
+    return UserServerResponse.fromJson(jsonResponse);
+  }
 }

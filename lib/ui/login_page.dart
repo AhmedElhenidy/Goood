@@ -683,7 +683,10 @@ class _LoginPageState extends State<LoginPage>
         if(resposne.errors){
           showInSnackBar(resposne.message_ar);
         }else{
-          saveUser(resposne.user).then((done){
+          User user = resposne.user ;
+          user.password = loginPasswordController.text ;
+
+          saveUser(user).then((done){
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>BottomNavigationBarClass(1)));
           });
         }
@@ -709,7 +712,9 @@ class _LoginPageState extends State<LoginPage>
         if(resposne.errors){
           showInSnackBar(resposne.message_ar);
         }else{
-          saveUser(resposne.user).then((done){
+          User user = resposne.user ;
+          user.password = signupPasswordController.text ;
+          saveUser(user).then((done){
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>BottomNavigationBarClass(1)));
           });
         }

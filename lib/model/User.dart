@@ -11,8 +11,9 @@ class User {
     String status;
     String token;
     String updated_at;
+    String password ;
 
-    User({this.created_at, this.email, this.id, this.image, this.latLng, this.name, this.phone, this.status, this.token, this.updated_at});
+    User({this.created_at, this.email, this.id, this.image, this.latLng, this.name, this.phone, this.status, this.token, this.updated_at ,this.password});
 
     factory User.fromJson(Map<String, dynamic> json) {
         return User(
@@ -52,6 +53,7 @@ Future<bool> saveUser(User user) async {
         await prefs.setString("userToken", user.token);
         await prefs.setString("userImage", user.image);
         await prefs.setString("userLatLng", user.latLng);
+        await prefs.setString("userPassword", user.password);
 
         return true ;
     }catch(Excption){
@@ -71,6 +73,7 @@ Future< User > getUser () async{
         token: prefs.getString("userToken"),
         image: prefs.getString("userImage"),
         latLng: prefs.getString("userLatLng"),
+        password: prefs.getString("userPassword"),
     );
 
 }

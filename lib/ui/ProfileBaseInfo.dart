@@ -9,6 +9,8 @@ import 'package:geocoder/geocoder.dart';
 import 'package:permission/permission.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'GetLocation.dart';
+
 
 class ProfileBaseInfo extends StatefulWidget {
   ProfileBaseInfo({Key key}) : super(key: key);
@@ -38,7 +40,10 @@ class _ProfileBaseInfoState extends State<ProfileBaseInfo> {
         this.email.text = this.user?.email??"";
       });
       if(this.user.latLng.isNotEmpty && this.user.latLng != null){
-        this.getAddress(new LatLng(double.parse(user.latLng.split(",")[0]) , double.parse(user.latLng.split(",")[1])));
+       setState(() {
+         this.positionLatLng = new LatLng(double.parse(user.latLng.split(",")[0]) , double.parse(user.latLng.split(",")[1])) ;
+       });
+        this.getAddress(positionLatLng);
       }else{
         setState(() {
           this.address.text ="لم يتم تحديد اي موقع اضغط للتحديد";
@@ -56,30 +61,32 @@ class _ProfileBaseInfoState extends State<ProfileBaseInfo> {
   }
 
   bool registerApi = false;
-//  editUserInfo() {
-//      setState(() {
-//        this.registerApi = true;
-//      });
-//      ClientApi.editUserInfo(this.user.id, name.text, email.text,phone.text).then((response) {
-//        if (!response.errors) {
-//          saveUser(response.user).then((done) {
-//
-//          }, onError: (error) {
-//            print("edite user Error : :  :$error");
-//          });
-//        } else {
-//          showInSnackBar("${response.message_ar}", context, _scaffoldKey);
-//        }
-//        setState(() {
-//          this.registerApi = false;
-//        });
-//      }, onError: (error) {
-//        print("edit user   Error : : :$error");
-//        setState(() {
-//          this.registerApi = false;
-//        });
-//      });
-//  }
+  editUserInfo() {
+      setState(() {
+        this.registerApi = true;
+      });
+      ClientApi.editInfo(this.user.id , name.text, email.text, phone.text, password.text, "${this.positionLatLng.latitude},${this.positionLatLng.longitude}").then((response) {
+        if (!response.errors) {
+          User user = response.user ;
+          user.password = password.text ;
+          saveUser(user).then((done) {
+
+          }, onError: (error) {
+            print("edite user Error : :  :$error");
+          });
+        } else {
+          showInSnackBar("${response.message_ar}", context, _scaffoldKey);
+        }
+        setState(() {
+          this.registerApi = false;
+        });
+      }, onError: (error) {
+        print("edit user   Error : : :$error");
+        setState(() {
+          this.registerApi = false;
+        });
+      });
+  }
 
   @override
   void dispose() {
@@ -91,7 +98,7 @@ class _ProfileBaseInfoState extends State<ProfileBaseInfo> {
   TextEditingController phone = new TextEditingController() ;
   TextEditingController password = new TextEditingController() ;
   FocusNode nameFocus = new FocusNode();
-  
+  LatLng positionLatLng ;
   bool editing = false ; 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +139,7 @@ class _ProfileBaseInfoState extends State<ProfileBaseInfo> {
                                onTap: (){
                                  setState(() {
                                    if(this.editing){
-//                                     this.editUserInfo();
+                                   this.editUserInfo();
                                    }
                                    this.editing = !this.editing ;
                                    FocusScope.of(context).requestFocus(this.nameFocus);
@@ -432,17 +439,30 @@ class _ProfileBaseInfoState extends State<ProfileBaseInfo> {
                       Positioned(
                         top: 0,
                         right: 16,
-                        child: Container(
-                            height: 20,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              color: GoodColors.brown,
-                              border: Border.all(width: 1),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Center(
-                              child: Text("العنوان",style: TextStyle(fontSize: 12 ,color:Colors.white ),),
-                            )
+                        child: InkWell(
+                          onTap: ()async{
+                            positionLatLng = await Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GetLocation()));
+                            if(positionLatLng != null) {
+                              user.latLng = "${positionLatLng.latitude},${positionLatLng.longitude}";
+                              saveUser(user).then((done) {
+                                setState(() {
+                                  this.getAddress(positionLatLng);
+                                });
+                              });
+                            }
+                          },
+                          child: Container(
+                              height: 20,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                color: GoodColors.brown,
+                                border: Border.all(width: 1),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Center(
+                                child: Text("العنوان",style: TextStyle(fontSize: 12 ,color:Colors.white ),),
+                              )
+                          ),
                         ),
                       ),
                     ],
